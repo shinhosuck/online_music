@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
+    <title>Welcome Page</title>
+</head>
+<body class="landing-page">
+    <div class="landing-page-img">
+
+        <nav class="nav-container landing-page-nav-container">
+            <div class="nav-width">
+
+                <div class="my-brand-container landing-page-my-brand-container">
+                    <div class="my-brand-wrapper">
+                        <a href="{% url 'music:home' %}">CloudMusic</a>
+                        <div class="toggle-btns">
+                            <i class="fa fa-bars show-fa-bars"></i>
+                            <i class="fa fa-times hide-fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-wrapper">
+                    <ul class="nav-items landing-page-nav-items">
+                        <li><a href="{% url 'music:home' %}">Browse</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li class="about"><a href="">About</a></li>
+                        <li><a href="{% url 'users:login' %}">Login</a></li>
+                        <li class="about"><a href="{% url 'users:register' %}">Join Us</a></li>
+                    </ul>
+                    <div class="user-wrapper user-chevron-down user-chevron-up"></div>
+                </div>
+
+            </div>
+        </nav>
+        <div class="landing-page-header-and-text">
+            <div class="landing-page-header-container">
+                <div class="landing-page-text-wrapper">
+                    <h1 class="landing-page-header">Music for Everyone</h1>
+                    <div class="landing-page-text-content">
+                        <p class="landing-page-text">
+                            Join us to share your work,
+                            stream playlists, and connect with 
+                            other artists from around the world.
+                        </p>
+                    </div>
+                </div>
+                <div class="landing-page-join-btn">
+                    <a href="{% url 'users:register' %}">
+                        Join us 
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                    <p>
+                        Have an account?
+                        <a class="landing-page-signin" href="{% url 'users:login' %}">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'music/main.js' %}"></script>
+</body>
+</html>
+
