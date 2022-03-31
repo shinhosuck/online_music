@@ -10,7 +10,7 @@
 
     <div class="album-container">
         <h1>
-            latest albums
+            Latest albums
             <a href="{% url 'music:all-albums' 'latest albums' %}">see all</a>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
         </h1>
@@ -50,7 +50,7 @@
     {% if user.is_authenticated and recently_played %}
         <div class="album-container">
             <h1>
-                Recently Played
+                Recently played
                 <a href="{% url 'music:all-albums' 'recently played' %}">see all</a>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
             </h1>
@@ -94,7 +94,7 @@
 
     <!-- MOST LISTENED -->
     <div class="album-container">
-        <h1>most listened
+        <h1>Most listened
             <a href="{% url 'music:all-albums' 'most listened' %}">see all</a>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
         </h1>
@@ -134,7 +134,7 @@
 
     <!-- YOU MIGHT ALSO LIKE -->
     <div class="album-container">
-        <h1>you might also like
+        <h1>You might also like
             <a href="{% url 'music:all-albums' 'you might also like' %}">see all</a>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
         </h1>

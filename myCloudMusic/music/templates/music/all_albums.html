@@ -12,7 +12,11 @@
 {% block content %}   
 {% if string == "latest albums" %}
     <div class="album-container">
-        <h1>{{ string }}</h1>
+        <!-- <h1>{{ string }}</h1> -->
+        <h1>
+            Latest albums
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
+        </h1>
         <div class="albums">
             {% for album in latest_albums %}
                 <div class="album-wrapper">
@@ -55,7 +59,11 @@
 <!-- RECENTLY PLAYED ALBUMS -->
 {% if string == "recently played" %}
     <div class="album-container">
-        <h1>{{ string }}</h1>
+        <!-- <h1>{{ string }}</h1> -->
+        <h1>
+            Recently played
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
+        </h1>
         <div class="albums">
             {% for album in recently_played %}
                 <div class="album-wrapper">
@@ -98,7 +106,10 @@
 <!-- MOST LISTENED -->
 {% if string == "most listened" %}
     <div class="album-container">
-        <h1>{{ string }}</h1>
+        <!-- <h1>{{ string }}</h1> -->
+        <h1>Most listened
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
+        </h1>
         <div class="albums">
             {% for album in most_listened %}
                 <div class="album-wrapper">
@@ -141,7 +152,10 @@
 <!-- YOU MIGHT ALSO LIKE -->
 {% if string == "you might also like" %}
     <div class="album-container">
-        <h1>{{ string }}</h1>
+        <!-- <h1>{{ string }}</h1> -->
+        <h1>You might also like
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
+        </h1>
         <div class="albums">
             {% for album in you_might_also_like %}
                 <div class="album-wrapper">
