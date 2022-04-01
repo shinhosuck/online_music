@@ -686,6 +686,16 @@ SLIDER BANNER IMAGES
     cursor: pointer;
 }
 
+@media screen and (max-width:1000px) {
+    .slider-btns {
+        display: none !important;
+    }
+
+    .circles {
+        display: none;
+    }
+}
+
 /*======================
 END SLIDER BANNER IMAGES 
 ========================*/

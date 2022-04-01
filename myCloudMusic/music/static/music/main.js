@@ -163,24 +163,22 @@ circles.forEach(function (circle) {
    })
  })
 
+function autoSlide() {
+   circles.forEach(function (circle) {
+     circle.style.background = "rgb(255, 255, 255)"
+   })
+   if (counter > sliderImgWrappers.length - 1) {
+     counter = 0
+   }
+   sliderImgWrappers.forEach(function (img) {
+     img.style.transform = `translate(-${counter * 100}%)`
+     img.style.transition = "all 3s ease-in-out"
+     circles[counter].style.background = "rgb(255, 125, 51)"
+   })
+   counter++
+   setTimeout(autoSlide, 10000)
+ }
+ autoSlide()
 
 
- // function autoSlide() {
- //   circles.forEach(function (circle) {
- //   //   circle.style.background = "rgb(253, 0, 0)"
- //     circle.style.background = "rgb(255, 255, 255)"
- //   })
- //   if (counter > sliderImgWrappers.length - 1) {
- //     counter = 0
- //   }
- //   sliderImgWrappers.forEach(function (img) {
- //     img.style.transform = `translate(-${counter * 100}%)`
- //     img.style.transition = "all 1s ease-in-out"
- //     circles[counter].style.background = "rgb(255, 125, 51)"
- //   //   circles[counter].style.background = "rgb(255, 255, 255)"
- //   })
- //   counter++
- //   setTimeout(autoSlide, 10000)
- // }
- // autoSlide()
 // END OF SLIDE BANNER IMG 
