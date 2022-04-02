@@ -697,7 +697,7 @@ SLIDER BANNER IMAGES
     } */
 
     .slider-container {
-        /* display: none; */
+        display: none;
     }
 
     .slider-btns {
@@ -1479,8 +1479,6 @@ PLAY ALBUM
     .mobile-player-container > 
     .song-container {
         display: none;
-        /* color: rgb(255, 255, 255);
-        transition: height 0.3s linear; */
     }
     .show-mobile-song-container {
         display: block !important;
