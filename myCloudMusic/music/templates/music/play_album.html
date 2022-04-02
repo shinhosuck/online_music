@@ -45,9 +45,6 @@
                     <div class="album-play-btn" title="play">
                         <i id="play-btn" class="fas fa-play"></i>
                     </div>
-                    <!-- <div class="album-pause-btn" title="pause">
-                        <i id="pause-btn" class="fas fa-pause"></i>
-                    </div> -->
                     <i id="forward-btn" class="fas fa-forward" title="forward"></i>
                     <i id="redo-btn" class="fas fa-redo-alt" title="redo"></i>
                 </div>
@@ -113,9 +110,6 @@
                     <div class="album-play-btn" title="play">
                         <i class="fas fa-play"></i>
                     </div>
-                    <!-- <div class="album-pause-btn" title="pause">
-                        <i id="pause-btn" class="fas fa-pause"></i>
-                    </div> -->
                     <i class="fas fa-forward" title="forward"></i>
                     <i class="fas fa-redo-alt" title="redo"></i>
                 </div>
@@ -154,23 +148,23 @@
 
             </div>
             <div id="mobile-song-container" class="song-container">
-                <p id="song-title">
-                    1<span>1.MOBILE SONG</span> 
+                <p class="song-title">
+                    1<span>1MOBILE SONG</span> 
                 </p>
-                <p id="song-title">
-                    2<span>2.MOBILE SONG</span> 
+                <p class="song-title">
+                    2<span>2MOBILE SONG</span> 
                 </p>
-                <p id="song-title">
-                    3<span>3.MOBILE SONG</span> 
+                <p class="song-title">
+                    3<span>3MOBILE SONG</span> 
                 </p>
-                <p id="song-title">
-                    4<span>4.MOBILE SONG</span> 
+                <p class="song-title">
+                    4<span>4MOBILE SONG</span> 
                 </p>
-                <p id="song-title">
-                    5<span>5.MOBILE SONG</span> 
+                <p class="song-title">
+                    5<span>5MOBILE SONG</span> 
                 </p>
-                <p id="song-title">
-                    6<span>6.MOBILE SONG</span> 
+                <p class="song-title">
+                    6<span>6MOBILE SONG</span> 
                 </p>
             </div>
             <div class="album-control">
@@ -179,9 +173,6 @@
                 <div class="album-play-btn" title="play">
                     <i class="fas fa-play"></i>
                 </div>
-                <!-- <div class="album-pause-btn" title="pause">
-                    <i id="pause-btn" class="fas fa-pause"></i>
-                </div> -->
                 <i class="fas fa-forward" title="forward"></i>
                 <i class="fas fa-redo-alt" title="redo"></i>
             </div>
@@ -243,6 +234,8 @@
                 albumCover.classList.toggle("hide-album-cover")
                 albumLikeDislike.firstElementChild.textContent = item.firstElementChild.textContent
                 songTitle = item.firstElementChild.textContent
+                songListToggle.style.display = "block"
+                closeSongListToggle.style.display = "none"
             })
         })
 
@@ -285,7 +278,7 @@
         const mobileSongList = document.querySelector("#mobile-song-list")
         const mobileCloseSongList = document.querySelector("#mobile-close-song-list")
         const mobilePlayerWrapper = document.querySelector(".mobile-player-wrapper")
-        const mobileSongs = document.querySelectorAll("#song-title")
+        const mobileSongs = document.querySelectorAll(".song-title")
 
         let mobileSongTitle = mobileSongContainer.firstElementChild.firstElementChild.textContent
         mobilePlayerWrapper.lastElementChild.firstElementChild.textContent = mobileSongTitle
@@ -297,6 +290,8 @@
                 mobileSongContainer.classList.toggle("show-mobile-song-container")
                 mobilePlayerWrapper.lastElementChild.firstElementChild.textContent = item.firstElementChild.textContent
                 songTitle = item.firstElementChild.textContent
+                mobileSongListToggle.style.display = "block"
+                mobileCloseSongListToggle.style.display = "none"
             })
         })
 

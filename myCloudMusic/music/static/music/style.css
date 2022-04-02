@@ -620,8 +620,8 @@ SLIDER BANNER IMAGES
     left: 0; 
     width: 100%; 
     height: 100%; 
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), 
-    rgba(0, 0, 0, 0.5));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), 
+    rgba(0, 0, 0, 0.6));
     /* background: rgba(0, 0, 0, 0.57); */
 }
 
@@ -697,7 +697,7 @@ SLIDER BANNER IMAGES
     } */
 
     .slider-container {
-        display: none;
+        /* display: none; */
     }
 
     .slider-btns {
@@ -707,8 +707,6 @@ SLIDER BANNER IMAGES
     }
 
     #previous {
-        width: 50px;
-        height: 50px;
         background: none;
         border-radius: 0;
         font-size: 1.1rem;
@@ -716,12 +714,10 @@ SLIDER BANNER IMAGES
     }
     
     #next {
-        width: 50px;
-        height: 50px;
         background: none;
-        border-radius: none;
+        border-radius: 0;
         font-size: 1.1rem;
-        color:rgb(161, 161, 161)
+        color:rgb(161, 161, 161);
     }
 
     .circles {
@@ -1482,14 +1478,15 @@ PLAY ALBUM
 
     .mobile-player-container > 
     .song-container {
-        overflow-y: scroll;
-        height: 150px;
-        color: rgb(255, 255, 255);
-
         display: none;
+        /* color: rgb(255, 255, 255);
+        transition: height 0.3s linear; */
     }
     .show-mobile-song-container {
         display: block !important;
+        overflow-y: scroll;
+        height: 150px;
+        color: rgb(255, 255, 255);
     }
 
     .mobile-player-container >
