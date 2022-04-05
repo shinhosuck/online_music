@@ -182,3 +182,25 @@ circles.forEach(function (circle) {
 
 
 // END OF SLIDE BANNER IMG 
+
+// NAV DROP DOWN MENU AUTO HIDE ON 530PX OR GREATER
+window.addEventListener("scroll", function(){
+   if(pageYOffset >= "530") {
+      navItems.classList.toggle("show-nav-items")
+      faBars.classList.remove("hide-fa-bars")
+      faTimes.classList.remove("show-fa-times")
+
+
+   // remove user drop down menu on mobile
+      navItems.classList.remove("show-nav-items1")
+      userWrapper.classList.remove("show-user-wrapper")
+
+      userChevronDown.style.display = "inline-block"
+      userChevronUp.style.display = "none"
+   // end of mobile
+
+      console.log(pageYOffset)
+   }
+})
+
+// END OF NAV DROP DOWN MENU AUTO HIDE ON 530PX OR GREATER
