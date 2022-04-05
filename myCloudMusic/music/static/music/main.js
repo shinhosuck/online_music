@@ -185,8 +185,8 @@ circles.forEach(function (circle) {
 
 // NAV DROP DOWN MENU AUTO HIDE ON 530PX OR GREATER
 window.addEventListener("scroll", function(){
-   if(pageYOffset >= "530") {
-      navItems.classList.toggle("show-nav-items")
+   if(scrollY >= "530") {
+      navItems.classList.remove("show-nav-items")
       faBars.classList.remove("hide-fa-bars")
       faTimes.classList.remove("show-fa-times")
 
@@ -199,7 +199,7 @@ window.addEventListener("scroll", function(){
       userChevronUp.style.display = "none"
    // end of mobile
 
-      console.log(pageYOffset)
+      console.log(scrollY)
    }
 })
 
