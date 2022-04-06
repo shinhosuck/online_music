@@ -106,11 +106,20 @@ preventDefaults.forEach((item)=>{
 
 
 
-// SLIDE BANNER IMG 
+/*============== 
+SLIDE BANNER IMG
+================*/
+
 const sliderImgWrappers = document.querySelectorAll(".slider-img-wrapper")
-let nextBtn = document.querySelector("#next")
-let previousBtn = document.querySelector("#previous")
+// let nextBtn = document.querySelector("#next")
+// let previousBtn = document.querySelector("#previous")
 const circles = document.querySelectorAll(".circle")
+let nextBtn = document.querySelector(".next")
+let previousBtn = document.querySelector(".previous")
+
+const mobileSliderImgWrappers = document.querySelectorAll(".mobile-slider-img-wrapper")
+let mobileNextBtn = document.querySelector(".mobile-next")
+let mobilePreviousBtn = document.querySelector(".mobile-previous")
 
 let counter = 0
 
@@ -147,9 +156,9 @@ function slide(){
 
 circles.forEach(function (circle) {
    circle.addEventListener("click", function () {
-     const newCircles = [...circles]
-     newCircles.forEach(function (newCircle) {
-       newCircle.style.background = "rgb(255, 255, 255)"
+      const newCircles = [...circles]
+      newCircles.forEach(function (newCircle) {
+      newCircle.style.background = "rgb(255, 255, 255)"
      })
 
      counter = newCircles.indexOf(circle)
@@ -180,8 +189,42 @@ circles.forEach(function (circle) {
 //  }
 //  autoSlide()
 
+/*======================
+ END OF SLIDE BANNER IMG 
+ =======================*/
 
-// END OF SLIDE BANNER IMG 
+/*======================
+MOBILE SLIDER BANNER IMG
+========================*/ 
+
+mobilePreviousBtn.addEventListener("click", ()=>{
+   counter --
+   mobileSlide()
+})
+
+mobileNextBtn.addEventListener("click", ()=>{
+   counter ++
+   mobileSlide()
+})
+
+function mobileSlide(){
+
+   if(counter < 0) {
+      counter = mobileSliderImgWrappers.length -1
+   }
+   else if(counter > mobileSliderImgWrappers.length -1){
+      counter = 0
+   }
+
+   mobileSliderImgWrappers.forEach(function (img) {
+      img.style.transform = `translatex(-${counter * 100}%)`
+      img.style.transition = "all 0.5s ease-in-out"
+    })
+}
+
+/*=============================
+END OF MOBILE SLIDER BANNER IMG
+===============================*/ 
 
 // NAV DROP DOWN MENU AUTO HIDE ON 530PX OR GREATER
 window.addEventListener("scroll", function(){
