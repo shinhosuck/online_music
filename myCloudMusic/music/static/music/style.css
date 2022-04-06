@@ -787,6 +787,9 @@ SLIDER BANNER IMAGES
         display: block;
     }
     
+    .mobile-slider-container > .slider-btns {
+        display: none;
+    }
 }
 
 /*======================

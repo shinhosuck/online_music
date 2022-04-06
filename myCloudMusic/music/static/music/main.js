@@ -242,7 +242,7 @@ window.addEventListener("scroll", function(){
       userChevronUp.style.display = "none"
    // end of mobile
 
-      console.log(scrollY)
+      // console.log(scrollY)
    }
 })
 
