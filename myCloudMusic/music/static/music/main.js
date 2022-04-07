@@ -247,3 +247,12 @@ window.addEventListener("scroll", function(){
 })
 
 // END OF NAV DROP DOWN MENU AUTO HIDE ON 530PX OR GREATER
+
+// const mobileSliderContainer = document.querySelector(".mobile-slider-container")
+// const sliderContainer = document.querySelector(".slider-container")
+// const sliderBtns = document.querySelector(".slider-btns")
+
+// sliderContainer.addEventListener("touchstart", ()=>{
+//    sliderBtns.style.visibility = "visible"
+//    alert("has been touched")
+// })

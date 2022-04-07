@@ -19,6 +19,20 @@ body {
     scroll-behavior: smooth;
     height: 100%;
     overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+a:hover, a:active, a:visited, a:focus {
+    text-decoration:none;
+    color: white;
 }
 
 a {
@@ -32,6 +46,10 @@ li {
 
 .main-background {
     background:rgb(31, 31, 31)
+}
+
+.active {
+    color: rgb(255, 115, 0) !important
 }
 
 /*===========
@@ -589,6 +607,7 @@ SLIDER BANNER IMAGES
     letter-spacing: 0.06rem;
     margin-top: 1rem;
     font-size: 16px;
+    padding: 0 1rem;
 }
 
 .slider-header-text > a {
@@ -626,7 +645,6 @@ SLIDER BANNER IMAGES
 }
 
 .slider-btns {
-    /*display: none;*/
     position: absolute;
     z-index: 3;
     top: 50%;
@@ -641,10 +659,8 @@ SLIDER BANNER IMAGES
 }
 
 @media (hover) {
-    .slider-container:hover .slider-btns {
-       /* display: flex;
-        align-items: center;
-        justify-content: space-between;*/
+    .slider-container:hover 
+    .slider-btns {
         visibility: visible;
     }
 }
@@ -701,36 +717,27 @@ SLIDER BANNER IMAGES
 }
 
 @media screen and (max-width:1000px) {
-    /* .slider-container {
-        display: none;
-    } */
-
     .slider-header-text > h1 {
         color: rgb(255, 255, 255);
         letter-spacing: 0.1rem;
-        font-size: 2.7rem;
+        font-size: 2.5rem;
         font-weight: 500;
-    }
-
-    .slider-btns {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        visibility: visible;
     }
 
     #previous {
         background: none;
         border-radius: 0;
         font-size: 1.1rem;
-        color:rgb(161, 161, 161);
+        color:rgb(139, 139, 139);
+        margin-left: 1rem;
     }
     
     #next {
         background: none;
         border-radius: 0;
         font-size: 1.1rem;
-        color:rgb(161, 161, 161);
+        color:rgb(139, 139, 139);
+        margin-right: 1rem
     }
 
     .circles {
@@ -742,34 +749,6 @@ SLIDER BANNER IMAGES
     .slider-container {
         display: none;
     }
-
-    .slider-header-text > h1 {
-        color: rgb(255, 255, 255);
-        letter-spacing: 0.1rem;
-        font-size: 1.5rem;
-        font-weight: 500;
-    }
-
-    /* .slider-header-text > p {
-        color: rgb(221, 221, 221);
-        letter-spacing: 0.06rem;
-        margin-top: 1rem;
-        font-size: 14px;
-    } */
-
-    .slider-header-text > a {
-        padding: 0.9rem 0;
-        width: 140px;
-        background: rgb(255, 6, 0);
-        color: rgb(238, 238, 238);
-        letter-spacing: 0.06rem;
-        border-radius: 23px;
-        font-size: 1rem;
-        text-align: center;
-        transition: background 0.15s linear;
-        margin-top: 2rem;
-    }
-    
 
     .mobile-slider-container {
         display: block;
@@ -787,8 +766,61 @@ SLIDER BANNER IMAGES
         display: block;
     }
     
-    .mobile-slider-container > .slider-btns {
+}
+
+@media screen and (max-width: 500px) {
+    .mobile-slider-img-wrapper {
+        overflow-y: hidden !important;
+    }
+
+    .slider-header-text > h1 {
+        letter-spacing: 0.06rem;
+        font-size: 2rem;
+    }
+    
+    .slider-header-text > p {
+        font-size: 14px;
+    }
+    
+    .slider-header-text > a {
+        padding: 0.8rem 0;
+        width: 120px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .slider-header-text > h1 {
+        font-size: 1.8rem;
+    }
+    
+    .slider-header-text > p {
+        font-size: 14px;
+    }
+    
+    .slider-header-text > a {
+        padding: 0.7rem 0;
+        width: 100px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .slider-header-text > h1 {
+        font-size: 1.6rem;
+    }
+    
+    .slider-header-text > p {
         display: none;
+    }
+    
+    .slider-header-text > a {
+        padding: 0.7rem 0;
+        width: 100px;
+        font-size: 12px;
+        font-weight: bold;
     }
 }
 
