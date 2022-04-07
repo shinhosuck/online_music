@@ -74,10 +74,6 @@ window.addEventListener("resize", function(){
 
 
 // user drop down menu on mobile
-
-// const userChevronDown = document.querySelector(".user-chevron-down")
-// const userChevronUp = document.querySelector(".user-chevron-up")
-
 userContainer.addEventListener("click", ()=>{
    userWrapper.classList.toggle("show-user-wrapper")
    navItems.classList.toggle("show-nav-items1")

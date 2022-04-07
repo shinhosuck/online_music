@@ -38,7 +38,8 @@
                 <ul class="nav-items">
                     {% with request.resolver_match.url_name as url_name %}
                         <li id="home"><a class="{% if url_name == 'home' %}active{% endif %}" href="{% url 'music:home' %}">Home</a></li>
-                        <li><a class="{% if url_name == 'genres' %}active{% endif %}" href="#">Genres</a></li>
+                        <li><a class="{% if url_name == 'genres' %}active{% endif %}" href="#">Genres</a></li> 
+
                         {% if user.is_authenticated %}
                             <li><a class="{% if url_name == 'about' %}active{% endif %}" href="#">About</a></li>
                             <li><a class="{% if url_name == 'contact' %}active{% endif %}" href="#">Contact</a></li>
