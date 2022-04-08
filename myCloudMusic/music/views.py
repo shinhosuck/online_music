@@ -196,5 +196,17 @@ def genre(request):
     }
     return render(request, "music/genres.html", context)
 
+
 def genre_albums(request):
-    return render(request, "music/all_genre_albums.html", {})
+    if request.GET.get("string"):
+        genre = request.GET.get("string")
+        genre_albums = ''
+        albums = Album.objects.all()
+        for album in albums:
+            if album.genre.genre == genre:
+                genre_albums = album.genre.album_set.all()
+        context = {
+            "genre": genre,
+            "genre_albums": genre_albums
+        }
+    return render(request, "music/all_genre_albums.html", context)

@@ -15,7 +15,7 @@
     {% if genre.album_set.all %}
     <h1>
         {{ genre.genre }}
-        <a href="{% url 'music:genre-albums' %}">see all</a>
+        <a href="{% url 'music:genre-albums' %}?string={{ genre.genre }}">see all</a>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
     </h1>
     {% endif %}
