@@ -359,8 +359,9 @@ NAVIGATION MENU
 }
 
 .show-nav-items1 {
-    height: 443px;
-    /* height: auto; */
+    /* height: 443px; */
+    /* height: 467px; */
+    height: 457px;
 }
 
 .nav-items > li {
@@ -389,8 +390,6 @@ NAVIGATION MENU
 .user-container {
     color: rgb(235, 235, 235);
     letter-spacing: 0.06rem;
-    /* font-weight: bold; */
-    text-transform: capitalize;
     cursor: pointer;
 }
 
@@ -429,20 +428,20 @@ NAVIGATION MENU
     height: 0;
     overflow: hidden;
     white-space: nowrap;
+    /* height: auto; */
 }
 
 .show-user-wrapper {
-    height: 174px;
-    border: 1px solid rgb(50, 50, 50);
-    margin-top: 0.5rem;
+    height: 198px;
+    /* margin-top: 0.5rem; */
     border-radius: 10px;
+    border: 1px solid rgb(54, 54, 54);
 }
 
 .user-wrapper > a {
     display: block;
     color: rgb(235, 235, 235);
     letter-spacing: 0.12rem;
-    /* font-weight: bold; */
     font-weight: normal;
     font-size: 13px;
     padding: 1rem 0;
@@ -540,7 +539,6 @@ NAVIGATION MENU
     .user-chevron-up {
         color: rgb(0, 119, 255) !important;
         font-size: 1rem !important;
-        /* display: none; */
     }
 
     .user-wrapper {
@@ -549,7 +547,7 @@ NAVIGATION MENU
         left: 19px;
         z-index: 3;
         width: 100%;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgb(43, 43, 43);
         margin-top: 0.5rem;
         transition: height 0.1s linear;
     }
@@ -849,7 +847,6 @@ FOOTER
 .footer-quick-links {
     /* background: rgb(128, 0, 128); */
     text-align: center;
-    border: 1px solid white;
 }
 
 .footer-quick-links > a, h2 {
@@ -883,7 +880,25 @@ FOOTER
 }
 
 .footer-end > p > span {
-    font-size: 15px !important;
+    font-size: 14px !important;
+}
+
+@media screen and (min-width: 700px) {
+    .footer-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+        row-gap: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .footer-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 2rem;
+        row-gap: 1.5rem;
+    }
 }
 
 /*===========
@@ -1059,7 +1074,7 @@ HOME PAGE
     background: rgba(0, 0, 0, 0.55);
     font-size: 1.5rem;
     border-radius: 50%;
-    color: rgb(255, 72, 0);
+    color: rgb(255, 72, 0) !important;
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -1076,7 +1091,7 @@ HOME PAGE
 @media (hover) {
     .play-btn:hover {
         /* color: rgb(0, 132, 255) */
-        color: rgb(255, 166, 0);
+        color: rgb(255, 166, 0) !important;
     }
 }
 
@@ -1099,7 +1114,6 @@ HOME PAGE
 
     .album-wrapper {
         margin-bottom: 0;
-        /* margin-top: 0; */
     }
 }
 

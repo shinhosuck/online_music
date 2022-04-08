@@ -8,9 +8,11 @@ from music.views import (
     create_album,
     create_song,
     all_albums,
+    my_albums,
     play_album,
     genre,
-    genre_albums
+    genre_albums,
+    my_albums
 )
 
 app_name = "music"
@@ -25,5 +27,6 @@ urlpatterns = [
     path("all/<string>", all_albums, name="all-albums"),
     path("play/album/<int:pk>", play_album, name="play-album"),
     path("playlist/genres", genre, name="genre"),
-    path("playlist", genre_albums, name="genre-albums")
+    path("playlist", genre_albums, name="genre-albums"),
+    path("my/albums", my_albums, name="my-albums")
 ]

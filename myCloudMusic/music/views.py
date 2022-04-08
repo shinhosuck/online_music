@@ -189,6 +189,19 @@ def create_song(request):
     return render(request, "music/my_albums.html", context)
 
 
+@login_required
+def my_albums(request):
+    user = request.user
+    albums = user.album_set.all()
+    if request.GET.get("string"):
+        data = request.GET.get("string")
+        context = {
+            "data": data,
+            "albums": albums
+        }
+    return render(request, "music/my_albums.html", context)
+
+
 def genre(request):
     genres = Genre.objects.all()
     context = {

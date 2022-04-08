@@ -52,6 +52,7 @@
                                 </div>
                                 <div class="user-wrapper">
                                     <a class="{% if url_name == 'profile' %}active{% endif %}" href="#">Profile</a>
+                                    <a id="create-album" href="{% url 'music:my-albums' %}?string=My albums">My albums</a>
                                     <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
                                     <a href="{% url 'music:create-song' %}">New song</a>
                                     <a id="about" href="{% url 'users:logout' %}">Logout</a>
@@ -179,9 +180,9 @@
         <div class="footer-container">
             <div class="footer-quick-links">
                 <h2>Quick links</h2>
-                <a href="#" class="quick-link-home">Home</a>
-                <a href="#" class="quick-link-my-albums">My Albums</a>
-                <a href="#" class="quick-link-latest-albums">Latest Albums</a>
+                <a href="{% url 'music:home' %}" class="quick-link-home">Home</a>
+                <a href="{% url 'music:my-albums' %}?string=My albums" class="quick-link-my-albums">My Albums</a>
+                <a href="{% url 'music:all-albums' 'latest albums' %}" class="quick-link-latest-albums">Latest Albums</a>
                 <a href="#" class="quick-link-about-us">About Us</a>
             </div>
             <div class="footer-quick-links">
@@ -195,14 +196,14 @@
             </div>
             <div class="footer-quick-links">
                 <h2>Leave a message</h2>
-                <a href="#" class="quick-link-home">Home</a>
+                <a href="{% url 'music:home' %}" class="quick-link-home">Home</a>
                 <a href="#" class="quick-link-my-albums">My Albums</a>
-                <a href="#" class="quick-link-latest-albums">Latest Albums</a>
+                <a href="{% url 'music:all-albums' 'latest albums' %}" class="quick-link-latest-albums">Latest Albums</a>
                 <a href="#" class="quick-link-about-us">About Us</a>
             </div>
         </div>
         <div class="footer-end">
-            <p>&copy <span>CloudMusic. All rights reserved. CloudMusic Webdev.</span></p>
+            <p>&copy <span>2023 CloudMusic. All rights reserved.</span></p>
         </div>
     </footer>
     <script type="text/javascript" src="{% static 'music/main.js' %}"></script>
