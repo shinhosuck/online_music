@@ -839,16 +839,17 @@ FOOTER
 
 .footer-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     column-gap: 2rem;
     row-gap: 1.5rem;
     background: rgb(41, 41, 41);
-    padding: 2rem;
+    padding: 2rem 0;
 }
 
 .footer-quick-links {
     /* background: rgb(128, 0, 128); */
     text-align: center;
+    border: 1px solid white;
 }
 
 .footer-quick-links > a, h2 {
@@ -865,6 +866,24 @@ FOOTER
     font-size: 1.2rem;
     color: rgb(255, 81, 0);
     padding: 0.3rem 0;
+}
+
+.footer-end {
+    background: rgb(31, 31, 31);
+    color: rgb(190, 190, 190);
+    padding: 0.5rem 0;
+    letter-spacing: 0.08rem;
+    font-size: 1.3rem;
+}
+
+.footer-end > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-end > p > span {
+    font-size: 15px !important;
 }
 
 /*===========
