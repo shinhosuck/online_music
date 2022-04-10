@@ -842,14 +842,21 @@ FOOTER
     grid-template-columns: 1fr;
     column-gap: 2rem;
     row-gap: 1.5rem;
-    background: rgb(41, 41, 41);
+    /* background: rgb(41, 41, 41); */
     padding: 2rem 0;
+    width: 90%;
+    margin: 0 auto
 }
 
 .footer-quick-links {
     /* background: rgb(128, 0, 128); */
     text-align: center;
+    border-left: 1px solid rgb(50, 50, 50);
 }
+
+/* .footer-quick-links:last-child {
+    border-right: none;
+} */
 
 .footer-quick-links > a, h2 {
     display: block;

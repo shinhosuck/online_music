@@ -177,7 +177,10 @@
         {% endblock content %}
     </main>
     <footer>
-        <div class="footer-container">
+        <div style="background: rgb(41, 41, 41);">
+            {% include "music/footer.html" %}
+        </div>
+        <!-- <div class="footer-container">
             <div class="footer-quick-links">
                 <h2>Quick links</h2>
                 <a href="{% url 'music:home' %}" class="quick-link-home">Home</a>
@@ -196,15 +199,16 @@
             </div>
             <div class="footer-quick-links">
                 <h2>Leave a message</h2>
-                <a href="{% url 'music:home' %}" class="quick-link-home">Home</a>
-                <a href="#" class="quick-link-my-albums">My Albums</a>
-                <a href="{% url 'music:all-albums' 'latest albums' %}" class="quick-link-latest-albums">Latest Albums</a>
-                <a href="#" class="quick-link-about-us">About Us</a>
+                <form class="form-content" action="{% url 'users:message' %}" method="POST">
+                    {% csrf_token %}
+                    {{ user_message_form.as_p }}
+                    <button class="contact-submit" type="submit">Send Message</button>
+                </form>
             </div>
         </div>
         <div class="footer-end">
             <p>&copy <span>2023 CloudMusic. All rights reserved.</span></p>
-        </div>
+        </div> -->
     </footer>
     <script type="text/javascript" src="{% static 'music/main.js' %}"></script>
 </body>
