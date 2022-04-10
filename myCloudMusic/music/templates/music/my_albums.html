@@ -18,36 +18,40 @@
             </span> 
             </h1>
         <div class="albums">
-            {% for album in albums %}
-                <div class="album-wrapper add-new-song">
-                    <img src="{{ album.album_cover.url }}" alt="">
+            {% if not albums %}
+                <h3 style="color: rgb(255, 255, 255); letter-spacing: 0.07rem;">You do not have any albums!</h3>
+                {% else %}
+                {% for album in albums %}
+                    <div class="album-wrapper add-new-song">
+                        <img src="{{ album.album_cover.url }}" alt="">
 
-                    <div class="background-overlay"></div>
+                        <div class="background-overlay"></div>
 
-                    <div class="album-text-wrapper">
-                        <h2>{{ album.title }}</h2>
-                        <div class="flex-box">
-                            <div class="album-author">
-                                <i class="fas fa-user-circle"></i>
-                                <p>{{ album.user.username }}</p>
-                            </div>
-                            <div class="thumbs-up-down">
-                                <a id="prevent-default" class="thumbs-up" href="#">
-                                    <i class="fas fa-thumbs-up"></i>
-                                    <p>{{ album.thumbs_up }}</p>
-                                </a>
-                                <a id="prevent-default" class="thumbs-down" href="#">
-                                    <p>{{ album.thumbs_down }}</p>
-                                    <i class="fas fa-thumbs-down fa-flip-horizontal"></i>
-                                </a>
+                        <div class="album-text-wrapper">
+                            <h2>{{ album.title }}</h2>
+                            <div class="flex-box">
+                                <div class="album-author">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p>{{ album.user.username }}</p>
+                                </div>
+                                <div class="thumbs-up-down">
+                                    <a id="prevent-default" class="thumbs-up" href="#">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <p>{{ album.thumbs_up }}</p>
+                                    </a>
+                                    <a id="prevent-default" class="thumbs-down" href="#">
+                                        <p>{{ album.thumbs_down }}</p>
+                                        <i class="fas fa-thumbs-down fa-flip-horizontal"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                        <a id="prevent-default" class="play-btn" href="#">
+                            <i class="fa-solid fa-play" style="color: gray"></i>
+                        </a>
                     </div>
-                    <a id="prevent-default" class="play-btn" href="#">
-                        <i class="fa-solid fa-play" style="color: gray"></i>
-                    </a>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 
