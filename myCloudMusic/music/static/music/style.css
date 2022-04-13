@@ -973,7 +973,7 @@ HOME PAGE
     display: flex;
     flex-wrap: wrap;
     font-size: 1.6rem;
-    color: rgb(255, 255, 255);
+    color: rgb(255, 81, 0);
     padding-bottom: 1rem;
     padding-top: 1rem;
     display: flex;
@@ -984,9 +984,17 @@ HOME PAGE
 
 .album-container > h1 > a {
     font-size: 16px;
-    color: rgb(230, 230, 230);
+    color: rgb(255, 255, 255);
     letter-spacing: 0.09rem;
     font-weight: 400;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.15px linear;
+}
+
+@media (hover) {
+    .album-container > h1 > a:hover {
+        border-bottom: 1px solid rgb(255, 255, 255);
+    }
 }
 
 .album-container > h1 > p {
