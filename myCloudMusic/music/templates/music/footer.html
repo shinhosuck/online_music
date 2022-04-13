@@ -1,7 +1,5 @@
 <style>
     .form-content {
-        /* margin-top: 1rem; */
-        /* border: 1px solid white; */
         text-align: start;
         margin-left: 2rem;
         padding: 1.5rem;
@@ -9,20 +7,18 @@
         border-radius: 10px;
     }
     p > label {
-        color: lightgray;
+        color: rgb(202, 202, 202);
         font-size: 1rem;
-        /* border: 1px solid white; */
     }
     p > input, textarea {
         display: inline-block;
         width: 100%;
-        padding: 0.9rem 1rem;
+        padding: 0.8rem;
         outline: none;
         border: none;
         margin-top: 0.5rem;
         border-radius: 10px;
         margin-bottom: 0.8rem;
-        /* max-height: 150px; */
         background: rgb(226, 226, 226);
         color: rgb(32, 32, 32);
         resize: none;
@@ -30,7 +26,7 @@
     }
 
     p > textarea {
-        height: 100px;
+        height: 120px;
         display: inline-block;
         width: 100%;
     }
@@ -45,6 +41,10 @@
         border: none;
         font-size: 1rem;
         letter-spacing: 0.06rem;
+        text-align: center;
+        width: 100%;
+        display: block;
+        cursor: pointer;
     }
 </style>
 
@@ -62,12 +62,32 @@
     </div>
     <div class="footer-quick-links">
         <h2>Contact us</h2>
-        <a href="#" class="quick-link-home">Email</a>
+        <div class="contact-contents">
+            <div class="contact-content">
+                <h5 class="email">Email <i class="fa fa-envelope"></i></h5>
+                <a id="email" href="mailto:shinhosuck1973@gmail.com">samplemail@gmail.com</a>
+            </div>
+            <div class="contact-content">
+                <h5 class="phone">Phone <i class="fa fa-phone"></i></h5>
+                <a id="phone" href="tel:+1-916-000-000">+1-916-000-000</a>
+            </div>
+            <div class="contact-content">
+                <h5 style="display: inline-block;" class="linked-in">Address</h5>
+                <p style="display: inline-block;"><i class="fas fa-address-card"></i></p>
+                <address>
+                    Cloud Music<br>
+                    12345 Street name<br>
+                    City name, State<br>
+                    USA, 67890
+                </address>
+            </div>
+        </div>
+        <!-- <a href="#" class="quick-link-home">Email</a>
         <a href="#" class="quick-link-my-albums">samplemail@google.com</a>
         <a href="#" class="quick-link-latest-albums">Phone number</a>
         <a href="#" class="quick-link-about-us">916-234-5678</a>
         <a href="#" class="quick-link-latest-albums">Address</a>
-        <a href="#" class="quick-link-about-us">123 Street Name, City Name State, 95644</a>
+        <a href="#" class="quick-link-about-us">123 Street Name, City Name State, 95644</a> -->
     </div>
     <div class="footer-quick-links">
         <h2>Leave a message</h2>
