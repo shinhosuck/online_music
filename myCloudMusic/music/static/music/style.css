@@ -355,13 +355,17 @@ NAVIGATION MENU
 }
 
 .show-nav-items {
-    height: 237px;
+    /* height: 237px; */
+    /* height: auto; */
+    height: 216px;
 }
 
 .show-nav-items1 {
     /* height: 443px; */
     /* height: 467px; */
-    height: 457px;
+    /* height: 457px; */
+    /* height: 414px; */
+    height: 410px;
 }
 
 .nav-items > li {
@@ -383,10 +387,6 @@ NAVIGATION MENU
     padding-top: 1.5rem;
 }
 
-#about {
-    padding-bottom: 1rem !important;
-}
-
 .user-container {
     color: rgb(235, 235, 235);
     letter-spacing: 0.06rem;
@@ -395,9 +395,12 @@ NAVIGATION MENU
 
 
 .user-chevron-icons {
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
     padding-top:  0.5rem;
     color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-chevron-icons > p {
@@ -405,6 +408,7 @@ NAVIGATION MENU
     letter-spacing: 0.13rem;
     text-transform: uppercase;
     font-size: 14px;
+    padding-left: 0.3rem;
 }
 
 .user-chevron-icons > i {
@@ -432,21 +436,30 @@ NAVIGATION MENU
 }
 
 .show-user-wrapper {
-    height: 198px;
+    /* height: 198px; */
+    height: 208px;
     /* margin-top: 0.5rem; */
     border-radius: 10px;
-    border: 1px solid rgb(54, 54, 54);
+    /* border: 1px solid rgb(54, 54, 54); */
 }
 
 .user-wrapper > a {
     display: block;
     color: rgb(235, 235, 235);
-    letter-spacing: 0.12rem;
-    font-weight: normal;
-    font-size: 13px;
+    letter-spacing: 0.06rem;
+    /* font-weight: normal; */
+    font-size: 14px;
     padding: 1rem 0;
     padding-bottom: 0.5rem;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
+}
+
+.user-wrapper > a:first-child {
+    padding-top: 0;
+}
+
+#about {
+    padding-bottom: 1rem !important;
 }
 
 @media (hover) {
@@ -517,7 +530,7 @@ NAVIGATION MENU
         padding: 1rem 1.2rem;
         padding-right: 0;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
     }
 
     .user-chevron-icons > p {
@@ -543,13 +556,18 @@ NAVIGATION MENU
 
     .user-wrapper {
         position: absolute;
-        top: 60px;
+        top: 61px;
         left: 19px;
         z-index: 3;
         width: 100%;
         background: rgb(43, 43, 43);
         margin-top: 0.5rem;
+        border-radius: 10px;
         transition: height 0.1s linear;
+    }
+
+    .user-wrapper > a:first-child {
+        padding-top: 1rem;
     }
 
     .user-wrapper > a {

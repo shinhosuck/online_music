@@ -69,10 +69,13 @@
                                     <i class="fa fa-chevron-up user-chevron-up"></i>
                                 </div>
                                 <div class="user-wrapper">
-                                    <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
-                                    <a href="{% url 'music:create-song' %}">New song</a>
                                     <a href="{% url 'users:login' %}">Login</a>
-                                    <a id="about" href="{% url 'users:register' %}">Join Us</a>
+                                    <a href="{% url 'users:register' %}">Join Us</a>
+                                    <a href="#">Profile</a>
+                                    <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
+                                    <a id="about" href="{% url 'music:create-song' %}">New song</a>
+                                    <!-- <a href="{% url 'users:login' %}">Login</a>
+                                    <a id="about" href="{% url 'users:register' %}">Join Us</a> -->
                                 </div>
                             </li>
                         {% endif %}
