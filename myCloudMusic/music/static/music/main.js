@@ -62,6 +62,11 @@ window.addEventListener("resize", function(){
       faTimes.classList.remove("show-fa-times")
       faBars.classList.remove("hide-fa-bars")
 
+      navItems.classList.remove("show-nav-items1")
+      userWrapper.classList.remove("show-user-wrapper")
+      userChevronDown.style.display = "inline-block"
+      userChevronUp.style.display = "none"
+
       landingPageNavItems.style.height = "0"
 
       if(landingPageHeaderAndText) {
