@@ -849,17 +849,19 @@ FOOTER
     row-gap: 2rem;
     padding: 2rem 0;
     width: 90%;
-    margin: 0 auto
+    margin: 0 auto;
 }
 
 .footer-quick-links {
     text-align: center;
+    border: 1px solid rgb(65, 65, 65);
 }
 
 .footer-quick-links > h2 {
     font-size: 1.2rem;
     color: rgb(255, 81, 0);
-    padding: 0.3rem 0;
+    letter-spacing: 0.06rem;
+    padding-bottom: 0.5rem;
 }
 
 .footer-quick-links > a{
@@ -868,7 +870,7 @@ FOOTER
     padding: 0.5rem 0;
     padding-bottom: 0.25rem;
     letter-spacing: 0.06rem;
-    font-size: 1rem;
+    /* font-size: 1rem; */
 }
 
 .footer-quick-links> 
@@ -879,7 +881,7 @@ FOOTER
 
 .footer-quick-links> 
 .contact-contents > 
-.contact-content > h5 {
+.contact-content > h5{
     color: white;
     padding: 0.5rem 0;
     padding-bottom: 0.25rem;
@@ -890,6 +892,10 @@ FOOTER
 
 #email, #phone {
     color: rgb(0, 81, 255) !important
+}
+
+#email:hover, #phone:hover {
+    color: rgba(0, 81, 255, 0.658) !important
 }
 
 .phone, .address {
@@ -914,11 +920,11 @@ FOOTER
 
 .footer-quick-links> 
 .contact-contents > 
-.contact-content > address {
+.contact-content > p {
     color: rgb(201, 201, 201);
     letter-spacing: 0.06rem;
     font-size: 0.9rem;
-    line-height: 1.4;
+    line-height: 1.5;
    
 }
 
@@ -940,16 +946,14 @@ FOOTER
     font-size: 14px !important;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 800px) {
     .footer-container {
-        display: grid;
         grid-template-columns: 1fr 1fr;
     }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1200px) {
     .footer-container {
-        display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
