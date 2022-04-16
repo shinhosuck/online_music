@@ -854,7 +854,7 @@ FOOTER
 
 .footer-quick-links {
     text-align: center;
-    border: 1px solid rgb(65, 65, 65);
+    /* border: 1px solid white; */
 }
 
 .footer-quick-links > h2 {
@@ -877,6 +877,10 @@ FOOTER
 .contact-contents > 
 .contact-content {
     padding-bottom: 1rem; 
+}
+
+#contact-content {
+    padding-bottom: 0;
 }
 
 .footer-quick-links> 
@@ -946,7 +950,7 @@ FOOTER
     font-size: 14px !important;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 700px) {
     .footer-container {
         grid-template-columns: 1fr 1fr;
     }
