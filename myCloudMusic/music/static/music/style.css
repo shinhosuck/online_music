@@ -11,7 +11,8 @@ html, body {
     width: auto!important; 
     overflow-x: hidden!important;
     height: auto !important;
-    overscroll-behavior-y: none !important;
+    scroll-behavior: smooth;
+    /* overscroll-behavior-y: none !important; */
 } 
 
 body {
@@ -562,8 +563,6 @@ NAVIGATION MENU
     }
 }
 
-
-
 /*=============
 END OF NAV MENU
 ===============*/
@@ -890,11 +889,36 @@ FOOTER
     /* border: 1px solid white; */
 }
 
+.about-us > h2 {
+    font-size: 2.5rem !important;
+    font-family: 'Lobster', cursive, sans-serif;
+    font-weight: normal;
+    /* text linear gradient */
+    background: linear-gradient(to right, rgb(255, 0, 0),
+    rgb(255, 165, 0), rgb(255, 0, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* end text gradient */
+    padding: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    /* border: 1px solid white */
+}
+
+.about-us > p {
+    color: rgb(201, 201, 201);
+    letter-spacing: 0.06rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding-top: 0.3rem;
+}
+
 .footer-quick-links > h2 {
     font-size: 1.2rem;
     color: rgb(255, 81, 0);
     letter-spacing: 0.06rem;
     padding-bottom: 0.5rem;
+    padding-top: 0.3rem;
 }
 
 .footer-quick-links > a{
@@ -962,7 +986,6 @@ FOOTER
     letter-spacing: 0.06rem;
     font-size: 0.9rem;
     line-height: 1.5;
-   
 }
 
 .footer-end {
@@ -983,7 +1006,7 @@ FOOTER
     font-size: 14px !important;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 650px) {
     .footer-container {
         grid-template-columns: 1fr 1fr;
     }
@@ -992,6 +1015,12 @@ FOOTER
 @media screen and (min-width: 1200px) {
     .footer-container {
         grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
 
