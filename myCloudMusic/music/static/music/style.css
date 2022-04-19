@@ -1428,6 +1428,7 @@ PLAY ALBUM
     align-items: center;
     justify-content: center;
     height: 100vh;
+    /*border:  1px solid red;*/
 }
 
 .music-player-wrapper {
@@ -1435,10 +1436,11 @@ PLAY ALBUM
     flex: 0 0 100%;
     position: relative;
     color: rgb(255, 255, 255);
-    border-radius: 15px;
-    /* box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8); */
-    box-shadow: inset 1px 1px 20px rgb(58, 58, 58);
-    padding: 0.8rem;
+    /*border-radius: 15px;*/
+    /*box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);*/
+    /*box-shadow: inset 1px 1px 20px rgb(58, 58, 58);*/
+    /*padding: 1rem;*/
+    /*margin:  1rem;*/
 }
 
 .music-player-header {

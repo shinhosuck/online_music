@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
     <title>Playing {{ album.title }}</title>
 </head>
-<body>
+<body class="landing-page-img">
     <div class="music-player-container">
         <div class="music-player-wrapper">
 
@@ -22,7 +22,7 @@
 
             <div class="album-cover">
                 <div class="album-cover-img-wrapper">
-                    <img src="{{ album.album_cover.url }}" alt="">
+                    <img src="{{ album.album_cover.url }}" alt="" style="opacity: 0.95;">
                     <div class="album-background-overlay"></div>
                     <div class="album-like-dislike">
                         <p>unknown song title</p>
