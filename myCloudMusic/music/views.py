@@ -103,17 +103,14 @@ def create_album(request):
         form.instance.user = user 
 
         new_genre = form["create_genre"].value()
-        print(new_genre)
 
         if form.is_valid():
 
             new_album = form.save()
             album = Album.objects.get(pk=new_album.id)
-            print(album)
             if new_genre:
                 add_genre = Genre.objects.create(genre=new_genre)
                 album.choose_genre = add_genre
-                print(add_genre.id)
             album.save()
             return redirect("music:home")
     else:
