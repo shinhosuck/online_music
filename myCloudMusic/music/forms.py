@@ -5,7 +5,7 @@ from django import forms
 class CreateAlbumForm(forms.ModelForm):
     class Meta:
         model = Album
-        fields = ["title", "genre", "album_cover"]
+        fields = ["title", "choose_genre", "create_genre", "album_cover"]
 
 
 class CreateSongForm(forms.ModelForm):

@@ -15,8 +15,8 @@ def home(request):
     user = request.user
     albums = Album.objects.all()
     most_listened = albums
-    latest_albums = albums
-    you_might_also_like = Album.objects.all()
+    latest_albums = albums[0:8]
+    you_might_also_like = Album.objects.all()[0:8]
     
     if not user.is_authenticated:
         context = {
@@ -26,7 +26,7 @@ def home(request):
         }
         return render(request, "music/home.html", context)
 
-    recently_played = user.recentlyplayed_set.all()
+    recently_played = user.recentlyplayed_set.all()[0:8]
     context = {
         "latest_albums": latest_albums,
         "recently_played": recently_played,
@@ -100,12 +100,24 @@ def create_album(request):
     user = request.user
     if request.method == "POST":
         form = CreateAlbumForm(request.POST, request.FILES)
-        form.instance.user = user
+        form.instance.user = user 
+
+        new_genre = form["create_genre"].value()
+        print(new_genre)
+
         if form.is_valid():
-            form.save()
+
+            new_album = form.save()
+            album = Album.objects.get(pk=new_album.id)
+            print(album)
+            if new_genre:
+                add_genre = Genre.objects.create(genre=new_genre)
+                album.choose_genre = add_genre
+                print(add_genre.id)
+            album.save()
             return redirect("music:home")
     else:
-        form = CreateAlbumForm()
+        form = CreateAlbumForm() 
         context = {
             "form": form
         }

@@ -1,3 +1,4 @@
+from re import T
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.base import Model
@@ -15,7 +16,8 @@ class Genre(models.Model):
 class Album(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
+    choose_genre = models.ForeignKey(Genre, on_delete=models.CASCADE, null=True, blank=True)
+    create_genre = models.CharField(max_length=20, null=True, blank=True)
     album_cover = models.ImageField(default="album_img/default.jpg", upload_to="album_img", blank=True)
     date_created = models.DateTimeField(default=timezone.now)
     thumbs_up = models.IntegerField(default=0)
