@@ -1436,11 +1436,12 @@ PLAY ALBUM
     flex: 0 0 100%;
     position: relative;
     color: rgb(255, 255, 255);
-    /*border-radius: 15px;*/
-    /*box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);*/
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgb(20, 20, 20);
     /*box-shadow: inset 1px 1px 20px rgb(58, 58, 58);*/
     /*padding: 1rem;*/
     /*margin:  1rem;*/
+    background: rgb(41, 41, 41);
 }
 
 .music-player-header {
@@ -1448,7 +1449,7 @@ PLAY ALBUM
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    background: rgb(41, 41, 41);
+    /* background: rgb(41, 41, 41); */
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -1540,9 +1541,11 @@ PLAY ALBUM
     background-color: rgb(255, 255, 255);
     box-shadow: inset 1px 1px 4px rgb(37, 37, 37);
   }
+
 /* .song-container::-webkit-scrollbar-corner {
     background-color: rgb(0, 128, 0);
   } */
+
 .song-container::-webkit-scrollbar {
     width: 0.8rem;
   }
@@ -1587,6 +1590,7 @@ PLAY ALBUM
 
 .show-side-menu {
     width: 100%;
+    border: 1px solid rgb(36, 36, 36);
     transition: width 0.15s linear
 }
 
@@ -1622,7 +1626,7 @@ PLAY ALBUM
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    background: rgb(41, 41, 41);
+    /* background: rgb(41, 41, 41); */
 }
 
 .album-control > div, 
@@ -1659,10 +1663,13 @@ PLAY ALBUM
 
     .mobile-player-container {
         display: block;
-        border-radius: 40px;
+        /* border-radius: 40px;
         box-shadow: inset 1px 1px 20px rgb(58, 58, 58);
-        padding: 1rem;
-        position: relative
+        padding: 1rem; */
+        box-shadow: 3px 3px 10px rgb(20, 20, 20);
+        border-radius: 15px;
+        position: relative;
+        background: rgb(41, 41, 41);
     }
 
     .mobile-player-container > 
@@ -1672,7 +1679,7 @@ PLAY ALBUM
         justify-content: space-between;
         flex-wrap: wrap;
         padding: 1rem;
-        background: rgb(19, 19, 19);
+        /* background: rgb(19, 19, 19); */
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
     }
@@ -1780,7 +1787,7 @@ PLAY ALBUM
     .album-control,
     .progres-bar-container {
         color: rgb(255, 255, 255);
-        background: rgb(19, 19, 19);
+        /* background: rgb(19, 19, 19); */
     }
 
     .mobile-player-container >
@@ -1804,6 +1811,7 @@ PLAY ALBUM
 
     .show-side-menu {
         width: 100%;
+        border: 1px solid rgb(36, 36, 36);
         transition: width 0.15s linear;
     }
 
