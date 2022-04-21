@@ -66,51 +66,52 @@
                 {% endif %}
             </div>
             <div class="music-player">
-                <div class="song-container">
-                   {% comment %}
-                    {% for song in album.song_set.all %}
-                        <p class="song">
-                            1<span>{{ song }}</span> 
-                        </p>
-                    {% endfor %}
-                    {% endcomment %}
-                    <p class="song">
-                        1<span>1.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        2<span>2.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        3<span>3.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        4<span>4.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        5<span>5.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        6<span>6.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        7<span>7.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        8<span>8.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        9<span>9.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        10<span>10.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        11<span>11.LARGE SCREEN SONG</span> 
-                    </p>
-                    <p class="song">
-                        12<span>12.LARGE SCREEN SONG</span> 
-                    </p>
-                </div>
+                    <div class="song-container">
+                        {% if album.song_set.all %}
+                            {% for song in album.song_set.all %}
+                                <p class="song">
+                                    1<span>{{ song }}</span> 
+                                </p>
+                                <!-- <p class="song">
+                                    2<span>2.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    3<span>3.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    4<span>4.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    5<span>5.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    6<span>6.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    7<span>7.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    8<span>8.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    9<span>9.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    10<span>10.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    11<span>11.LARGE SCREEN SONG</span> 
+                                </p>
+                                <p class="song">
+                                    12<span>12.LARGE SCREEN SONG</span> 
+                                </p> -->
+                            {% endfor %}
+                        {% else %}
+                            <p class="song">
+                                <span style="margin-left: 0;">Album does not have any songs!</span> 
+                            </p>
+                        {% endif %}
+                    </div>
                 <div class="album-control">
                     <i class="fas fa-random" title="random"></i>
                     <i class="fas fa-backward" title="backward"></i>
@@ -155,24 +156,32 @@
 
             </div>
             <div id="mobile-song-container" class="song-container">
-                <p class="song-title">
-                    1<span>1MOBILE SONG</span> 
-                </p>
-                <p class="song-title">
-                    2<span>2MOBILE SONG</span> 
-                </p>
-                <p class="song-title">
-                    3<span>3MOBILE SONG</span> 
-                </p>
-                <p class="song-title">
-                    4<span>4MOBILE SONG</span> 
-                </p>
-                <p class="song-title">
-                    5<span>5MOBILE SONG</span> 
-                </p>
-                <p class="song-title">
-                    6<span>6MOBILE SONG</span> 
-                </p>
+                {% if album.song_set.all %}
+                    {% for song in album.song_set.all %}
+                        <p class="song-title">
+                            1.<span>{{ song }}</span> 
+                        </p>
+                        <!-- <p class="song-title">
+                            2<span>2MOBILE SONG</span> 
+                        </p>
+                        <p class="song-title">
+                            3<span>3MOBILE SONG</span> 
+                        </p>
+                        <p class="song-title">
+                            4<span>4MOBILE SONG</span> 
+                        </p>
+                        <p class="song-title">
+                            5<span>5MOBILE SONG</span> 
+                        </p>
+                        <p class="song-title">
+                            6<span>6MOBILE SONG</span> 
+                        </p> -->
+                    {% endfor%}
+                {% else %}
+                    <p class="song-title">
+                        <span style="margin-left: 0">Album does not have any songs!</span> 
+                    </p>
+                {% endif %}
             </div>
             <div class="album-control">
                 <i class="fas fa-random" title="random"></i>
@@ -224,10 +233,9 @@
         const songs = document.querySelectorAll(".song")
         const albumLikeDislike = document.querySelector(".album-like-dislike")
 
-        
+    
         let songTitle = musicplayer.firstElementChild.firstElementChild.firstElementChild.textContent
         albumLikeDislike.firstElementChild.textContent = songTitle
-
 
         window.addEventListener("resize", ()=>{
             if(window.innerWidth > 500){
