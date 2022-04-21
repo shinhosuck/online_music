@@ -101,11 +101,8 @@ def create_album(request):
     if request.method == "POST":
         form = CreateAlbumForm(request.POST, request.FILES)
         form.instance.user = user 
-
         new_genre = form["create_genre"].value()
-
         if form.is_valid():
-
             new_album = form.save()
             album = Album.objects.get(pk=new_album.id)
             if new_genre:
@@ -178,18 +175,7 @@ def play_album(request, pk):
 
 
 @login_required
-def create_song(request):
-    # if request.method == "POST":
-    #     form = CreateSongForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect("music:home")
-    # else:
-    #     form = CreateSongForm()
-    #     context = {
-    #         "form": form
-    #     }
-    #     return render(request, "music/create_song.html", context)
+def new_song(request):
     user = request.user
     albums = user.album_set.all()
     context = {
@@ -198,6 +184,21 @@ def create_song(request):
     return render(request, "music/my_albums.html", context)
 
 
+def add_song(request, pk):
+    if request.method == "POST":
+        form = CreateSongForm(request.POST, request.FILES)
+        if form.is_valid():
+            album = Album.objects.get(pk=pk)
+            form.instance.album = album
+            form.save()
+            return redirect("music:new-song")
+    else:
+        form = CreateSongForm()
+        context = {
+            "form": form
+        }
+        return render(request, "music/add_song_form.html", context)
+    
 @login_required
 def my_albums(request):
     user = request.user

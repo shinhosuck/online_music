@@ -1091,12 +1091,12 @@ HOME PAGE
     margin-top: 1rem;
     position: relative;
     border-radius: 10px;
-    transition: transform 0.22s linear;
+    transition: transform 0.25s linear;
 }
 
 @media (hover) {
     .album-wrapper:hover {
-        transform: scale(1.08);
+        transform: scale(1.04);
     }
 }
 

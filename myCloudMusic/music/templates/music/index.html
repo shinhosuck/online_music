@@ -54,7 +54,7 @@
                                     <a class="{% if url_name == 'profile' %}active{% endif %}" href="#">Profile</a>
                                     <a id="create-album" href="{% url 'music:my-albums' %}?string=My albums">My albums</a>
                                     <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
-                                    <a href="{% url 'music:create-song' %}">New song</a>
+                                    <a href="{% url 'music:new-song' %}">New song</a>
                                     <a id="about" href="{% url 'users:logout' %}">Logout</a>
                                 </div>
                             </li>

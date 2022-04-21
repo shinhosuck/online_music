@@ -67,6 +67,13 @@
             </div>
             <div class="music-player">
                 <div class="song-container">
+                   {% comment %}
+                    {% for song in album.song_set.all %}
+                        <p class="song">
+                            1<span>{{ song }}</span> 
+                        </p>
+                    {% endfor %}
+                    {% endcomment %}
                     <p class="song">
                         1<span>1.LARGE SCREEN SONG</span> 
                     </p>
