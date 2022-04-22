@@ -168,7 +168,9 @@ def play_album(request, pk):
         RecentlyPlayed.objects.create(user=user, album=album)
     # end of delete and create recently played
 
-    print(album.song_set.all())
+    songs = album.song_set.all()
+    for song in songs:
+        print(song.title)
 
     context = {
         "album": album

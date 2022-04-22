@@ -69,9 +69,9 @@
                     <div class="song-container">
                         {% if album.song_set.all %}
                             {% for song in album.song_set.all %}
-                                <audio class="song-file" src="{{ song.song_file.url }}"></audio>
+                                <!-- <audio class="song-file" src="{{ song.song_file.url }}"></audio> -->
                                 <p class="song">
-                                   {{ forloop.counter}} .<span>{{ song.title }}</span>
+                                  {{ forloop.counter }} .<span>{{ song.title }}</span>
                                 </p>
                             {% endfor %}
                         {% else %}
@@ -126,7 +126,7 @@
             <div id="mobile-song-container" class="song-container">
                 {% if album.song_set.all %}
                     {% for song in album.song_set.all %}
-                        <audio class="song-file" src="{{ song.song_file.url }}"></audio>
+                        <!-- <audio class="song-file" src="{{ song.song_file.url }}"></audio> -->
                         <p class="song-title">
                            {{ forloop.counter}} .<span>{{ song.title }}</span>
                         </p>
