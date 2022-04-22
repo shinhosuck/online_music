@@ -249,6 +249,10 @@ window.addEventListener("scroll", function(){
 
 // END OF NAV DROP DOWN MENU AUTO HIDE ON 530PX OR GREATER
 
+/*===========
+TOUCHED EVENT 
+=============*/ 
+
 // const mobileSliderContainer = document.querySelector(".mobile-slider-container")
 // const sliderContainer = document.querySelector(".slider-container")
 // const sliderBtns = document.querySelector(".slider-btns")
@@ -257,3 +261,20 @@ window.addEventListener("scroll", function(){
 //    sliderBtns.style.visibility = "visible"
 //    alert("has been touched")
 // })
+
+/*==================
+END OF TOUCHED EVENT 
+====================*/ 
+
+/*========
+PLAY ALBUM
+==========*/ 
+
+// const songFiles = document.querySelectorAll(".song-files")
+// const songTitle = document.querySelectorAll(".song-title")
+
+// console.log(songFiles)
+
+/*===============
+END OF PLAY ALBUM
+=================*/ 

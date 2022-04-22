@@ -69,42 +69,10 @@
                     <div class="song-container">
                         {% if album.song_set.all %}
                             {% for song in album.song_set.all %}
+                                <audio class="song-file" src="{{ song.song_file.url }}"></audio>
                                 <p class="song">
-                                    1<span>{{ song }}</span> 
+                                   {{ forloop.counter}} .<span>{{ song.title }}</span>
                                 </p>
-                                <!-- <p class="song">
-                                    2<span>2.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    3<span>3.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    4<span>4.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    5<span>5.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    6<span>6.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    7<span>7.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    8<span>8.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    9<span>9.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    10<span>10.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    11<span>11.LARGE SCREEN SONG</span> 
-                                </p>
-                                <p class="song">
-                                    12<span>12.LARGE SCREEN SONG</span> 
-                                </p> -->
                             {% endfor %}
                         {% else %}
                             <p class="song">
@@ -158,24 +126,10 @@
             <div id="mobile-song-container" class="song-container">
                 {% if album.song_set.all %}
                     {% for song in album.song_set.all %}
+                        <audio class="song-file" src="{{ song.song_file.url }}"></audio>
                         <p class="song-title">
-                            1.<span>{{ song }}</span> 
+                           {{ forloop.counter}} .<span>{{ song.title }}</span>
                         </p>
-                        <!-- <p class="song-title">
-                            2<span>2MOBILE SONG</span> 
-                        </p>
-                        <p class="song-title">
-                            3<span>3MOBILE SONG</span> 
-                        </p>
-                        <p class="song-title">
-                            4<span>4MOBILE SONG</span> 
-                        </p>
-                        <p class="song-title">
-                            5<span>5MOBILE SONG</span> 
-                        </p>
-                        <p class="song-title">
-                            6<span>6MOBILE SONG</span> 
-                        </p> -->
                     {% endfor%}
                 {% else %}
                     <p class="song-title">
