@@ -1571,7 +1571,7 @@ PLAY ALBUM
 }
 
 .song-container > p > span {
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
     letter-spacing: 0.04rem;
 }
 

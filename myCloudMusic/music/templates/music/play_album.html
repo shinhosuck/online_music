@@ -71,7 +71,7 @@
                             {% for song in album.song_set.all %}
                                 <!-- <audio class="song-file" src="{{ song.song_file.url }}"></audio> -->
                                 <p class="song">
-                                  {{ forloop.counter }} .<span>{{ song.title }}</span>
+                                  <span>{{ forloop.counter }}.{{ song.title }}</span>
                                 </p>
                             {% endfor %}
                         {% else %}
