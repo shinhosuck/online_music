@@ -34,7 +34,7 @@ class Album(models.Model):
 class Song(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     title = models.CharField(max_length=120)
-    song_file = models.FileField(upload_to="songs", null=True, blank=True)
+    song_file = models.FileField(upload_to="songs", blank=True)
     file_type = models.CharField(max_length=10)
     date_added = models.DateTimeField(default=timezone.now)
 

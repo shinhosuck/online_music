@@ -67,11 +67,11 @@
             </div>
             <div class="music-player">
                     <div class="song-container">
-                        {% if album.song_set.all %}
-                            {% for song in album.song_set.all %}
-                                <!-- <audio class="song-file" src="{{ song.song_file.url }}"></audio> -->
+                        {% if songs %}
+                            {% for song in songs %}
+                                <audio class="song-file" src="{{ song.song_file.url }}"></audio>
                                 <p class="song">
-                                  <span>{{ forloop.counter }}.{{ song.title }}</span>
+                                  <span id="song">{{ forloop.counter }}.{{ song.title }}</span>
                                 </p>
                             {% endfor %}
                         {% else %}
@@ -126,7 +126,7 @@
             <div id="mobile-song-container" class="song-container">
                 {% if album.song_set.all %}
                     {% for song in album.song_set.all %}
-                        <!-- <audio class="song-file" src="{{ song.song_file.url }}"></audio> -->
+                        <audio class="song-file" src="{{ song.song_file.url }}"></audio>
                         <p class="song-title">
                            {{ forloop.counter}} .<span>{{ song.title }}</span>
                         </p>
@@ -184,11 +184,13 @@
         const closeSideMenu = document.querySelector(".close-side-menu")
         const songListToggle = document.querySelector(".song-list-toggle")
         const closeSongListToggle = document.querySelector(".close-song-list-toggle")
-        const songs = document.querySelectorAll(".song")
+        let songList = document.querySelectorAll(".song")
+        const songs = [...songList]
+        // const idSongs = document.querySelectorAll("#song")
         const albumLikeDislike = document.querySelector(".album-like-dislike")
 
     
-        let songTitle = musicplayer.firstElementChild.firstElementChild.firstElementChild.textContent
+        let songTitle = musicplayer.firstElementChild.lastElementChild.firstElementChild.textContent
         albumLikeDislike.firstElementChild.textContent = songTitle
 
         window.addEventListener("resize", ()=>{
@@ -205,6 +207,11 @@
                 songTitle = item.firstElementChild.textContent
                 songListToggle.style.display = "block"
                 closeSongListToggle.style.display = "none"
+
+                const songFile = document.querySelectorAll(".song-file")
+                let titleIndex = songs.indexOf(item)
+                songFile[titleIndex].load()
+                songFile[titleIndex].play()
             })
         })
 
@@ -249,7 +256,7 @@
         const mobilePlayerWrapper = document.querySelector(".mobile-player-wrapper")
         const mobileSongs = document.querySelectorAll(".song-title")
 
-        let mobileSongTitle = mobileSongContainer.firstElementChild.firstElementChild.textContent
+        let mobileSongTitle = mobileSongContainer.lastElementChild.firstElementChild.textContent
         mobilePlayerWrapper.lastElementChild.firstElementChild.textContent = mobileSongTitle
 
        
