@@ -1526,6 +1526,7 @@ PLAY ALBUM
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s linear;
+    /* border: 1px solid white; */
 }
 
 .show-music-player {
@@ -1562,6 +1563,15 @@ PLAY ALBUM
     padding: 0.5rem 1rem;
     transition: background 0.1s linear;
     cursor: pointer;
+}
+
+.song-container > div > p > span {
+    margin-left: 0.5rem;
+}
+
+.song-container > p {
+    padding: 1rem;
+    text-align: center;
 }
 
 @media (hover){
@@ -1627,6 +1637,7 @@ PLAY ALBUM
     justify-content: center;
     flex-wrap: wrap;
     /* background: rgb(41, 41, 41); */
+    background: 1px solid white;
 }
 
 .album-control >
@@ -1656,6 +1667,7 @@ PLAY ALBUM
     padding: 0 1rem 1rem 1rem;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    background: 1px solid white;
 }
 
 .duration-bar {

@@ -78,16 +78,41 @@
                         <div>
                             {% for song in songs %}
                             <p class="song">
-                                {{ forloop.counter }}.<span id="song"> {{ song.title }}</span>
+                                {{ forloop.counter }} .<span id="song"> {{ song.title }}</span>
                             </p>
                             {% endfor %}
                         </div>
                     </div>
                 {% else %}
+                <div class="song-container">
                     <p class="song">
                         <span style="margin-left: 0;">Album does not have any songs!</span>
                     </p>
+                </div>
                 {% endif %}
+
+                <div class="album-control" style="position: relative;">
+                    <i id="random-btn" class="fas fa-random random" title="random"></i>
+                    <i id="backward-btn" class="fas fa-backward backward" title="backward"></i>
+                    <div class="album-play-btn" title="play">
+                        <i id="play-btn" class="fas fa-play play" style="position: relative;">
+                            <i class="fa fa-ban play" style="position: absolute;top:50%;left: 50%;width: 100;height:100;
+                            transform: translate(-50%, -50%); color: red; font-size: 1.7rem;"></i>
+                        </i>
+                        <!-- <i id="pause-btn" class="fas fa-pause pause"></i> -->
+                        <!-- <i class="fa fa-ban play"></i> -->
+                    </div>
+                    <i id="forward-btn" class="fas fa-forward forward" title="forward"></i>
+                    <i id="redo-btn" class="fas fa-redo-alt redo" title="redo"></i>
+                    <div class="album-background-overlay" style="background: rgba(0, 0, 0, 0.5)"></div>
+                </div>
+                <div class="progres-bar-container" style="position: relative;">
+                    <p class="initial-time">0:00</p>
+                    <progress class="duration-bar" id="progress" value="0"></progress>
+                    <p class="end-time">0:00</p>
+                    <div class="album-background-overlay" style="border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;
+                    background: rgba(0, 0, 0, 0.5)"></div>
+                </div>
             </div>
         </div>
 
@@ -292,10 +317,8 @@
         const mobilePlayerWrapper = document.querySelector(".mobile-player-wrapper")
         const mobileSongs = document.querySelectorAll(".song-title")
 
-        let mobileSongTitle = mobileSongContainer.firstElementChild.lastElementChild.firstElementChild.firstElementChild.textContent
-        mobilePlayerWrapper.lastElementChild.firstElementChild.textContent = mobileSongTitle
-
-       
+        // let mobileSongTitle = mobileSongContainer.firstElementChild.lastElementChild.firstElementChild.firstElementChild.textContent
+        // mobilePlayerWrapper.lastElementChild.firstElementChild.textContent = mobileSongTitle
 
         mobileSongs.forEach(function(item){
             item.addEventListener("click", ()=>{
@@ -352,8 +375,9 @@
         const mobile_redo = document.querySelector(".mobile-redo")
 
         mobile_play.addEventListener("click", ()=>{
-            mobile_song_files[index].pause()
             current_song_title = mobile_song_titles[index].firstElementChild.textContent
+            pauseBtn.style.display = "block"
+            playBtn.style.display = "none"
             mobile_song_files[index].play()
         })
         // END MOBILE PLAYER
