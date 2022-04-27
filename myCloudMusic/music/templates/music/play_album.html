@@ -40,13 +40,14 @@
                 </div>
 
                 <div class="album-control">
-                    <i id="random-btn" class="fas fa-random" title="random"></i>
-                    <i id="backward-btn" class="fas fa-backward" title="backward"></i>
+                    <i id="random-btn" class="fas fa-random random" title="random"></i>
+                    <i id="backward-btn" class="fas fa-backward backward" title="backward"></i>
                     <div class="album-play-btn" title="play">
-                        <i id="play-btn" class="fas fa-play"></i>
+                        <i id="play-btn" class="fas fa-play play"></i>
+                        <i id="pause-btn" class="fas fa-pause pause"></i>
                     </div>
-                    <i id="forward-btn" class="fas fa-forward" title="forward"></i>
-                    <i id="redo-btn" class="fas fa-redo-alt" title="redo"></i>
+                    <i id="forward-btn" class="fas fa-forward forward" title="forward"></i>
+                    <i id="redo-btn" class="fas fa-redo-alt redo" title="redo"></i>
                 </div>
                 <div class="progres-bar-container">
                     <p class="initial-time">0:00</p>
@@ -66,34 +67,27 @@
                 {% endif %}
             </div>
             <div class="music-player">
+                {% if songs %}
                     <div class="song-container">
-                        {% if songs %}
+                        <div>
                             {% for song in songs %}
                                 <audio class="song-file" src="{{ song.song_file.url }}"></audio>
-                                <p class="song">
-                                  <span id="song">{{ forloop.counter }}.{{ song.title }}</span>
-                                </p>
                             {% endfor %}
-                        {% else %}
+                        </div>
+                        
+                        <div>
+                            {% for song in songs %}
                             <p class="song">
-                                <span style="margin-left: 0;">Album does not have any songs!</span> 
+                                {{ forloop.counter }}.<span id="song"> {{ song.title }}</span>
                             </p>
-                        {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
-                <div class="album-control">
-                    <i class="fas fa-random" title="random"></i>
-                    <i class="fas fa-backward" title="backward"></i>
-                    <div class="album-play-btn" title="play">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <i class="fas fa-forward" title="forward"></i>
-                    <i class="fas fa-redo-alt" title="redo"></i>
-                </div>
-                <div class="progres-bar-container">
-                    <p class="initial-time">0:00</p>
-                    <progress class="duration-bar" id="progress" value="0"></progress>
-                    <p class="end-time">0:00</p>
-                </div>
+                {% else %}
+                    <p class="song">
+                        <span style="margin-left: 0;">Album does not have any songs!</span>
+                    </p>
+                {% endif %}
             </div>
         </div>
 
@@ -125,26 +119,35 @@
             </div>
             <div id="mobile-song-container" class="song-container">
                 {% if album.song_set.all %}
-                    {% for song in album.song_set.all %}
-                        <audio class="song-file" src="{{ song.song_file.url }}"></audio>
-                        <p class="song-title">
-                           {{ forloop.counter}} .<span>{{ song.title }}</span>
-                        </p>
-                    {% endfor%}
+                    <div class="mobile-songs">
+                        <div>
+                            {% for song in album.song_set.all %}
+                                <audio class="mobile-song-file" src="{{ song.song_file.url }}"></audio>
+                            {% endfor%}
+                        </div>
+                        <div>
+                            {% for song in album.song_set.all %}
+                                <p class="mobile-song-title">
+                                    {{ forloop.counter}}. <span>{{ song.title }}</span>
+                                </p>
+                            {% endfor %}
+                        </div>
+                    </div>
                 {% else %}
-                    <p class="song-title">
+                    <p class="mobile-song-title">
                         <span style="margin-left: 0">Album does not have any songs!</span> 
                     </p>
                 {% endif %}
             </div>
             <div class="album-control">
-                <i class="fas fa-random" title="random"></i>
-                <i class="fas fa-backward" title="backward"></i>
+                <i class="fas fa-random mobile-random" title="random"></i>
+                <i class="fas fa-backward mobile-backward" title="backward"></i>
                 <div class="album-play-btn" title="play">
-                    <i class="fas fa-play"></i>
+                    <i id="play-btn" class="fas fa-play mobile-play"></i>
+                    <i id="pause-btn" class="fas fa-pause mobile-pause"></i>
                 </div>
-                <i class="fas fa-forward" title="forward"></i>
-                <i class="fas fa-redo-alt" title="redo"></i>
+                <i class="fas fa-forward mobile-forward" title="forward"></i>
+                <i class="fas fa-redo-alt mobile-redo" title="redo"></i>
             </div>
             <div class="progres-bar-container">
                 <p class="initial-time">0:00</p>
@@ -186,32 +189,51 @@
         const closeSongListToggle = document.querySelector(".close-song-list-toggle")
         let songList = document.querySelectorAll(".song")
         const songs = [...songList]
-        // const idSongs = document.querySelectorAll("#song")
         const albumLikeDislike = document.querySelector(".album-like-dislike")
+        let songFiles = document.querySelectorAll(".song-file")
 
-    
-        let songTitle = musicplayer.firstElementChild.lastElementChild.firstElementChild.textContent
-        albumLikeDislike.firstElementChild.textContent = songTitle
+        // ALBUM CONTROL
+        const pauseBtn = document.querySelector("#pause-btn")
+        const playBtn = document.querySelector("#play-btn")
+        const forward = document.querySelector(".forward")
+        const backward = document.querySelector(".backward")
+        const play = document.querySelector(".play")
+        const pause = document.querySelector(".pause")
+        const random = document.querySelector(".random")
+        const redo = document.querySelector(".redo")
+
+        let index = 0
+        let current_song_title = songs[index].firstElementChild.textContent
+        
+        // LARGE SCREEN
+
+        // let songTitle = musicplayer.firstElementChild.lastElementChild.firstElementChild.firstElementChild.textContent
+        albumLikeDislike.firstElementChild.textContent = current_song_title
 
         window.addEventListener("resize", ()=>{
             if(window.innerWidth > 500){
-                albumLikeDislike.firstElementChild.textContent = songTitle
+                // albumLikeDislike.firstElementChild.textContent = songTitle
+                albumLikeDislike.firstElementChild.textContent = current_song_title
             }
         })
 
         songs.forEach(function(item){
             item.addEventListener("click", ()=>{
+                songFiles[index].pause()
                 musicplayer.classList.toggle("show-music-player")
                 albumCover.classList.toggle("hide-album-cover")
                 albumLikeDislike.firstElementChild.textContent = item.firstElementChild.textContent
-                songTitle = item.firstElementChild.textContent
+                current_song_title = item.firstElementChild.textContent
+                // songTitle = item.firstElementChild.textContent
                 songListToggle.style.display = "block"
                 closeSongListToggle.style.display = "none"
 
-                const songFile = document.querySelectorAll(".song-file")
-                let titleIndex = songs.indexOf(item)
-                songFile[titleIndex].load()
-                songFile[titleIndex].play()
+                // click on a song to play
+                index = songs.indexOf(item)
+                songFiles[index].load()
+                songFiles[index].play()
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'block'
             })
         })
 
@@ -243,6 +265,20 @@
             closeSongListToggle.style.display = "none" 
         })
 
+        // large screen player
+        play.addEventListener("click", ()=>{
+            songFiles[index].play()
+            playBtn.style.display = 'none'
+            pauseBtn.style.display = 'block'
+        })
+
+        pause.addEventListener("click", ()=>{
+            songFiles[index].pause()
+            playBtn.style.display = 'block'
+            pauseBtn.style.display = 'none'
+        })
+
+        // END OF LARGE SCREEN
 
         // MOBILE PLAYER
         const mobileEllipsis = document.querySelector(".mobile-ellipsis")
@@ -256,7 +292,7 @@
         const mobilePlayerWrapper = document.querySelector(".mobile-player-wrapper")
         const mobileSongs = document.querySelectorAll(".song-title")
 
-        let mobileSongTitle = mobileSongContainer.lastElementChild.firstElementChild.textContent
+        let mobileSongTitle = mobileSongContainer.firstElementChild.lastElementChild.firstElementChild.firstElementChild.textContent
         mobilePlayerWrapper.lastElementChild.firstElementChild.textContent = mobileSongTitle
 
        
@@ -273,9 +309,9 @@
 
         window.addEventListener("resize", ()=>{
             if(window.innerWidth < 500){
-                mobilePlayerWrapper.lastElementChild.firstElementChild.textContent = songTitle
-                let mobileSongTitle = mobileSongContainer.firstElementChild.firstElementChild.textContent
-                songTitle = mobileSongTitle
+                mobilePlayerWrapper.lastElementChild.firstElementChild.textContent = current_song_title
+                // let mobileSongTitle = mobileSongContainer.firstElementChild.firstElementChild.textContent
+                // songTitle = mobileSongTitle
             }
            
         })
@@ -305,7 +341,21 @@
 
         })
 
+         // mobile screen
+        const mobile_song_titles = document.querySelectorAll(".mobile-song-title")
+        const mobile_forward = document.querySelector(".mobile-forward")
+        const mobile_backward = document.querySelector(".mobile-backward")
+        const mobile_play = document.querySelector(".mobile-play")
+        const mobile_pause = document.querySelector(".mobile-pause")
+        const mobile_random = document.querySelector(".mobile-random")
+        const mobile_redo = document.querySelector(".mobile-redo")
+
+        mobile_play.addEventListener("click", ()=>{
+            current_song_title = mobile_song_titles[index].firstElementChild.textContent
+            console.log(current_song_title)
+        })
         // END MOBILE PLAYER
+   
     </script>
 </body>
 </html>

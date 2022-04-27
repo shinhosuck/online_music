@@ -1558,21 +1558,21 @@ PLAY ALBUM
     background: rgb(51, 51, 51);
 }
 
-.song-container > p {
-    padding: 1rem;
+.song-container > div > p {
+    padding: 0.5rem 1rem;
     transition: background 0.1s linear;
     cursor: pointer;
 }
 
 @media (hover){
-    .song-container > p:hover {
-        background: rgb(255, 69, 0);
+    .song-container > div > p:hover {
+        background: rgb(71, 71, 71);
     }
 }
 
-.song-container > p > span {
+.song-container > div > p > span {
     /* margin-left: 1rem; */
-    letter-spacing: 0.04rem;
+    letter-spacing: 0.06rem;
 }
 
 .album-side-menu {
@@ -1629,9 +1629,24 @@ PLAY ALBUM
     /* background: rgb(41, 41, 41); */
 }
 
-.album-control > div, 
-.album-control > i {
+.album-control >
+.random, .backward,
+.forward, .redo {
     padding: 1rem 1.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.album-control >
+.album-play-btn >
+.play, .pause {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+#pause-btn {
+    display: none;
 }
 
 .progres-bar-container {
@@ -1764,12 +1779,6 @@ PLAY ALBUM
         color: rgb(255, 255, 255);
     }
 
-    .mobile-player-container >
-    .song-container > p {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-
     .song-title-add-ellipsis {
         text-overflow: ellipsis;
         overflow-x: hidden;
@@ -1777,10 +1786,27 @@ PLAY ALBUM
     }
 
     .mobile-player-container >
-    .song-container > p > 
-    span {
-        margin-left: 0.7rem;
-        letter-spacing: 0.04rem;
+    .song-container > .mobile-songs >
+    div > p {
+        padding: 0.5rem 1rem;
+        transition: background 0.1s linear;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .mobile-player-container >
+    .song-container > .mobile-songs >
+    div > p > span {
+        /* margin-left: 1rem; */
+        letter-spacing: 0.06rem;
+    }
+
+    @media (hover){
+        .mobile-player-container >
+        .song-container > .mobile-songs >
+        div > p:hover {
+            background: rgb(71, 71, 71);
+        }
     }
 
     .mobile-player-container >
@@ -1788,6 +1814,22 @@ PLAY ALBUM
     .progres-bar-container {
         color: rgb(255, 255, 255);
         /* background: rgb(19, 19, 19); */
+    }
+
+    .album-control >
+    .mobile-random, .mobile-backward,
+    .mobile-forward, .mobile-redo {
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        color: white;
+    }
+
+    .album-control >
+    .album-play-btn >
+    .mobile-play, .mobile-pause {
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        color: white;
     }
 
     .mobile-player-container >

@@ -167,14 +167,14 @@ def play_album(request, pk):
                     old_album.delete()
         RecentlyPlayed.objects.create(user=user, album=album)
     # end of delete and create recently played
-
-    # songs = album.song_set.all()
-    # for song in songs:
-    #     print(song.title)
-
+    song_files = []
+    songs = album.song_set.all()
+    for song in songs:
+        song_files.append(song.song_file)
     context = {
         "album": album,
-        "songs": album.song_set.all()
+        "songs": songs,
+        "song_files": song_files
     }
     return render(request, "music/play_album.html", context)
 
