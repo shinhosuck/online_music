@@ -343,6 +343,7 @@
 
          // mobile screen
         const mobile_song_titles = document.querySelectorAll(".mobile-song-title")
+        const mobile_song_files = document.querySelectorAll(".mobile-song-file")
         const mobile_forward = document.querySelector(".mobile-forward")
         const mobile_backward = document.querySelector(".mobile-backward")
         const mobile_play = document.querySelector(".mobile-play")
@@ -351,8 +352,9 @@
         const mobile_redo = document.querySelector(".mobile-redo")
 
         mobile_play.addEventListener("click", ()=>{
+            mobile_song_files[index].pause()
             current_song_title = mobile_song_titles[index].firstElementChild.textContent
-            console.log(current_song_title)
+            mobile_song_files[index].play()
         })
         // END MOBILE PLAYER
    
