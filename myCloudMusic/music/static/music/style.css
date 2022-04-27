@@ -1427,8 +1427,8 @@ PLAY ALBUM
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     height: 100vh;
-    /*border:  1px solid red;*/
 }
 
 .music-player-wrapper {
@@ -1438,28 +1438,28 @@ PLAY ALBUM
     color: rgb(255, 255, 255);
     border-radius: 15px;
     box-shadow: 3px 3px 10px rgb(20, 20, 20);
-    /*box-shadow: inset 1px 1px 20px rgb(58, 58, 58);*/
-    /*padding: 1rem;*/
-    /*margin:  1rem;*/
     background: rgb(41, 41, 41);
 }
 
 .music-player-header {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 1rem;
-    /* background: rgb(41, 41, 41); */
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
 
 .music-player-header > h4 {
-    color: orangered;
-    width: 400px;
-    overflow: hidden;
+    color: rgb(255, 123, 0);
+    /* width: 400px; */
+    /* overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; */
+    text-transform: capitalize;
+    letter-spacing: 0.06rem;
+    font-weight: 500;
  }
  
  .music-player-header > i {
@@ -1503,6 +1503,7 @@ PLAY ALBUM
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    flex-wrap: wrap;
     background: transparent;
 
 }
@@ -1515,6 +1516,7 @@ PLAY ALBUM
 .album-like-dislike > p {
     letter-spacing: 0.06rem;
     text-transform: capitalize;
+    font-size: 0.98rem
 }
 
 .hide-album-cover {
@@ -1526,7 +1528,6 @@ PLAY ALBUM
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s linear;
-    /* border: 1px solid white; */
 }
 
 .show-music-player {
@@ -1567,11 +1568,13 @@ PLAY ALBUM
 
 .song-container > div > p > span {
     margin-left: 0.5rem;
+    letter-spacing: 0.06rem !important;
 }
 
 .song-container > p {
     padding: 1rem;
     text-align: center;
+    letter-spacing: 0.06rem !important;
 }
 
 @media (hover){
@@ -1581,7 +1584,6 @@ PLAY ALBUM
 }
 
 .song-container > div > p > span {
-    /* margin-left: 1rem; */
     letter-spacing: 0.06rem;
 }
 
@@ -1611,6 +1613,7 @@ PLAY ALBUM
     padding: 1rem;
     color: white;
     cursor: pointer;
+    letter-spacing: 0.06rem;
     transition: background 0.09s linear
 }
 
@@ -1622,7 +1625,7 @@ PLAY ALBUM
 @media (hover) {
     .album-side-menu > a:hover, 
     .album-side-menu > p:hover {
-        background: purple;
+        background: rgb(71, 71, 71);
     }
 }
 
@@ -1636,8 +1639,6 @@ PLAY ALBUM
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    /* background: rgb(41, 41, 41); */
-    background: 1px solid white;
 }
 
 .album-control >
@@ -1663,247 +1664,35 @@ PLAY ALBUM
 .progres-bar-container {
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     background: rgb(41, 41, 41);
     padding: 0 1rem 1rem 1rem;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    background: 1px solid white;
 }
 
 .duration-bar {
     flex: 1;
     margin: 0 1rem;
+    height: 8px;
 }
 
-@media screen and (min-width:500px) {
-    .mobile-player-container {
-        display: none;
-    }
+.initial-time,
+.end-time {
+    font-size: 0.95rem;
 }
 
-/* MOBILE  PLAYER */
-@media screen and (max-width:500px) {
-    
-    .music-player-wrapper {
-        display: none;
-    }
-
-    .mobile-player-container {
-        display: block;
-        /* border-radius: 40px;
-        box-shadow: inset 1px 1px 20px rgb(58, 58, 58);
-        padding: 1rem; */
-        box-shadow: 3px 3px 10px rgb(20, 20, 20);
-        border-radius: 15px;
-        position: relative;
-        background: rgb(41, 41, 41);
-    }
-
-    .mobile-player-container > 
-    .music-player-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        padding: 1rem;
-        /* background: rgb(19, 19, 19); */
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-    }
-
-    .mobile-player-container > 
-    .music-player-header >
-    h4 {
-        width: inherit;
-        overflow: inherit;
-        white-space: inherit;
-        text-overflow: ellipsis;
-    }
-
-    .mobile-player-container >
-    .mobile-player-wrapper {
-        position: relative;
-    }
-
-    .mobile-player-container > 
-    .mobile-player-wrapper > img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    .mobile-player-container >
-    .mobile-player-wrapper >
-    .album-background-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        background: rgba(0, 0, 0, 0.5);
-    }
-
-    .mobile-player-container >
-    .mobile-player-wrapper >
-    .album-like-dislike {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        z-index: 3;
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-    }
-
-    .mobile-player-container >
-    .mobile-player-wrapper >
-    .album-like-dislike > p {
-       color: white;
-       font-size: 0.95rem;
-       letter-spacing: 0.06rem;
-    }
-
-    .mobile-player-container >
-    .mobile-player-wrapper >
-    .album-like-dislike > 
-    .thumbs-up-down > a > i {
-       font-size: 22px;
-    }
-
-    .mobile-player-container >
-    .mobile-player-wrapper >
-    .album-like-dislike > 
-    .thumbs-up-down > a > p {
-       font-size: 0.95rem;
-    }
-
-    .mobile-player-container > 
-    .song-container {
-        display: none;
-    }
-    .show-mobile-song-container {
-        display: block !important;
-        overflow-y: scroll;
-        height: 150px;
-        color: rgb(255, 255, 255);
-    }
-
-    .song-title-add-ellipsis {
-        text-overflow: ellipsis;
-        overflow-x: hidden;
-        white-space: nowrap;
-    }
-
-    .mobile-player-container >
-    .song-container > .mobile-songs >
-    div > p {
-        padding: 0.5rem 1rem;
-        transition: background 0.1s linear;
-        cursor: pointer;
-        font-size: 0.9rem;
-    }
-
-    .mobile-player-container >
-    .song-container > .mobile-songs >
-    div > p > span {
-        /* margin-left: 1rem; */
-        letter-spacing: 0.06rem;
-    }
-
-    @media (hover){
-        .mobile-player-container >
-        .song-container > .mobile-songs >
-        div > p:hover {
-            background: rgb(71, 71, 71);
-        }
-    }
-
-    .mobile-player-container >
-    .album-control,
-    .progres-bar-container {
-        color: rgb(255, 255, 255);
-        /* background: rgb(19, 19, 19); */
-    }
-
-    .album-control >
-    .mobile-random, .mobile-backward,
-    .mobile-forward, .mobile-redo {
-        padding: 1rem 1.5rem;
-        cursor: pointer;
-        color: white;
-    }
-
-    .album-control >
-    .album-play-btn >
-    .mobile-play, .mobile-pause {
-        padding: 1rem 1.5rem;
-        cursor: pointer;
-        color: white;
-    }
-
-    .mobile-player-container >
-    .progres-bar-container {
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-    }
-
-    .mobile-side-menu {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 0;
-        z-index: 4;
-        background: rgba(0, 0, 0, 0.9);
-        border-radius: 15px;
-        overflow: hidden;
-        transition: width 0.1s linear;
-    }
-
-    .show-side-menu {
-        width: 100%;
-        border: 1px solid rgb(36, 36, 36);
-        transition: width 0.15s linear;
-    }
-
-    .mobile-side-menu > i,
-    .mobile-side-menu > p,
-    .mobile-side-menu > a {
-        display: block;
-        color: white;
-        padding: 0.8rem 1rem;
-        cursor: pointer;
-        transition: background 0.1s linear;
-    }
-
-    #mobile-close-song-list{
-        display: none;
-    }
-
-    @media (hover) {
-    .mobile-side-menu > p:hover,
-    .mobile-side-menu > a:hover {
-            background: purple
-        }
-    }
-
-    .mobile-side-menu > i {
-        text-align: end;
-        font-size: 1.3rem;
-    }
+@media screen and (max-width: 400px) {
+   .album-control {
+       font-size: 0.9rem;
+   }
+   .album-control > i, 
+   .album-control > div > i {
+       padding-right: 0.8rem !important;
+       padding-left: 0.8rem !important;
+   }
 }
-
-
-@media screen and (max-width:440px) {
-    .mobile-player-container >
-    .song-container > p {
-       font-size: 0.8rem;
-    }
-}
-/* END MOBILE PLAYER */
 
 /*===============
 END OF PLAY ALBUM
