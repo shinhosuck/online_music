@@ -63,7 +63,7 @@
                 </div>
                 <div class="progres-bar-container">
                     <p class="initial-time">0:00</p>
-                    <progress class="duration-bar" id="progress" value="0"></progress>
+                    <progress class="duration-bar" id="progress-bar" value="0"></progress>
                     <p class="end-time">0:00</p>
                 </div>
             </div>
@@ -146,6 +146,7 @@
         let songFiles = document.querySelectorAll(".song-file")
 
         // ALBUM CONTROL
+        const progressBar = document.querySelector("#progress-bar")
         const pauseBtn = document.querySelector("#pause-btn")
         const playBtn = document.querySelector("#play-btn")
         const forward = document.querySelector(".forward")
@@ -158,12 +159,10 @@
         let index = 0
         let current_song_title = songs[index].firstElementChild.textContent
         
-        // let songTitle = musicplayer.firstElementChild.lastElementChild.firstElementChild.firstElementChild.textContent
         albumLikeDislike.firstElementChild.textContent = current_song_title
 
         window.addEventListener("resize", ()=>{
             if(window.innerWidth > 500){
-                // albumLikeDislike.firstElementChild.textContent = songTitle
                 albumLikeDislike.firstElementChild.textContent = current_song_title
             }
         })
@@ -175,7 +174,6 @@
                 albumCover.classList.toggle("hide-album-cover")
                 albumLikeDislike.firstElementChild.textContent = item.firstElementChild.textContent
                 current_song_title = item.firstElementChild.textContent
-                // songTitle = item.firstElementChild.textContent
                 songListToggle.style.display = "block"
                 closeSongListToggle.style.display = "none"
 
@@ -219,7 +217,6 @@
 
         // click play icon to play
         play.addEventListener("click", ()=>{
-            // songFiles[index].currentTime = 0
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'block'
@@ -262,7 +259,6 @@
                 index = songs.length - 1
                 songFiles[index].currentTime = 0
                 songFiles[index].play()
-                console.log(index)
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'block'
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
@@ -272,11 +268,38 @@
                 songFiles[index - 1].currentTime = 0
                 songFiles[index - 1].play()
                 index = index - 1
-                console.log(index)
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'block'
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
             }
+        })
+
+        // progress bar
+        songFiles.forEach((file)=>{
+            file.addEventListener("timeupdate", ()=>{
+                progressBar.value = file.currentTime / file.duration;
+            })
+        })
+
+        // redo song
+        redo.addEventListener("click", ()=>{
+            songFiles[index].currentTime = 0
+            songFiles[index].play()
+            playBtn.style.display = 'none'
+            pauseBtn.style.display = 'block'
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+        })
+
+        // random song
+        random.addEventListener("click", ()=>{
+            const randomNum = Math.floor(Math.random() * songFiles.length)
+            songFiles[index].pause()
+            songFiles[index].currentTime = 0
+            index = randomNum
+            songFiles[index].play()
+            playBtn.style.display = 'none'
+            pauseBtn.style.display = 'block'
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
         })
     </script>
 </body>
