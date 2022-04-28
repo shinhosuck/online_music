@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="ScreenOrientation" content="autoRotate:disabled"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap" rel="stylesheet">
@@ -69,11 +70,12 @@
         
             <div class="album-side-menu">
                 <i class="fa fa-times close-side-menu"></i>
+                <a href="{% url 'music:home' %}">Home</a>
                 <p class="song-list-toggle">See Song List</p>
                 <p class="close-song-list-toggle">Close Song List</p>
-                <a href="{% url 'music:home' %}">Home</a>
                 <a href="{% url 'music:all-albums' 'latest albums' %}">Latest Albums</a>
                 {% if user.is_authenticated %}
+                    <a href="{% url 'music:add-song' album.pk %}">Add new song</a>
                     <a href="{% url 'music:all-albums' 'recently played'%}">Recently Played</a>
                 {% endif %}
             </div>
@@ -89,7 +91,7 @@
                         <div>
                             {% for song in songs %}
                             <p class="song">
-                                {{ forloop.counter }} .<span id="song"> {{ song.title }}</span>
+                                {{ forloop.counter }} .<span id="song">{{ song.title }}</span>
                             </p>
                             {% endfor %}
                         </div>
@@ -156,8 +158,6 @@
         let index = 0
         let current_song_title = songs[index].firstElementChild.textContent
         
-        // LARGE SCREEN
-
         // let songTitle = musicplayer.firstElementChild.lastElementChild.firstElementChild.firstElementChild.textContent
         albumLikeDislike.firstElementChild.textContent = current_song_title
 
@@ -179,9 +179,10 @@
                 songListToggle.style.display = "block"
                 closeSongListToggle.style.display = "none"
 
-                // click on a song to play
+                // click song to play
                 index = songs.indexOf(item)
                 songFiles[index].load()
+                songFiles[index].currentTime = 0
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'block'
@@ -216,20 +217,67 @@
             closeSongListToggle.style.display = "none" 
         })
 
-        // large screen player
+        // click play icon to play
         play.addEventListener("click", ()=>{
+            // songFiles[index].currentTime = 0
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'block'
         })
 
+        // click pause icon to pause
         pause.addEventListener("click", ()=>{
             songFiles[index].pause()
             playBtn.style.display = 'block'
             pauseBtn.style.display = 'none'
         })
 
-        // END OF LARGE SCREEN
+        // forward to next song
+        forward.addEventListener("click", ()=>{
+            if(index >= songs.length - 1) {
+                songFiles[index].pause()
+                index = 0
+                songFiles[index].currentTime = 0
+                songFiles[index].play()
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'block'
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            }
+            else {
+                songFiles[index].pause()
+                songFiles[index + 1].currentTime = 0
+                songFiles[index + 1].play()
+                index = index + 1
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'block'
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            }
+            
+        })
+
+        // go back to previous song
+        backward.addEventListener("click", ()=>{
+            if(index <= 0) {
+                songFiles[index].pause()
+                index = songs.length - 1
+                songFiles[index].currentTime = 0
+                songFiles[index].play()
+                console.log(index)
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'block'
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            }
+            else {
+                songFiles[index].pause()
+                songFiles[index - 1].currentTime = 0
+                songFiles[index - 1].play()
+                index = index - 1
+                console.log(index)
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'block'
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            }
+        })
     </script>
 </body>
 </html>

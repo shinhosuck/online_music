@@ -190,13 +190,15 @@ def new_song(request):
 
 
 def add_song(request, pk):
+    user = request.user
+    albums = user.album_set.all()
     if request.method == "POST":
         form = CreateSongForm(request.POST, request.FILES)
         if form.is_valid():
             album = Album.objects.get(pk=pk)
             form.instance.album = album
             form.save()
-            return redirect("music:new-song")
+        return redirect("music:new-song")
     else:
         form = CreateSongForm()
         context = {
@@ -214,7 +216,7 @@ def my_albums(request):
             "data": data,
             "albums": albums
         }
-    return render(request, "music/my_albums.html", context)
+        return render(request, "music/my_albums.html", context)
 
 
 def genre(request):
