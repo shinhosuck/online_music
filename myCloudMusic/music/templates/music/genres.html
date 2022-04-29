@@ -20,7 +20,7 @@
     </h1>
     {% endif %}
     <div class="albums">
-        {% for album in genre.album_set.all %}
+        {% for album in genre.album_set.all|slice:"0:8" %}
             {% if album %}
             <div class="album-wrapper">
                 <img src="{{ album.album_cover.url }}" alt="">

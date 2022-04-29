@@ -7,7 +7,6 @@ from music.forms import CreateAlbumForm, CreateSongForm
 
 def landing_page(request):
     user = request.user
-    print(user)
     return render(request, "music/landing_page.html", {})
 
 
@@ -138,7 +137,6 @@ def all_albums(request, string):
     
     if string == "most listened":
         most_listened = Album.objects.filter(thumbs_up=1)
-        print(most_listened)
         context = {
             "most_listened": most_listened,
             "string": string
@@ -229,12 +227,9 @@ def genre(request):
 
 def genre_albums(request):
     if request.GET.get("string"):
-        genre = request.GET.get("string")
-        genre_albums = ''
-        albums = Album.objects.all()
-        for album in albums:
-            if album.genre.genre == genre:
-                genre_albums = album.genre.album_set.all()
+        genre_atring = request.GET.get("string")
+        genre = Genre.objects.filter(genre=genre_atring).first()
+        genre_albums = genre.album_set.all()
         context = {
             "genre": genre,
             "genre_albums": genre_albums
