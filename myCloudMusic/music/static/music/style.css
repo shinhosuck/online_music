@@ -1036,7 +1036,6 @@ HOME PAGE
     width: 90vw;
     margin: 0 auto;
     padding-top: 3rem;
-    border: 1px solid white;
 }
 
 .album-container:last-child {
@@ -1052,14 +1051,13 @@ HOME PAGE
     /* text-transform: capitalize; */
     letter-spacing: 0.09rem;
     display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
     flex-wrap: wrap;
     font-size: 1.6rem;
     color: rgb(255, 81, 0);
     padding-bottom: 1rem;
     padding-top: 1rem;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
     border-bottom: 1px solid rgb(46, 46, 46);
 }
 
@@ -1135,6 +1133,12 @@ HOME PAGE
     text-transform: capitalize;
     font-size: 1rem;
     letter-spacing: 0.06rem;
+}
+
+.album-text-wrapper > h2 > i {
+    font-size: 0.9rem;
+    color: rgb(161, 161, 161);
+    margin-left: 1rem;
 }
 
 .flex-box {
