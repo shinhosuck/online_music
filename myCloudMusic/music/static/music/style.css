@@ -1036,6 +1036,7 @@ HOME PAGE
     width: 90vw;
     margin: 0 auto;
     padding-top: 3rem;
+    border: 1px solid white;
 }
 
 .album-container:last-child {
