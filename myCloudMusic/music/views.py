@@ -1,12 +1,18 @@
-import re
+import base64
 from django.contrib.auth.decorators import login_required
-from music.models import Album, Like, Dislike, RecentlyPlayed, Genre
+from music.models import Album, Like, Dislike, RecentlyPlayed, Genre, Song
 from django.shortcuts import render, redirect
 from music.forms import CreateAlbumForm, CreateSongForm
 
 
 def landing_page(request):
-    user = request.user
+    # all_songs = Song.objects.all()
+    # base_64 = []
+    # for song in all_songs:
+    #     file = open(f"./media/{song.song_file}", "br").read()
+    #     encode = base64.b64encode(file)
+    #     base_64.append(encode)
+    # print(base_64)
     return render(request, "music/landing_page.html", {})
 
 
