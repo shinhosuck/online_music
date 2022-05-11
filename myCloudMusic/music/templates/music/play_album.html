@@ -228,7 +228,15 @@
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
-            // index ++
+
+            songFiles[index].addEventListener("playing", ()=>{
+            console.log(`song ${index} is playing`)
+            })
+            songFiles[index].addEventListener("ended", ()=>{
+                console.log(`song ${index} has ended`)
+                index ++
+                autoPlay()
+            })
         })
 
         // click pause icon to pause
@@ -248,17 +256,27 @@
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                console.log(index)
             }
             else {
                 songFiles[index].pause()
-                songFiles[index + 1].currentTime = 0
-                songFiles[index + 1].play()
-                index = index + 1
+                index ++
+                songFiles[index].currentTime = 0
+                songFiles[index].play()
+                // index = index + 1
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-            }
-        })
+                console.log(index)
+
+                songFiles[index].addEventListener("playing", ()=>{
+                    console.log(`song ${index} is playing`)
+                })
+                songFiles[index].addEventListener("ended", ()=>{
+                    console.log(`song ${index} has ended`)
+                })
+                    }
+                })
 
         // go back to previous song
         backward.addEventListener("click", ()=>{
@@ -310,58 +328,37 @@
             albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
         })
 
-         // auto play next song
-        //  function autoPlay(){
-        //     if(index >= songs.length - 1) {
-        //         songFiles[index].pause()
-        //         index = 0
-        //         songFiles[index].currentTime = 0
-        //         songFiles[index].play()
-        //         playBtn.style.display = 'none'
-        //         pauseBtn.style.display = 'flex'
-        //         albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-        //     }
-        //     else {
-        //         songFiles[index].currentTime = 0
-        //         songFiles[index].muted = false
-        //         console.log("end:", index)
-        //         songFiles[index].play()
-        //         playBtn.style.display = 'none'
-        //         pauseBtn.style.display = 'flex'
-        //         albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-        //         index ++
-        //     }
-        // }
-        songFiles[index].addEventListener("ended", function(){
-            console.log(`song ${index} has ended`)
-            index ++
-            autoplay()
-            function autoplay(){
-                console.log(`song ${index} is a new song`)
-                songFiles[index].currentTime = 0
-                songFiles[index].play()
-            }
-            
-            // if(index >= songs.length - 1) {
-            //     songFiles[index].pause()
-            //     index = 0
-            //     songFiles[index].currentTime = 0
-            //     songFiles[index].play()
-            //     playBtn.style.display = 'none'
-            //     pauseBtn.style.display = 'flex'
-            //     albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-            // }
-            // else {
-            //     songFiles[index].pause()
-            //     songFiles[index + 1].currentTime = 0
-            //     songFiles[index + 1].play()
-            //     index = index + 1
-            //     playBtn.style.display = 'none'
-            //     pauseBtn.style.display = 'flex'
-            //     albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-            // }
-            console.log(`song ${index} has ended`)
-        })
+        // songFiles[index].addEventListener("playing", ()=>{
+        //     console.log(`song ${index} is playing`)
+        // })
+        // songFiles[index].addEventListener("ended", ()=>{
+        //     console.log(`song ${index} has ended`)
+        // })
+
+        function autoPlay(){
+            songFiles[index].play()
+            playBtn.style.display = 'none'
+            pauseBtn.style.display = 'flex'
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+
+            // songFiles[index].addEventListener("playing", ()=>{
+            //     console.log(`song ${index} is playing`)
+            // })
+            songFiles[index].addEventListener("ended", ()=>{
+                console.log(`song ${index} has ended`)
+                index ++
+                if(index > songs.length-1) {
+                    index = 0
+                    songFiles[index].currentTime = 0
+                    playBtn.style.display = 'flex'
+                    pauseBtn.style.display = 'none'
+                    albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                }
+            })
+            songFiles[index].addEventListener("ended", autoPlay)
+        }
+
+
     </script>
 </body>
 </html>
