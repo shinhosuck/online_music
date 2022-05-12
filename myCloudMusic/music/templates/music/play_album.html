@@ -89,7 +89,7 @@
                     <div class="song-container">
                         <div>
                             {% for song in songs %}
-                                <audio class="song-file" src="{{ song.song_file.url }}"></audio>
+                                <audio id="audio" class="song-file" src="{{ song.song_file.url }}"></audio>
                             {% endfor %}
                         </div>
                         
@@ -163,6 +163,12 @@
         const redo = document.querySelector(".redo")
 
         let index = 0
+
+        function stopLoop() {
+            console.log("hello world")
+            location.reload()
+        }
+
         let current_song_title = songs[index].firstElementChild.textContent
         
         albumLikeDislike.firstElementChild.textContent = current_song_title
@@ -228,10 +234,8 @@
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
 
-            songFiles[index].addEventListener("playing", ()=>{
-            console.log(`song ${index} is playing`)
-            })
             songFiles[index].addEventListener("ended", ()=>{
                 console.log(`song ${index} has ended`)
                 index ++
@@ -328,34 +332,29 @@
             albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
         })
 
-        // songFiles[index].addEventListener("playing", ()=>{
-        //     console.log(`song ${index} is playing`)
-        // })
-        // songFiles[index].addEventListener("ended", ()=>{
-        //     console.log(`song ${index} has ended`)
-        // })
 
         function autoPlay(){
+
+            if(index > songs.length-1) {
+                index = 0
+                songFiles[index].currentTime = 0
+                playBtn.style.display = 'flex'
+                pauseBtn.style.display = 'none'
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                return stopLoop()
+            }
+            // songFiles[index].pause()
+            // songFiles[index].currentTime = 0
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
             albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
 
-            // songFiles[index].addEventListener("playing", ()=>{
-            //     console.log(`song ${index} is playing`)
-            // })
             songFiles[index].addEventListener("ended", ()=>{
                 console.log(`song ${index} has ended`)
                 index ++
-                if(index > songs.length-1) {
-                    index = 0
-                    songFiles[index].currentTime = 0
-                    playBtn.style.display = 'flex'
-                    pauseBtn.style.display = 'none'
-                    albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-                }
+                autoPlay()
             })
-            songFiles[index].addEventListener("ended", autoPlay)
         }
 
 
