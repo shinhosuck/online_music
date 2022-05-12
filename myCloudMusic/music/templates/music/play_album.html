@@ -96,7 +96,7 @@
                         <div>
                             {% for song in songs %}
                             <p class="song">
-                                {{ forloop.counter }} .<span id="song">{{ song.title }}</span>
+                                <span id="song" style="margin-left: 0;">{{ forloop.counter }}. {{ song.title }}</span>
                             </p>
                             {% endfor %}
                         </div>
@@ -260,27 +260,41 @@
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-                console.log(index)
+
+                songFiles[index].addEventListener("ended", ()=>{
+                    console.log(`song ${index} has ended`)
+                    // index ++
+                    // songFiles[index].currentTime = 0
+                    // playBtn.style.display = 'flex'
+                    // pauseBtn.style.display = 'none'
+                    // albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                    // playBtn.style.display = 'flex'
+                    // pauseBtn.style.display = 'none'
+
+                })
             }
             else {
                 songFiles[index].pause()
                 index ++
                 songFiles[index].currentTime = 0
                 songFiles[index].play()
-                // index = index + 1
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
                 console.log(index)
 
-                songFiles[index].addEventListener("playing", ()=>{
-                    console.log(`song ${index} is playing`)
-                })
                 songFiles[index].addEventListener("ended", ()=>{
                     console.log(`song ${index} has ended`)
+                    // index ++
+                    // songFiles[index].currentTime = 0
+                    // playBtn.style.display = 'flex'
+                    // pauseBtn.style.display = 'none'
+                    // albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                    // playBtn.style.display = 'flex'
+                    // pauseBtn.style.display = 'none'
                 })
-                    }
-                })
+            }
+        })
 
         // go back to previous song
         backward.addEventListener("click", ()=>{
@@ -292,15 +306,31 @@
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                console.log(index)
+
+                // songFiles[index].addEventListener("ended", ()=>{
+                //     console.log(`song ${index} has ended`)
+                //     index ++
+                //     autoPlay()
+                // })
             }
             else {
                 songFiles[index].pause()
-                songFiles[index - 1].currentTime = 0
-                songFiles[index - 1].play()
-                index = index - 1
+                songFiles[index].currentTime = 0
+                index --
+                songFiles[index].pause()
+                songFiles[index].currentTime = 0
+                songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                console.log(index)
+
+                // songFiles[index].addEventListener("ended", ()=>{
+                //     console.log(`song ${index} has ended`)
+                //     index ++
+                //     autoPlay()
+                // })
             }
         })
 
