@@ -110,15 +110,11 @@
                 {% endif %}
                 <div class="album-control" style="position: relative;">
                     <i id="random-btn" class="fas fa-random random" title="random"></i>
-                    <!-- <i id="backward-btn" class="fas fa-backward backward" title="backward"></i> -->
                     <i id="backward-btn" class="fas fa-fast-backward backward" title="backward"></i>
                     <div class="album-play-btn" title="play" style="background: transparent;">
                         <i id="play-btn" class="fas fa-play play" style="position: relative;background: transparent; color: white;">
-                            <!-- <i class="fa fa-ban play" style="position: absolute;top:50%;left: 50%;width: 100;height:100;
-                            transform: translate(-50%, -50%); color: red; font-size: 1.7rem;"></i> -->
                         </i>
                     </div>
-                    <!-- <i id="forward-btn" class="fas fa-forward forward" title="forward"></i> -->
                     <i id="forward-btn" class="fas fa-fast-forward forward" title="forward"></i>
                     <i id="redo-btn" class="fas fa-redo-alt redo" title="redo"></i>
                     <div class="album-background-overlay-control" style="background: rgba(0, 0, 0, 0.5)"></div>
@@ -169,6 +165,7 @@
             location.reload()
         }
 
+
         let current_song_title = songs[index].firstElementChild.textContent
         
         albumLikeDislike.firstElementChild.textContent = current_song_title
@@ -185,18 +182,19 @@
                 musicplayer.classList.toggle("show-music-player")
                 albumCover.classList.toggle("hide-album-cover")
                 albumLikeDislike.firstElementChild.textContent = item.firstElementChild.textContent
-                current_song_title = item.firstElementChild.textContent
+                // current_song_title = item.firstElementChild.textContent
                 songListToggle.style.display = "block"
                 closeSongListToggle.style.display = "none"
 
                 // click song to play
                 index = songs.indexOf(item)
-                songFiles[index].load()
+                // songFiles[index].load()
                 songFiles[index].currentTime = 0
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
-                // songFiles[index].addEventListener("ended", autoPlay)
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                songFiles[index].addEventListener("ended", autoPlay)
             })
         })
 
@@ -230,17 +228,14 @@
 
         // click play icon to play
         play.addEventListener("click", ()=>{
-            console.log("start:", index)
+
+            console.log(`song ${index+1} is playing`)
+
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
             albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-
-            songFiles[index].addEventListener("ended", ()=>{
-                console.log(`song ${index} has ended`)
-                index ++
-                autoPlay()
-            })
+            songFiles[index].addEventListener("ended", autoPlay)
         })
 
         // click pause icon to pause
@@ -252,93 +247,62 @@
 
         // forward to next song
         forward.addEventListener("click", ()=>{
-            if(index >= songs.length - 1) {
+            if(index == songFiles.length - 1) {
                 songFiles[index].pause()
+                songFiles[index].currentTime = 0
                 index = 0
-                songFiles[index].currentTime = 0
-                songFiles[index].play()
-                playBtn.style.display = 'none'
-                pauseBtn.style.display = 'flex'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-
-                songFiles[index].addEventListener("ended", ()=>{
-                    console.log(`song ${index} has ended`)
-                    // index ++
-                    // songFiles[index].currentTime = 0
-                    // playBtn.style.display = 'flex'
-                    // pauseBtn.style.display = 'none'
-                    // albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-                    // playBtn.style.display = 'flex'
-                    // pauseBtn.style.display = 'none'
-
-                })
-            }
-            else {
-                songFiles[index].pause()
-                index ++
-                songFiles[index].currentTime = 0
-                songFiles[index].play()
-                playBtn.style.display = 'none'
-                pauseBtn.style.display = 'flex'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
                 console.log(index)
+                songFiles[index].play()
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'flex'
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                
+                console.log(`song ${index+1} is playing`)
 
-                songFiles[index].addEventListener("ended", ()=>{
-                    console.log(`song ${index} has ended`)
-                    // index ++
-                    // songFiles[index].currentTime = 0
-                    // playBtn.style.display = 'flex'
-                    // pauseBtn.style.display = 'none'
-                    // albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-                    // playBtn.style.display = 'flex'
-                    // pauseBtn.style.display = 'none'
-                })
+                songFiles[index].addEventListener("ended", autoPlay)
             }
+            
+            songFiles[index].pause()
+            songFiles[index].currentTime = 0
+            index ++
+            songFiles[index].play()
+            console.log(index)
+            playBtn.style.display = 'none'
+            pauseBtn.style.display = 'flex'
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+
+            console.log(`song ${index+1} is playing`)
+            
+            songFiles[index].addEventListener("ended", autoPlay)
+            
         })
 
         // go back to previous song
         backward.addEventListener("click", ()=>{
             if(index <= 0) {
                 songFiles[index].pause()
+                songFiles[index].currentTime = 0
                 index = songs.length - 1
-                songFiles[index].currentTime = 0
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-                console.log(index)
 
-                // songFiles[index].addEventListener("ended", ()=>{
-                //     console.log(`song ${index} has ended`)
-                //     index ++
-                //     autoPlay()
-                // })
+                console.log(`song ${index+1} is playing`)
+                
+                songFiles[index].addEventListener("ended", autoPlay)
             }
-            else {
-                songFiles[index].pause()
-                songFiles[index].currentTime = 0
-                index --
-                songFiles[index].pause()
-                songFiles[index].currentTime = 0
-                songFiles[index].play()
-                playBtn.style.display = 'none'
-                pauseBtn.style.display = 'flex'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-                console.log(index)
+            songFiles[index].pause()
+            songFiles[index].currentTime = 0
+            index --
+            songFiles[index].play()
+            playBtn.style.display = 'none'
+            pauseBtn.style.display = 'flex'
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
 
-                // songFiles[index].addEventListener("ended", ()=>{
-                //     console.log(`song ${index} has ended`)
-                //     index ++
-                //     autoPlay()
-                // })
-            }
-        })
-
-        // progress bar
-        songFiles.forEach((file)=>{
-            file.addEventListener("timeupdate", ()=>{
-                progressBar.value = file.currentTime / file.duration;
-            })
+            console.log(`song ${index+1} is playing`)
+            
+            songFiles[index].addEventListener("ended", autoPlay)
         })
 
         // redo song
@@ -364,8 +328,7 @@
 
 
         function autoPlay(){
-
-            if(index > songs.length-1) {
+            if(index >= songs.length-1) {
                 index = 0
                 songFiles[index].currentTime = 0
                 playBtn.style.display = 'flex'
@@ -373,20 +336,30 @@
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
                 return stopLoop()
             }
-            // songFiles[index].pause()
-            // songFiles[index].currentTime = 0
-            songFiles[index].play()
+            songFiles[index].pause()
+            songFiles[index].currentTime = 0
+            index ++
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
             albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            songFiles[index].play()
 
-            songFiles[index].addEventListener("ended", ()=>{
-                console.log(`song ${index} has ended`)
-                index ++
-                autoPlay()
-            })
+            console.log(`song ${index+1} is playing`)
+
+            songFiles[index].addEventListener("ended", autoPlay)
         }
 
+        // fastforward song
+        progressBar.addEventListener("click", function(){
+            songFiles[index].currentTime += 10
+        })
+
+        // progress bar
+        songFiles.forEach((file)=>{
+            file.addEventListener("timeupdate", ()=>{
+                progressBar.value = file.currentTime / file.duration;
+            })
+        })
 
     </script>
 </body>
