@@ -330,7 +330,7 @@
 
 
         function autoPlay(){
-            if(index >= songs.length-1) {
+            if(index == songs.length-1) {
                 index = 0
                 songFiles[index].currentTime = 0
                 playBtn.style.display = 'flex'
@@ -338,17 +338,19 @@
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
                 return stopLoop()
             }
-            songFiles[index].pause()
-            songFiles[index].currentTime = 0
-            index ++
-            playBtn.style.display = 'none'
-            pauseBtn.style.display = 'flex'
-            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-            songFiles[index].play()
+            else if(index < songFiles.length - 1) {
+                songFiles[index].pause()
+                songFiles[index].currentTime = 0
+                index ++
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'flex'
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                songFiles[index].play()
 
-            console.log(`song ${index+1} is playing`)
+                console.log(`song ${index+1} is playing`)
 
-            songFiles[index].addEventListener("ended", autoPlay)
+                songFiles[index].addEventListener("ended", autoPlay)
+            }
         }
 
         // fastforward song
