@@ -261,25 +261,25 @@
 
                 songFiles[index].addEventListener("ended", autoPlay)
             }
-            
-            songFiles[index].pause()
-            songFiles[index].currentTime = 0
-            index ++
-            songFiles[index].play()
-            console.log(index)
-            playBtn.style.display = 'none'
-            pauseBtn.style.display = 'flex'
-            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            else if(index < songFiles.length - 1) {
+                songFiles[index].pause()
+                songFiles[index].currentTime = 0
+                index ++
+                songFiles[index].play()
+                console.log(index)
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'flex'
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
 
-            console.log(`song ${index+1} is playing`)
-            
-            songFiles[index].addEventListener("ended", autoPlay)
-            
+                console.log(`song ${index+1} is playing`)
+                
+                songFiles[index].addEventListener("ended", autoPlay)
+            }
         })
 
         // go back to previous song
         backward.addEventListener("click", ()=>{
-            if(index <= 0) {
+            if(index == 0) {
                 songFiles[index].pause()
                 songFiles[index].currentTime = 0
                 index = songs.length - 1
@@ -292,17 +292,19 @@
                 
                 songFiles[index].addEventListener("ended", autoPlay)
             }
-            songFiles[index].pause()
-            songFiles[index].currentTime = 0
-            index --
-            songFiles[index].play()
-            playBtn.style.display = 'none'
-            pauseBtn.style.display = 'flex'
-            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            else if(index == songFiles.length - 1 || index > 0) {
+                songFiles[index].pause()
+                songFiles[index].currentTime = 0
+                index --
+                songFiles[index].play()
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'flex'
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
 
-            console.log(`song ${index+1} is playing`)
-            
-            songFiles[index].addEventListener("ended", autoPlay)
+                console.log(`song ${index+1} is playing`)
+                
+                songFiles[index].addEventListener("ended", autoPlay)
+            }
         })
 
         // redo song
