@@ -1442,8 +1442,14 @@ PLAY ALBUM
     position: relative;
     color: rgb(255, 255, 255);
     border-radius: 15px;
-    box-shadow: 3px 3px 10px rgb(20, 20, 20);
+    box-shadow: 3px 3px 10px rgb(0, 0, 0);
     background: rgb(41, 41, 41);
+}
+
+@media screen and (min-width:1366px) {
+    .music-player-wrapper {
+        max-width: 600px;
+    }
 }
 
 .music-player-header {
@@ -1740,15 +1746,71 @@ PLAY ALBUM
 }
 
 @media screen and (max-width: 400px) {
-   .album-control {
-       font-size: 0.9rem;
-   }
-   .album-control > i, 
-   .album-control > div > i {
-       padding-right: 0.8rem !important;
-       padding-left: 0.8rem !important;
-   }
+    .album-control {
+        font-size: 0.9rem;
+    }
+    .album-control > i, 
+    .album-control > div > i {
+        padding-right: 0.8rem !important;
+        padding-left: 0.8rem !important;
+    }
+ }
+
+/* @media screen and (max-width: 665px){
+    .music-player-container {
+        display: none;
+    }
 }
+@media screen and (min-width: 665px){
+    .mobile-player-container {
+        display: none;
+    }
+} */
+
+/* mobile player */
+
+/* .mobile-player-container {
+    height: 100vh;
+    backdrop-filter: blur(3.5px);
+
+    position: relative;
+}
+
+.mobile-player-wrapper {
+    border: 1px solid white;
+    height: 100vh;
+    width: 100vw;
+    padding: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%)
+}
+
+@media screen and (min-height: 900px) {
+    .mobile-player-wrapper {
+        height: 80vh;
+    }
+}
+
+.mobile-player-album-title {
+    color: orangered;
+    text-transform: capitalize;
+    padding-bottom: 2rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.06rem;
+}
+
+.mobile-player-album-cover-container > img {
+    margin: 0 auto;
+    height: auto;
+    width: 100%;
+    display: block;
+    opacity: 0.6;
+    border-radius: 15px;
+} */
+
+/* end of mobile player */
 
 /*===============
 END OF PLAY ALBUM

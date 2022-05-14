@@ -121,7 +121,7 @@
                 </div>
                 <div class="progres-bar-container" style="position: relative;">
                     <p class="initial-time">0:00</p>
-                    <progress class="duration-bar" id="progress" value="0"></progress>
+                    <progress class="duration-bar" id="duration-bar" value="0"></progress>
                     <p class="end-time">0:00</p>
                     <div class="album-background-overlay" style="border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;
                     background: rgba(0, 0, 0, 0.5)"></div>
@@ -129,6 +129,15 @@
             </div>
         </div>
     </div>
+
+    <!-- <div class="mobile-player-container">
+        <div class="mobile-player-wrapper">
+            <p class="mobile-player-album-title">{{ album.title }}</p>
+            <div class="mobile-player-album-cover-container">
+                <img src="{{ album.album_cover.url }}" alt="">
+            </div>
+        </div>
+    </div> -->
 
     <script type="text/javascript">
         const musicPlayerWrapper = document.querySelector(".music-player-wrapper")
@@ -361,10 +370,16 @@
         // progress bar
         songFiles.forEach((file)=>{
             file.addEventListener("timeupdate", ()=>{
+                const durationBar = document.querySelector("#duration-bar")
+                
                 progressBar.value = file.currentTime / file.duration;
+                durationBar.value = file.currentTime / file.duration;
+
             })
         })
 
+        
+        
     </script>
 </body>
 </html>
