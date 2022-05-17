@@ -1,0 +1,187 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap" rel="stylesheet">  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-width">
+            <div class="my-brand-container">
+                <div class="my-brand-wrapper">
+                    <a href="{% url 'music:home' %}">CloudMusic</a>
+                    <div class="toggle-btns">
+                        <i class="fa fa-bars show-fa-bars"></i>
+                        <i class="fa fa-times hide-fa-times"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-wrapper">
+                <ul class="nav-items">
+                    {% with request.resolver_match.url_name as url_name %}
+                        <li id="home"><a class="{% if url_name == 'home' %}active{% endif %}" href="{% url 'music:home' %}">Home</a></li>
+                        <li><a class="{% if url_name == 'genre' %}active{% endif %}" href="{% url 'music:genre' %}">Genres</a></li> 
+
+                        {% if user.is_authenticated %}
+                            <li><a href="#about-us">About</a></li>
+                            <li><a href="#contact-us">Contact</a></li>
+                            <li class="user-container">
+                                <div class="user-chevron-icons">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p>{{ user.username }}</p>
+                                    <i class="fa fa-chevron-down user-chevron-down"></i>
+                                    <i class="fa fa-chevron-up user-chevron-up"></i>
+                                </div>
+                                <div class="user-wrapper">
+                                    <a class="{% if url_name == 'profile' %}active{% endif %}" href="#">Profile</a>
+                                    <a id="create-album" href="{% url 'music:my-albums' %}?string=My albums">My albums</a>
+                                    <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
+                                    <a href="{% url 'music:new-song' %}">New song</a>
+                                    <a id="about" href="{% url 'users:logout' %}">Logout</a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li><a href="#about-us">About</a></li>
+                            <li><a href="#contact-us">Contact</a></li>
+                            <li class="user-container">
+                                <div class="user-chevron-icons">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p>Anonymous</p>
+                                    <i class="fa fa-chevron-down user-chevron-down"></i>
+                                    <i class="fa fa-chevron-up user-chevron-up"></i>
+                                </div>
+                                <div class="user-wrapper">
+                                    <a href="{% url 'users:login' %}">Login</a>
+                                    <a href="{% url 'users:register' %}">Join Us</a>
+                                    <a href="#">Profile</a>
+                                    <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
+                                    <a id="about" href="{% url 'music:new-song' %}">New song</a>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endwith %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BANNER -->
+    <div class="slider-container">
+        <div class="slider-wrapper">
+            <div class="slider-img-wrapper">
+                <img src="{% static 'music/images/slider1.jpg' %}"alt="">
+                <div class="slider-img-color-overlay"></div>
+                <div class="slider-header-text">
+                    <h1>Showcase your work</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit</p>
+                    <a href="{% url 'music:create-album' %}" class="slider-img-btn img-btn1">Make Album</a>
+                </div>
+            </div>
+            <div class="slider-img-wrapper">
+                <img src="{% static 'music/images/slider3.jpg' %}"alt="">
+                <div class="slider-img-color-overlay"></div>
+                <div class="slider-header-text">
+                    <h1>Stream latest playlists</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit</p>
+                    <a href="{% url 'music:all-albums' 'latest albums' %}" class="slider-img-btn img-btn3">Stream</a>
+                </div>
+            </div>
+            <div class="slider-img-wrapper">
+                <img src="{% static 'music/images/slider2.jpg' %}"alt="">
+                <div class="slider-img-color-overlay"></div>
+                <div class="slider-header-text">
+                    <h1>Connect with other artists</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit</p>
+                    <a href="#" class="slider-img-btn img-btn2">Connect</a>
+                </div>
+            </div>
+        </div>
+        <div class="slider-btns">
+            <button id="previous" class="previous">
+                <i class="fa fa-chevron-left"></i>
+            </button>
+            <button id="next" class="next">
+                <i class="fa fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+
+    <!-- MOBILE -->
+    <div class="mobile-slider-container">
+        <div class="slider-wrapper">
+            <div class="mobile-slider-img-wrapper">
+                <img src="{% static 'music/images/mobile-slider1.jpg' %}"alt="">
+                <div class="slider-img-color-overlay"></div>
+                <div class="slider-header-text">
+                    <h1>Showcase your work</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit</p>
+                    <a href="{% url 'music:create-album' %}" class="slider-img-btn img-btn1">Make Album</a>
+                </div>
+            </div>
+            <div class="mobile-slider-img-wrapper">
+                <img src="{% static 'music/images/mobile-slider3.jpg' %}"alt="">
+                <div class="slider-img-color-overlay"></div>
+                <div class="slider-header-text">
+                    <h1>Stream latest playlists</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit</p>
+                    <a href="{% url 'music:all-albums' 'latest albums' %}" class="slider-img-btn img-btn3">Stream</a>
+                </div>
+            </div>
+            <div class="mobile-slider-img-wrapper">
+                <img src="{% static 'music/images/mobile-slider2.jpg' %}"alt="">
+                <div class="slider-img-color-overlay"></div>
+                <div class="slider-header-text">
+                    <h1>Connect with other artists</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit</p>
+                    <a href="#" class="slider-img-btn img-btn2">Connect</a>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-slider-btns">
+            <button id="previous" class="mobile-previous">
+                <i class="fa fa-chevron-left"></i>
+            </button>
+            <button id="next" class="mobile-next">
+                <i class="fa fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    <!-- END OF MOBILE -->
+
+    <!-- END OF BANNER -->
+
+    <main class="main-background">
+        {% block content %}
+        {% endblock content %}
+    </main>
+    <footer>
+        <div style="background: rgb(41, 41, 41);">
+            {% include "music/footer.html" %}
+        </div>
+    </footer>
+    <script type="text/javascript" src="{% static 'music/main.js' %}"></script>
+</body>
+</html>
