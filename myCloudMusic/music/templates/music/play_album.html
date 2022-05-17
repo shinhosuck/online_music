@@ -13,6 +13,7 @@
     <title>Playing {{ album.title }}</title>
 </head>
 <body class="landing-page-img">
+    <!-- large screen player -->
     <div class="music-player-container">
         <div class="music-player-wrapper">
             <div class="music-player-header">
@@ -129,15 +130,27 @@
             </div>
         </div>
     </div>
+    <!-- end -->
 
-    <!-- <div class="mobile-player-container">
+    <!-- mobile player -->
+    <div class="mobile-player-container">
         <div class="mobile-player-wrapper">
-            <p class="mobile-player-album-title">{{ album.title }}</p>
+            <div class="mobile-player-album-title-container">
+                <p class="mobile-player-album-title">{{ album.title }}</p>
+                <i class="fa-solid fa-ellipsis mobile-player-ellipsis"></i>
+            </div>
             <div class="mobile-player-album-cover-container">
                 <img src="{{ album.album_cover.url }}" alt="">
             </div>
         </div>
-    </div> -->
+        <div class="mobile-player-side-menu">
+            <div class="mobile-player-close">
+                <i class="fa fa-times mobile-player-times"></i>
+            </div>
+            
+        </div>
+    </div>
+    <!-- end -->
 
     <script type="text/javascript">
         const musicPlayerWrapper = document.querySelector(".music-player-wrapper")
@@ -378,7 +391,20 @@
             })
         })
 
-        
+        /* MOBILE PLAYER */ 
+        const mobilePlayerEllipsis = document.querySelector(".mobile-player-ellipsis")
+        const mobilePlayerSideMenu = document.querySelector(".mobile-player-side-menu")
+        const mobilePlayerTimes = document.querySelector(".mobile-player-times")
+
+        mobilePlayerEllipsis.addEventListener("click", ()=>{
+            console.log("clicked")
+            mobilePlayerSideMenu.classList.toggle("show-mobile-player-side-menu")
+        })
+
+        mobilePlayerTimes.addEventListener("click", ()=>{
+            mobilePlayerSideMenu.classList.remove("show-mobile-player-side-menu")
+        })
+        /* END MOBILE PLAYER */
         
     </script>
 </body>

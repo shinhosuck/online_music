@@ -1745,7 +1745,7 @@ PLAY ALBUM
     font-size: 0.95rem;
 }
 
-@media screen and (max-width: 400px) {
+/* @media screen and (max-width: 400px) {
     .album-control {
         font-size: 0.9rem;
     }
@@ -1754,22 +1754,27 @@ PLAY ALBUM
         padding-right: 0.8rem !important;
         padding-left: 0.8rem !important;
     }
- }
+ } */
 
-/* @media screen and (max-width: 665px){
+ /* screen 665px and smaller, disable large music player */
+@media screen and (max-width: 665px){
     .music-player-container {
         display: none;
     }
 }
+/* end */
+
+/* screen 665px and bigger, disable mobile player */
 @media screen and (min-width: 665px){
     .mobile-player-container {
         display: none;
     }
-} */
+}
+/* end */
 
 /* mobile player */
 
-/* .mobile-player-container {
+.mobile-player-container {
     height: 100vh;
     backdrop-filter: blur(3.5px);
 
@@ -1777,7 +1782,7 @@ PLAY ALBUM
 }
 
 .mobile-player-wrapper {
-    border: 1px solid white;
+    border: 1px solid red;
     height: 100vh;
     width: 100vw;
     padding: 2rem;
@@ -1793,12 +1798,26 @@ PLAY ALBUM
     }
 }
 
+.mobile-player-album-title-container {
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+}
+
 .mobile-player-album-title {
     color: orangered;
     text-transform: capitalize;
-    padding-bottom: 2rem;
     font-size: 1.1rem;
     letter-spacing: 0.06rem;
+    /* border: 1px solid white; */
+}
+
+.mobile-player-ellipsis {
+    color: white;
+    font-size: 1.1rem;
+    /* border: 1px solid white; */
 }
 
 .mobile-player-album-cover-container > img {
@@ -1807,8 +1826,38 @@ PLAY ALBUM
     width: 100%;
     display: block;
     opacity: 0.6;
-    border-radius: 15px;
-} */
+}
+
+.mobile-player-side-menu {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.2s linear
+}
+
+.show-mobile-player-side-menu {
+    width: 100%;
+    backdrop-filter: blur(3.5px);
+}
+
+.mobile-player-close {
+    padding: 2rem;
+    text-align: end;
+    /* border: 1px solid white; */
+}
+
+.mobile-player-close > 
+.mobile-player-times {
+    color: white;
+    text-align: end;
+    display: inline-block;
+    /* border: 1px solid white; */
+}
 
 /* end of mobile player */
 
