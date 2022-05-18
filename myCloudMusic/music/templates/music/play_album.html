@@ -142,6 +142,22 @@
             <div class="mobile-player-album-cover-container">
                 <img src="{{ album.album_cover.url }}" alt="">
             </div>
+            <div class="mobile-player-album-control">
+                <div class="mobile-progres-bar-container">
+                    <p class="initial-time">0:00</p>
+                    <progress class="duration-bar" id="duration-bar" value="0"></progress>
+                    <p class="end-time">0:00</p>
+                </div>
+                <div class="mobile-album-control">
+                    <i id="random-btn" class="fas fa-random random" title="random"></i>
+                    <i id="backward-btn" class="fas fa-fast-backward backward" title="backward"></i>
+                    <div class="mobile-play-btn" title="play">
+                        <i id="play-btn" class="fas fa-play play"></i>
+                    </div>
+                    <i id="forward-btn" class="fas fa-fast-forward forward" title="forward"></i>
+                    <i id="redo-btn" class="fas fa-redo-alt redo" title="redo"></i>
+                </div>
+            </div>
         </div>
         <div class="mobile-player-side-menu">
             <div class="mobile-player-close">
