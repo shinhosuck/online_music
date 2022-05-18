@@ -1776,19 +1776,24 @@ PLAY ALBUM
 
 .mobile-player-container {
     height: 100vh;
-    backdrop-filter: blur(3.5px);
+    background: rgba(0, 0, 0, 0.1);
     position: relative;
 }
 
 .mobile-player-wrapper {
-    height: 100vh;
-    width: 100vw;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(3.5px);
+    border: 1px solid rgb(41, 41, 41);
+    height: 90vh;
+    width: 90vw;
     padding: 2rem;
+    border-radius: 25px;
+    /* margin: 1rem; */
     position: absolute;
     top: 50%;
-    left: 0;
+    left: 50%;
     z-index: 1;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
 
     display: flex;
     align-content: space-around;
@@ -1796,9 +1801,9 @@ PLAY ALBUM
     flex-wrap: wrap;
 }
 
-@media screen and (min-height: 900px) {
+@media screen and (min-height: 800px) {
     .mobile-player-wrapper {
-        height: 80vh;
+        height: 70vh;
     }
 }
 
@@ -1891,7 +1896,7 @@ PLAY ALBUM
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 1rem;
+    padding-top: 2rem;
 }
 
 @media (hover) {
@@ -1900,6 +1905,24 @@ PLAY ALBUM
         color: orangered !important;
     }
 }
+
+.mobile-album-control > div {
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 50%;
+    background: rgb(43, 43, 43);
+    color: orangered;
+    font-size: 1.1rem;
+
+}
+
+.mobile-album-control > i {
+    font-size: 1.1rem;
+}
+
 /* end of mobile player */
 
 /*===============
