@@ -1759,7 +1759,11 @@ PLAY ALBUM
  /* screen 665px and smaller, disable large music player */
 @media screen and (max-width: 665px){
     .music-player-container {
-        display: none;
+        /* display: none; */
+        position: absolute;
+        top:0;
+        height: 0;
+        overflow: hidden;
     }
 }
 /* end */
@@ -1767,9 +1771,14 @@ PLAY ALBUM
 /* screen 665px and bigger, disable mobile player */
 @media screen and (min-width: 665px){
     .mobile-player-container {
-        display: none;
+        /* display: none; */
+        position: absolute;
+        top:0;
+        height: 0;
+        overflow: hidden;
     }
 }
+
 /* end */
 
 /* mobile player */
@@ -1784,11 +1793,11 @@ PLAY ALBUM
     /*background: rgba(0, 0, 0, 0.2);*/
     background: rgba(225, 225, 225, 0.1);
     backdrop-filter: blur(3px);
-    border: 4px solid rgb(41, 41, 41);
-    height: 90vh;
-    width: 90vw;
+    /* border: 4px solid rgb(41, 41, 41); */
+    height: 100vh;
+    width: 100vw;
     padding: 2rem;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     /* margin: 1rem; */
     position: absolute;
     top: 50%;
@@ -1797,22 +1806,24 @@ PLAY ALBUM
     transform: translate(-50%, -50%);
 
     display: flex;
-    align-content: space-between;
+    align-content: space-around;
     justify-items: center;
     flex-wrap: wrap;
 }
 
-@media screen and (min-height: 800px) {
+@media screen and (min-height: 700px) {
     .mobile-player-wrapper {
-        height: 70vh;
+        height: 60vh;
+        width: 90vw;
     }
 }
 
-@media screen and (max-height: 500px) {
+/* @media screen and (max-width: 550px) {
     .mobile-player-wrapper {
-        align-content: space-around;
+        height: 80%;
+        align-content: flex-end;
     }
-}
+} */
 
 .mobile-player-album-title-container {
     display: flex;
@@ -1928,16 +1939,26 @@ PLAY ALBUM
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    border-radius: 50%;
-    background: rgb(43, 43, 43);
-    color: orangered;
-    font-size: 1.1rem;
+}
 
+.mobile-album-control > div > i {
+    /* padding: 1rem; */
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: rgb(255, 60, 0);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid white; */
 }
 
 .mobile-album-control > i {
     font-size: 1.1rem;
+    /* border: 1px solid white; */
 }
 
 /* end of mobile player */

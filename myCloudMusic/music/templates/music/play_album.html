@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
     <title>Playing {{ album.title }}</title>
 </head>
-<body class="landing-page-img">
+<body class="landing-page-img" style="position: relative;">
     <!-- large screen player -->
     <div class="music-player-container">
         <div class="music-player-wrapper">
@@ -145,17 +145,18 @@
             <div class="mobile-player-album-control">
                 <div class="mobile-progres-bar-container">
                     <p class="mobile-initial-time">0:00</p>
-                    <progress class="mobile-duration-bar" value="0"></progress>
+                    <progress id="mobile-duration" class="mobile-duration-bar" value="0"></progress>
                     <p class="mobile-end-time">0:00</p>
                 </div>
                 <div class="mobile-album-control">
-                    <i id="random-btn" class="fas fa-random" title="random"></i>
-                    <i id="backward-btn" class="fas fa-fast-backward" title="backward"></i>
+                    <i id="mobile-random" class="fas fa-random" title="random"></i>
+                    <i id="mobile-backward" class="fas fa-fast-backward" title="backward"></i>
                     <div class="mobile-play-btn" title="play">
-                        <i id="play-btn" class="fas fa-play"></i>
+                        <i id="mobile-play" class="fas fa-play"></i>
+                        <i id="mobile-pause" class="fas fa-pause" style="display: none"></i>
                     </div>
-                    <i id="forward-btn" class="fas fa-fast-forward" title="forward"></i>
-                    <i id="redo-btn" class="fas fa-redo-alt" title="redo"></i>
+                    <i id="mobile-forward" class="fas fa-fast-forward" title="forward"></i>
+                    <i id="mobile-redo" class="fas fa-redo-alt" title="redo"></i>
                 </div>
             </div>
         </div>
@@ -400,9 +401,15 @@
         songFiles.forEach((file)=>{
             file.addEventListener("timeupdate", ()=>{
                 const durationBar = document.querySelector("#duration-bar")
+                const mobileDuration = document.querySelector("#mobile-duration")
+                let initialTime = document.querySelector(".initial-time")
+                let endTime = document.querySelector(".end-time")
                 
+                
+
                 progressBar.value = file.currentTime / file.duration;
                 durationBar.value = file.currentTime / file.duration;
+                mobileDuration.value = file.currentTime / file.duration;
 
             })
         })
@@ -411,6 +418,21 @@
         const mobilePlayerEllipsis = document.querySelector(".mobile-player-ellipsis")
         const mobilePlayerSideMenu = document.querySelector(".mobile-player-side-menu")
         const mobilePlayerTimes = document.querySelector(".mobile-player-times")
+        const mobilePlay = document.querySelector("#mobile-play")
+        const mobilePause = document.querySelector("#mobile-pause")
+        const mobileForward = document.querySelector("#mobile-forward")
+        const mobileBackward = document.querySelector("#mobile-backward")
+        const mobileRedo = document.querySelector("#mobile-redo")
+        const mobileRandom = document.querySelector("#mobile-random")
+        // const mobileDurationBar = document.querySelector("mobile-duration-bar")
+
+
+        songFiles[index].addEventListener("playing", ()=>{
+            mobilePlay.style.display = "none"
+            mobilePause.style.display = "flex"
+            playBtn.style.display = "none"
+            pauseBtn.style.display = "flex"
+        })
 
         mobilePlayerEllipsis.addEventListener("click", ()=>{
             console.log("clicked")
@@ -419,6 +441,88 @@
 
         mobilePlayerTimes.addEventListener("click", ()=>{
             mobilePlayerSideMenu.classList.remove("show-mobile-player-side-menu")
+        })
+
+        mobilePlay.addEventListener("click", ()=>{
+            songFiles[index].play()
+            mobilePlay.style.display = "none"
+            mobilePause.style.display = "flex"
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            songFiles[index].addEventListener("ended", autoPlay)
+        })
+
+        mobilePause.addEventListener("click", ()=>{
+            songFiles[index].pause()
+            mobilePlay.style.display = "flex"
+            mobilePause.style.display = "none"
+        })
+
+        mobileForward.addEventListener("click", ()=>{
+            if(index == songFiles.length - 1) {
+                songFiles[index].pause()
+                songFiles[index].currentTime = 0
+                index = 0
+                console.log(index)
+                songFiles[index].play()
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'flex'
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                
+                console.log(`song ${index+1} is playing`)
+
+                songFiles[index].addEventListener("ended", autoPlay)
+            }
+            else if(index < songFiles.length - 1) {
+                songFiles[index].pause()
+                songFiles[index].currentTime = 0
+                index ++
+                songFiles[index].play()
+                console.log(index)
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'flex'
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+
+                console.log(`song ${index+1} is playing`)
+                
+                songFiles[index].addEventListener("ended", autoPlay)
+            }
+        })
+
+        mobileBackward.addEventListener("click", ()=>{
+            if(index == 0) {
+                songFiles[index].pause()
+                songFiles[index].currentTime = 0
+                index = songs.length - 1
+                songFiles[index].play()
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'flex'
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+
+                console.log(`song ${index+1} is playing`)
+                
+                songFiles[index].addEventListener("ended", autoPlay)
+            }
+            else if(index == songFiles.length - 1 || index > 0) {
+                songFiles[index].pause()
+                songFiles[index].currentTime = 0
+                index --
+                songFiles[index].play()
+                playBtn.style.display = 'none'
+                pauseBtn.style.display = 'flex'
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+
+                console.log(`song ${index+1} is playing`)
+                
+                songFiles[index].addEventListener("ended", autoPlay)
+            }
         })
         /* END MOBILE PLAYER */
         
