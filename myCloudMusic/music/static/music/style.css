@@ -1745,17 +1745,6 @@ PLAY ALBUM
     font-size: 0.95rem;
 }
 
-/* @media screen and (max-width: 400px) {
-    .album-control {
-        font-size: 0.9rem;
-    }
-    .album-control > i, 
-    .album-control > div > i {
-        padding-right: 0.8rem !important;
-        padding-left: 0.8rem !important;
-    }
- } */
-
  /* screen 665px and smaller, disable large music player */
 @media screen and (max-width: 665px){
     .music-player-container {
@@ -1771,11 +1760,11 @@ PLAY ALBUM
 /* screen 665px and bigger, disable mobile player */
 @media screen and (min-width: 665px){
     .mobile-player-container {
-        /* display: none; */
         position: absolute;
         top:0;
         height: 0;
         overflow: hidden;
+        border: 1px solid white;
     }
 }
 
