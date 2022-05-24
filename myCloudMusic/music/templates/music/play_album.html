@@ -144,6 +144,14 @@
                 <img src="{{ album.album_cover.url }}" alt="">
             </div>
             <div class="mobile-player-album-control">
+                <div class="mobile-player-song-titles-container" style="flex: 0 0 100%;">
+                    {% comment %}
+                    {% for song in album.song_set.all %}
+                    <h4 style="color: white;">{{ forloop.counter }}. {{ song.title }}</h4>
+                    {% endfor %}
+                    {% endcomment %}
+                    <h4 class="mobile-song-title" style="color: white;"></h4>
+                </div>
                 <div class="mobile-progres-bar-container">
                     <p class="mobile-initial-time">0:00</p>
                     <progress id="mobile-duration" class="mobile-duration-bar" value="0"></progress>
@@ -425,8 +433,9 @@
         const mobileBackward = document.querySelector("#mobile-backward")
         const mobileRedo = document.querySelector("#mobile-redo")
         const mobileRandom = document.querySelector("#mobile-random")
-        // const mobileDurationBar = document.querySelector("mobile-duration-bar")
+        const mobileSongTitle = document.querySelector(".mobile-song-title")
 
+        // console.log(mobileSongTitle)
 
         songFiles[index].addEventListener("playing", ()=>{
             mobilePlay.style.display = "none"
@@ -525,6 +534,7 @@
                 songFiles[index].addEventListener("ended", autoPlay)
             }
         })
+
         /* END MOBILE PLAYER */
         
     </script>
