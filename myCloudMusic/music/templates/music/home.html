@@ -17,7 +17,7 @@
         <div class="albums">
             {% for album in latest_albums %}
                 <div class="album-wrapper">
-                    <img src="{{ album.album_cover.url }}" alt="">
+                    <img loading="lazy" src="{{ album.album_cover.url }}" alt="">
 
                     <div class="background-overlay"></div>
 
@@ -57,7 +57,7 @@
             <div class="albums">
                 {% for album in recently_played %}
                     <div class="album-wrapper">
-                        <img src="{{ album.album.album_cover.url }}" alt="">
+                        <img loading="lazy" src="{{ album.album.album_cover.url }}" alt="">
 
                         <div class="background-overlay"></div>
 
@@ -102,7 +102,7 @@
             {% for album in most_listened %}
                 {% if album.thumbs_up > 0 %}
                     <div class="album-wrapper">
-                        <img src="{{ album.album_cover.url }}" alt="">
+                        <img loading="lazy"  src="{{ album.album_cover.url }}" alt="">
 
                         <div class="background-overlay"></div>
 
@@ -141,7 +141,7 @@
         <div class="albums">
             {% for album in you_might_also_like %}
                 <div class="album-wrapper">
-                    <img src="{{ album.album_cover.url }}" alt="">
+                    <img loading="lazy"  src="{{ album.album_cover.url }}" alt="">
 
                     <div class="background-overlay"></div>
 
