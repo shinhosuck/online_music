@@ -12,7 +12,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
     <title>Playing {{ album.title }}</title>
 </head>
-<body class="landing-page-img">
+<body>
+    
     <!-- large screen player -->
     <div class="music-player-container">
         <div class="music-player-wrapper">
@@ -134,7 +135,6 @@
 
     <!-- mobile player -->
     <div class="mobile-player-container">
-        
         <div class="mobile-player-wrapper">
             <div class="mobile-player-album-title-container">
                 <p class="mobile-player-album-title">{{ album.title }}</p>
