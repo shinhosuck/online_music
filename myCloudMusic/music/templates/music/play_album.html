@@ -144,13 +144,31 @@
                 <img src="{{ album.album_cover.url }}" alt="">
             </div>
             <div class="mobile-player-album-control">
-                <div class="mobile-player-song-titles-container" style="flex: 0 0 100%;">
-                    {% comment %}
-                    {% for song in album.song_set.all %}
-                    <h4 style="color: white;">{{ forloop.counter }}. {{ song.title }}</h4>
-                    {% endfor %}
-                    {% endcomment %}
-                    <h4 class="mobile-song-title" style="color: white;"></h4>
+                <div class="mobile-player-song-titles-container">
+                    <p class="mobile-song-title"></p>
+                    {% if not album.song_set.all %}
+                        <div class="thumbs-up-down">
+                            <a id="prevent-default" class="thumbs-up" href="{% url 'music:like' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                <p>{{ album.thumbs_up }}</p>
+                            </a>
+                            <a id="prevent-default" class="thumbs-down" href="{% url 'music:dislike' album.pk %}">
+                                <p>{{ album.thumbs_down }}</p>
+                                <i class="fas fa-thumbs-down fa-flip-horizontal"></i>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="thumbs-up-down">
+                            <a class="thumbs-up" href="{% url 'music:like' album.pk %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                <p>{{ album.thumbs_up }}</p>
+                            </a>
+                            <a class="thumbs-down" href="{% url 'music:dislike' album.pk %}">
+                                <p>{{ album.thumbs_down }}</p>
+                                <i class="fas fa-thumbs-down fa-flip-horizontal"></i>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="mobile-progres-bar-container">
                     <p class="mobile-initial-time">0:00</p>
@@ -206,6 +224,10 @@
         const random = document.querySelector(".random")
         const redo = document.querySelector(".redo")
 
+        // mobile sont title 
+        const mobileSongTitle = document.querySelector(".mobile-song-title")
+
+
         let index = 0
 
         function stopLoop() {
@@ -213,35 +235,30 @@
             location.reload()
         }
 
-
+        // album on load, the first song title
         let current_song_title = songs[index].firstElementChild.textContent
-        
-        albumLikeDislike.firstElementChild.textContent = current_song_title
-
-        window.addEventListener("resize", ()=>{
-            if(window.innerWidth > 500){
-                albumLikeDislike.firstElementChild.textContent = current_song_title
-            }
-        })
+        albumLikeDislike.firstElementChild.textContent = current_song_title.slice(2)
+        mobileSongTitle.textContent = current_song_title.slice(2)
 
         songs.forEach(function(item){
             item.addEventListener("click", ()=>{
                 songFiles[index].pause()
                 musicplayer.classList.toggle("show-music-player")
                 albumCover.classList.toggle("hide-album-cover")
-                albumLikeDislike.firstElementChild.textContent = item.firstElementChild.textContent
+                // albumLikeDislike.firstElementChild.textContent = item.firstElementChild.textContent
+                // mobileSongTitle.textContent = item.firstElementChild.textContent
                 // current_song_title = item.firstElementChild.textContent
                 songListToggle.style.display = "block"
                 closeSongListToggle.style.display = "none"
 
                 // click song to play
                 index = songs.indexOf(item)
-                // songFiles[index].load()
                 songFiles[index].currentTime = 0
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 songFiles[index].addEventListener("ended", autoPlay)
             })
         })
@@ -282,7 +299,8 @@
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
-            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+            mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
             songFiles[index].addEventListener("ended", autoPlay)
         })
 
@@ -303,7 +321,8 @@
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 
                 console.log(`song ${index+1} is playing`)
 
@@ -317,7 +336,8 @@
                 console.log(index)
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
 
                 console.log(`song ${index+1} is playing`)
                 
@@ -334,7 +354,8 @@
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
 
                 console.log(`song ${index+1} is playing`)
                 
@@ -347,7 +368,8 @@
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
 
                 console.log(`song ${index+1} is playing`)
                 
@@ -361,7 +383,8 @@
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
-            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+            mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
         })
 
         // random song
@@ -373,7 +396,8 @@
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
-            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+            mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
         })
 
 
@@ -383,7 +407,8 @@
                 songFiles[index].currentTime = 0
                 playBtn.style.display = 'flex'
                 pauseBtn.style.display = 'none'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 return stopLoop()
             }
             else if(index < songFiles.length - 1) {
@@ -392,7 +417,8 @@
                 index ++
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 songFiles[index].play()
 
                 console.log(`song ${index+1} is playing`)
@@ -433,8 +459,7 @@
         const mobileBackward = document.querySelector("#mobile-backward")
         const mobileRedo = document.querySelector("#mobile-redo")
         const mobileRandom = document.querySelector("#mobile-random")
-        const mobileSongTitle = document.querySelector(".mobile-song-title")
-
+        
         // console.log(mobileSongTitle)
 
         songFiles[index].addEventListener("playing", ()=>{
@@ -457,7 +482,8 @@
             songFiles[index].play()
             mobilePlay.style.display = "none"
             mobilePause.style.display = "flex"
-            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+            albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+            mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
             songFiles[index].addEventListener("ended", autoPlay)
         })
 
@@ -478,7 +504,8 @@
                 pauseBtn.style.display = 'flex'
                 mobilePlay.style.display = "none"
                 mobilePause.style.display = "flex"
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 
                 console.log(`song ${index+1} is playing`)
 
@@ -494,8 +521,8 @@
                 pauseBtn.style.display = 'flex'
                 mobilePlay.style.display = "none"
                 mobilePause.style.display = "flex"
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 console.log(`song ${index+1} is playing`)
                 
                 songFiles[index].addEventListener("ended", autoPlay)
@@ -512,8 +539,8 @@
                 pauseBtn.style.display = 'flex'
                 mobilePlay.style.display = "none"
                 mobilePause.style.display = "flex"
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 console.log(`song ${index+1} is playing`)
                 
                 songFiles[index].addEventListener("ended", autoPlay)
@@ -527,8 +554,8 @@
                 pauseBtn.style.display = 'flex'
                 mobilePlay.style.display = "none"
                 mobilePause.style.display = "flex"
-                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent
-
+                albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 console.log(`song ${index+1} is playing`)
                 
                 songFiles[index].addEventListener("ended", autoPlay)
