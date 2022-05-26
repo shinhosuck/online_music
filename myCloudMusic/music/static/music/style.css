@@ -1444,6 +1444,7 @@ PLAY ALBUM
     border-radius: 15px;
     box-shadow: 3px 3px 10px rgb(0, 0, 0);
     background: rgb(41, 41, 41);
+    /* margin-bottom: 3rem; */
 }
 
 @media screen and (min-width:1366px) {
@@ -1478,6 +1479,7 @@ PLAY ALBUM
 .album-cover {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    /* border: 1px solid white; */
 
 }
 
@@ -1516,8 +1518,8 @@ PLAY ALBUM
     height: 100%;
     z-index: 1;
     background: rgba(0, 0, 0, 0.75);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .album-like-dislike {
@@ -1664,7 +1666,7 @@ PLAY ALBUM
 .album-control-container {
     flex: 0 0 100%;
     background: rgb(0, 0, 0, 0.8);
-    /* border-bottom-left-radius: 15px; */
+    border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     padding-top: 0.5rem;
 }
@@ -1703,6 +1705,8 @@ PLAY ALBUM
     flex-wrap: wrap;
     padding: 1rem 0.5rem;
     /* border: 1px solid white; */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .album-control >
