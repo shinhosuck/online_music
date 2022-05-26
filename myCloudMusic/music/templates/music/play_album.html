@@ -64,7 +64,6 @@
                                 </a>
                             </div>
                         {% endif %}
-
                         <div class="album-control-container">
                             <div class="progres-bar-container">
                                 <p class="initial-time">0:00</p>
@@ -73,27 +72,19 @@
                             </div>
                             <div class="album-control">
                                 <i id="random-btn" class="fas fa-random random" title="random"></i>
-                                <!-- <i id="backward-btn" class="fas fa-backward backward" title="backward"></i> -->
                                 <i id="backward-btn" class="fas fa-fast-backward backward" title="backward"></i>
                                 <div class="album-play-btn" title="play">
                                     <i id="play-btn" class="fas fa-play play"></i>
                                     <i id="pause-btn" class="fas fa-pause pause"></i>
                                 </div>
                                 <i id="forward-btn" class="fas fa-fast-forward forward" title="forward"></i>
-                                <!-- <i id="forward-btn" class="fas fa-forward forward" title="forward"></i> -->
                                 <i id="redo-btn" class="fas fa-redo-alt redo" title="redo"></i>
                             </div>
-                            <!-- <div class="progres-bar-container">
-                                <p class="initial-time">0:00</p>
-                                <progress class="duration-bar" id="progress-bar" value="0"></progress>
-                                <p class="end-time">0:00</p>
-                            </div> -->
                         </div>
 
                     </div>
                 </div>
             </div>
-        
             <div class="album-side-menu">
                 <i class="fa fa-times close-side-menu"></i>
                 <a href="{% url 'music:home' %}">Home</a>
@@ -129,23 +120,22 @@
                         </p>
                     </div>
                 {% endif %}
-                <div class="album-control" style="position: relative;">
-                    <i id="random-btn" class="fas fa-random random" title="random"></i>
-                    <i id="backward-btn" class="fas fa-fast-backward backward" title="backward"></i>
-                    <div class="album-play-btn" title="play" style="background: transparent;">
-                        <i id="play-btn" class="fas fa-play play" style="position: relative;background: transparent; color: white;">
-                        </i>
-                    </div>
-                    <i id="forward-btn" class="fas fa-fast-forward forward" title="forward"></i>
-                    <i id="redo-btn" class="fas fa-redo-alt redo" title="redo"></i>
-                    <div class="album-background-overlay-control" style="background: rgba(0, 0, 0, 0.5);"></div>
-                </div>
                 <div class="progres-bar-container" style="position: relative;">
                     <p class="initial-time">0:00</p>
                     <progress class="duration-bar" id="duration-bar" value="0"></progress>
                     <p class="end-time">0:00</p>
-                    <div class="album-background-overlay" style="border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;
-                    background: rgba(0, 0, 0, 0.5)"></div>
+                    <div class="album-background-overlay-control"></div>
+                </div>
+                <div class="album-control" style="position: relative;">
+                    <i id="random-btn" class="fas fa-random random" title="random"></i>
+                    <i id="backward-btn" class="fas fa-fast-backward backward" title="backward"></i>
+                    <div class="album-play-btn" title="play">
+                        <i id="play-btn" class="fas fa-play play play-button" style="color: white;"></i>
+                        <i id="pause-btn" class="fas fa-pause pause pause-button" style="color: white; display: none;"></i>
+                    </div>
+                    <i id="forward-btn" class="fas fa-fast-forward forward" title="forward"></i>
+                    <i id="redo-btn" class="fas fa-redo-alt redo" title="redo"></i>
+                    <div class="album-background-overlay-control"></div>
                 </div>
             </div>
         </div>
@@ -243,7 +233,11 @@
         const random = document.querySelector(".random")
         const redo = document.querySelector(".redo")
 
-        // mobile sont title 
+        const classPause = document.querySelector(".pause-button")
+        const classPlay = document.querySelector(".play-button")
+        // classPlay.style.color = "white"
+
+        // mobile song title 
         const mobileSongTitle = document.querySelector(".mobile-song-title")
 
 
@@ -276,6 +270,10 @@
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
+
+                classPlay.style.display = 'none'
+                classPause.style.display = 'flex'
+
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 songFiles[index].addEventListener("ended", autoPlay)
@@ -318,6 +316,10 @@
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
+
+            classPlay.style.display = 'none'
+            classPause.style.display = 'flex'
+
             albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
             mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
             songFiles[index].addEventListener("ended", autoPlay)
@@ -328,6 +330,9 @@
             songFiles[index].pause()
             playBtn.style.display = 'flex'
             pauseBtn.style.display = 'none'
+
+            classPlay.style.display = 'flex'
+            classPause.style.display = 'none'
         })
 
         // forward to next song
@@ -340,6 +345,10 @@
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
+
+                classPlay.style.display = 'none'
+                classPause.style.display = 'flex'
+
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 
@@ -355,6 +364,10 @@
                 console.log(index)
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
+
+                classPlay.style.display = 'none'
+                classPause.style.display = 'flex'
+
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
 
@@ -373,6 +386,10 @@
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
+
+                classPlay.style.display = 'none'
+                classPause.style.display = 'flex'
+
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
 
@@ -387,6 +404,10 @@
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
+
+                classPlay.style.display = 'none'
+                classPause.style.display = 'flex'
+
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
 
@@ -402,6 +423,10 @@
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
+
+            classPlay.style.display = 'none'
+            classPause.style.display = 'flex'
+
             albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
             mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
         })
@@ -415,6 +440,10 @@
             songFiles[index].play()
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
+
+            classPlay.style.display = 'none'
+            classPause.style.display = 'flex'
+
             albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
             mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
         })
@@ -426,6 +455,10 @@
                 songFiles[index].currentTime = 0
                 playBtn.style.display = 'flex'
                 pauseBtn.style.display = 'none'
+
+                classPlay.style.display = 'none'
+                classPause.style.display = 'flex'
+
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 return stopLoop()
@@ -436,6 +469,10 @@
                 index ++
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
+
+                classPlay.style.display = 'none'
+                classPause.style.display = 'flex'
+
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 songFiles[index].play()
