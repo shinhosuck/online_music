@@ -1673,19 +1673,41 @@ PLAY ALBUM
     display: none;
 }
 
+.progres-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+.duration-bar {
+    flex: 1;
+    margin: 0 0.5rem;
+    height: 9px;
+}
+
+.initial-time,
+.end-time {
+    font-size: 0.95rem;
+}
+
 .album-control {
     display: flex;
     align-items: center;
     justify-content: center;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding: 1rem 0.5rem;
+    /* border: 1px solid white; */
 }
 
 .album-control >
 .random, .backward,
 .forward, .redo {
     padding: 1rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
     color: rgb(255, 255, 255);
     width: 40px;
@@ -1705,8 +1727,8 @@ PLAY ALBUM
 .album-control >
 .album-play-btn >
 .play, .pause {
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 1.8rem;
+    font-size: 1.5rem;
     cursor: pointer;
     color: rgb(255, 60, 0);
     width: 40px;
@@ -1722,27 +1744,8 @@ PLAY ALBUM
     display: none;
 }
 
-.progres-bar-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0.1rem 1rem 1rem 1rem;
-}
-
-.duration-bar {
-    flex: 1;
-    margin: 0 0.5rem;
-    height: 9px;
-}
-
-.initial-time,
-.end-time {
-    font-size: 0.95rem;
-}
-
  /* screen 665px and smaller, hide large music player */
-@media screen and (max-width: 501px){
+@media screen and (max-width: 499px){
     .music-player-container {
         position: absolute;
         top:0;
@@ -1767,7 +1770,7 @@ PLAY ALBUM
     flex-wrap: wrap;
 }
 
-@media screen and (min-width: 501px){
+@media screen and (min-width: 500px){
     .mobile-player-container {
         position: absolute;
         top:0;

@@ -66,6 +66,11 @@
                         {% endif %}
 
                         <div class="album-control-container">
+                            <div class="progres-bar-container">
+                                <p class="initial-time">0:00</p>
+                                <progress class="duration-bar" id="progress-bar" value="0"></progress>
+                                <p class="end-time">0:00</p>
+                            </div>
                             <div class="album-control">
                                 <i id="random-btn" class="fas fa-random random" title="random"></i>
                                 <!-- <i id="backward-btn" class="fas fa-backward backward" title="backward"></i> -->
@@ -78,11 +83,11 @@
                                 <!-- <i id="forward-btn" class="fas fa-forward forward" title="forward"></i> -->
                                 <i id="redo-btn" class="fas fa-redo-alt redo" title="redo"></i>
                             </div>
-                            <div class="progres-bar-container">
+                            <!-- <div class="progres-bar-container">
                                 <p class="initial-time">0:00</p>
                                 <progress class="duration-bar" id="progress-bar" value="0"></progress>
                                 <p class="end-time">0:00</p>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
@@ -133,7 +138,7 @@
                     </div>
                     <i id="forward-btn" class="fas fa-fast-forward forward" title="forward"></i>
                     <i id="redo-btn" class="fas fa-redo-alt redo" title="redo"></i>
-                    <div class="album-background-overlay-control" style="background: rgba(0, 0, 0, 0.5)"></div>
+                    <div class="album-background-overlay-control" style="background: rgba(0, 0, 0, 0.5);"></div>
                 </div>
                 <div class="progres-bar-container" style="position: relative;">
                     <p class="initial-time">0:00</p>
@@ -579,18 +584,18 @@
         const bodyImg = document.querySelector("body")
 
         window.addEventListener("resize", ()=>{
-            if(window.innerWidth <= 500) {
+            if(window.innerWidth <= 499) {
                 bodyImg.classList.remove("music-player-background-img")
             }
-            else if(window.innerWidth > 500) {
+            else if(window.innerWidth > 499) {
                 bodyImg.classList.add("music-player-background-img")
             }
         })
 
-        if(window.innerWidth <= 500) {
+        if(window.innerWidth <= 499) {
             bodyImg.classList.remove("music-player-background-img")
         }
-        else if(window.innerWidth > 500) {
+        else if(window.innerWidth > 499) {
             bodyImg.classList.add("music-player-background-img")
         }
         /* END MOBILE PLAYER */
