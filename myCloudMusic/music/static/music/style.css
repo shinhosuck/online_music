@@ -1921,8 +1921,8 @@ PLAY ALBUM
 
 .mobile-duration-bar {
     height: 5px;
-    flex: 1;
-    margin: 0 0.5rem;
+    flex: 0 0 100%;
+    margin-bottom: 0.5rem;
 }
 
 .mobile-initial-time,
@@ -1935,8 +1935,8 @@ PLAY ALBUM
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 2.5rem;
-    /* padding-bottom: 5rem; */
+    padding-top: 2rem;
+    padding-bottom: 0.2rem;
     flex-wrap: wrap;
 }
 

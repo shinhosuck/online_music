@@ -28,12 +28,13 @@
 </style>
 
 <body class="music-player-background-img">
-    <div class="album-background-overlay" style="background: rgba(0, 0, 0, 0.4); z-index: 0;"></div>
+    <div class="album-background-overlay" style="background: rgba(0, 0, 0, 0.4); z-index: 0; min-height: 100vh; overflow: hidden;
+        border-bottom-left-radius: 0; border-bottom-right-radius: 0;"></div>
     <script type="text/javascript">
         const bgImg = document.querySelector(".music-player-background-img")
 
         bgImg.style.background = "url('/media/playmusic.png')"
-        bgImg.style.minHeight = "100vh"
+        bgImg.style.minHeight = "100%"
         bgImg.style.backgroundPosition = "center"
         bgImg.style.backgroundSize = "cover"
         bgImg.style.backgroundAttachment = "fixed"
@@ -197,8 +198,8 @@
                     {% endif %}
                 </div>
                 <div class="mobile-progres-bar-container">
-                    <p class="mobile-initial-time">0:00</p>
                     <progress id="mobile-duration" class="mobile-duration-bar" value="0"></progress>
+                    <p class="mobile-initial-time">0:00</p>
                     <p class="mobile-end-time">0:00</p>
                 </div>
                 <div class="mobile-album-control">
