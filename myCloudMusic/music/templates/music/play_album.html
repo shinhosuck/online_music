@@ -15,19 +15,35 @@
 
 <style>
 
-    .music-player-background-img {
+    /* .music-player-background-img {
         min-height: 100vh;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9),
-        rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)), url("/media/playmusic.png");
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7), url());
         background-position: center;
         background-size: cover;
         background-attachment: fixed;
         background-repeat: no-repeat;
-    }
+    } */
 
 </style>
 
 <body class="music-player-background-img">
+    <div class="album-background-overlay" style="background: rgba(0, 0, 0, 0.4); z-index: 0;"></div>
+    <script type="text/javascript">
+        const bgImg = document.querySelector(".music-player-background-img")
+
+        bgImg.style.background = "url('/media/playmusic.png')"
+        bgImg.style.minHeight = "100vh"
+        bgImg.style.backgroundPosition = "center"
+        bgImg.style.backgroundSize = "cover"
+        bgImg.style.backgroundAttachment = "fixed"
+        bgImg.style.backgroundRepeat = "noRepeat"
+
+        if(window.innerWidth <= 499) {
+            bgImg.style.backgroundPosition = "center top"
+        }
+
+    </script>
     <!-- large screen player -->
     <div class="music-player-container">
         <div class="music-player-wrapper">
@@ -619,23 +635,24 @@
             }
         })
 
-        const bodyImg = document.querySelector("body")
+        // const bodyImg = document.querySelector("body")
 
-        window.addEventListener("resize", ()=>{
-            if(window.innerWidth <= 499) {
-                bodyImg.classList.remove("music-player-background-img")
-            }
-            else if(window.innerWidth > 499) {
-                bodyImg.classList.add("music-player-background-img")
-            }
-        })
+        // window.addEventListener("resize", ()=>{
+        //     if(window.innerWidth <= 499) {
+        //         bodyImg.classList.remove("music-player-background-img")
+        //     }
+        //     else if(window.innerWidth > 499) {
+        //         bodyImg.classList.add("music-player-background-img")
+        //     }
+        // })
 
-        if(window.innerWidth <= 499) {
-            bodyImg.classList.remove("music-player-background-img")
-        }
-        else if(window.innerWidth > 499) {
-            bodyImg.classList.add("music-player-background-img")
-        }
+        // if(window.innerWidth <= 499) {
+        //     bodyImg.classList.remove("music-player-background-img")
+        // }
+        // else if(window.innerWidth > 499) {
+        //     bodyImg.classList.add("music-player-background-img")
+        // }
+
         /* END MOBILE PLAYER */
         
     </script>
