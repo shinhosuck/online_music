@@ -218,7 +218,16 @@
             <div class="mobile-player-close">
                 <i class="fa fa-times mobile-player-times"></i>
             </div>
-            
+            <div class="mobile-side-menu-nav">
+                <a href="{% url 'music:home' %}">Home</a>
+                <!-- <p class="song-list-toggle">See Song List</p>
+                <p class="close-song-list-toggle">Close Song List</p> -->
+                <a href="{% url 'music:all-albums' 'latest albums' %}">Latest Albums</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'music:add-song' album.pk %}">Add new song</a>
+                    <a href="{% url 'music:all-albums' 'recently played'%}">Recently Played</a>
+                {% endif %}
+            </div>
         </div>
     </div>
     <!-- end -->
@@ -546,10 +555,12 @@
         mobilePlayerEllipsis.addEventListener("click", ()=>{
             console.log("clicked")
             mobilePlayerSideMenu.classList.toggle("show-mobile-player-side-menu")
+            mobilePlayerTimes.style.visibility = "visible"
         })
 
         mobilePlayerTimes.addEventListener("click", ()=>{
             mobilePlayerSideMenu.classList.remove("show-mobile-player-side-menu")
+            mobilePlayerTimes.style.visibility = "hidden"
         })
 
         mobilePlay.addEventListener("click", ()=>{
