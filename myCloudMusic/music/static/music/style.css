@@ -1192,9 +1192,14 @@ HOME PAGE
 }
 
 .thumbs-up > i {
-    color: rgb(72, 0, 255);
+    color: rgb(255, 102, 0);
     font-size: 1.1rem;
 }
+
+/* .thumbs-up > .fa-heart {
+    color: rgb(255, 51, 0);
+    font-size: 1.1rem;
+} */
 
 .thumbs-down > p {
     padding-left: 1rem;
@@ -1202,7 +1207,7 @@ HOME PAGE
 }
 
 .thumbs-down > i {
-    color: rgb(255, 102, 0);
+    color: rgb(121, 121, 121);
     font-size: 1.1rem;
 }
 
@@ -1791,7 +1796,7 @@ PLAY ALBUM
 
 .mobile-player-wrapper {
     /* background: rgba(0, 0, 0, 0.3); */
-    background: rgba(225, 225, 225, 0.12);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px);
     /* border: 2px solid rgb(71, 71, 71); */
     /* background: rgb(41, 41, 41); */
@@ -1855,48 +1860,6 @@ PLAY ALBUM
     display: block;
     opacity: 0.73;
 
-}
-
-.mobile-player-side-menu {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
-    overflow: hidden;
-    transition: width 0.2s linear;
-
-}
-
-.show-mobile-player-side-menu {
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(3.5px);
-}
-
-.mobile-player-close {
-    padding: 2rem;
-    /* text-align: end;
-    border: 1px solid white; */
-}
-
-.mobile-player-close > 
-.mobile-player-times {
-    color: rgb(255, 255, 255);
-    font-size: 1.3rem;
-    background: rgba(99, 99, 99, 0.527);
-    /* border: 1px solid white; */
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-left: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
 }
 
 .mobile-player-album-control {
@@ -1996,11 +1959,11 @@ PLAY ALBUM
     padding: 1.8rem;
     font-size: 1.5rem;
     cursor: pointer;
-    color: rgb(255, 60, 0);
+    color: rgb(255, 85, 34);
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2051,7 +2014,8 @@ PLAY ALBUM
     cursor: pointer;
 }
 
-.mobile-side-menu-nav > a {
+.mobile-side-menu-nav > a,
+.mobile-side-menu-nav > p {
     padding: 1rem;
     display: block;
     color: white;

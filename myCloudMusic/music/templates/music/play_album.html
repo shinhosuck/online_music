@@ -188,6 +188,7 @@
                         <div class="thumbs-up-down">
                             <a class="thumbs-up" href="{% url 'music:like' album.pk %}">
                                 <i class="fas fa-thumbs-up"></i>
+                                <!-- <i class="fa-solid fa-heart"></i> -->
                                 <p>{{ album.thumbs_up }}</p>
                             </a>
                             <a class="thumbs-down" href="{% url 'music:dislike' album.pk %}">
@@ -220,8 +221,8 @@
             </div>
             <div class="mobile-side-menu-nav">
                 <a href="{% url 'music:home' %}">Home</a>
-                <!-- <p class="song-list-toggle">See Song List</p>
-                <p class="close-song-list-toggle">Close Song List</p> -->
+                <p class="song-list-toggle">See Song List</p>
+                <p class="close-song-list-toggle">Close Song List</p>
                 <a href="{% url 'music:all-albums' 'latest albums' %}">Latest Albums</a>
                 {% if user.is_authenticated %}
                     <a href="{% url 'music:add-song' album.pk %}">Add new song</a>
@@ -264,6 +265,9 @@
         const classPlay = document.querySelector(".play-button")
         // classPlay.style.color = "white"
 
+        // player control from song list
+
+
         // mobile song title 
         const mobileSongTitle = document.querySelector(".mobile-song-title")
 
@@ -271,7 +275,6 @@
         let index = 0
 
         function stopLoop() {
-            console.log("hello world")
             location.reload()
         }
 
@@ -285,9 +288,6 @@
                 songFiles[index].pause()
                 musicplayer.classList.toggle("show-music-player")
                 albumCover.classList.toggle("hide-album-cover")
-                // albumLikeDislike.firstElementChild.textContent = item.firstElementChild.textContent
-                // mobileSongTitle.textContent = item.firstElementChild.textContent
-                // current_song_title = item.firstElementChild.textContent
                 songListToggle.style.display = "block"
                 closeSongListToggle.style.display = "none"
 
@@ -337,10 +337,9 @@
 
         // click play icon to play
         play.addEventListener("click", ()=>{
-
-            console.log(`song ${index+1} is playing`)
-
-            songFiles[index].play()
+            if(songFiles[index]) {
+                songFiles[index].play()
+            }
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
 
@@ -349,12 +348,16 @@
 
             albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
             mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
-            songFiles[index].addEventListener("ended", autoPlay)
+            if(songFiles[index]) {
+                songFiles[index].addEventListener("ended", autoPlay)
+            }
         })
 
         // click pause icon to pause
         pause.addEventListener("click", ()=>{
-            songFiles[index].pause()
+            if(songFiles[index]) {
+                songFiles[index].pause()
+            }
             playBtn.style.display = 'flex'
             pauseBtn.style.display = 'none'
 
@@ -368,7 +371,6 @@
                 songFiles[index].pause()
                 songFiles[index].currentTime = 0
                 index = 0
-                console.log(index)
                 songFiles[index].play()
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
@@ -378,9 +380,6 @@
 
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
-                
-                console.log(`song ${index+1} is playing`)
-
                 songFiles[index].addEventListener("ended", autoPlay)
             }
             else if(index < songFiles.length - 1) {
@@ -397,9 +396,6 @@
 
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
-
-                console.log(`song ${index+1} is playing`)
-                
                 songFiles[index].addEventListener("ended", autoPlay)
             }
         })
@@ -418,10 +414,7 @@
                 classPause.style.display = 'flex'
 
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
-                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
-
-                console.log(`song ${index+1} is playing`)
-                
+                mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2) 
                 songFiles[index].addEventListener("ended", autoPlay)
             }
             else if(index == songFiles.length - 1 || index > 0) {
@@ -437,9 +430,6 @@
 
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
-
-                console.log(`song ${index+1} is playing`)
-                
                 songFiles[index].addEventListener("ended", autoPlay)
             }
         })
@@ -503,9 +493,6 @@
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
                 songFiles[index].play()
-
-                console.log(`song ${index+1} is playing`)
-
                 songFiles[index].addEventListener("ended", autoPlay)
             }
         }
@@ -544,16 +531,16 @@
         const mobileRandom = document.querySelector("#mobile-random")
         
         // console.log(mobileSongTitle)
-
-        songFiles[index].addEventListener("playing", ()=>{
-            mobilePlay.style.display = "none"
-            mobilePause.style.display = "flex"
-            playBtn.style.display = "none"
-            pauseBtn.style.display = "flex"
-        })
+        if(songFiles[index]) {
+            songFiles[index].addEventListener("playing", ()=>{
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
+                playBtn.style.display = "none"
+                pauseBtn.style.display = "flex"
+            })
+        }
 
         mobilePlayerEllipsis.addEventListener("click", ()=>{
-            console.log("clicked")
             mobilePlayerSideMenu.classList.toggle("show-mobile-player-side-menu")
             mobilePlayerTimes.style.visibility = "visible"
         })
@@ -591,9 +578,6 @@
                 mobilePause.style.display = "flex"
                 albumLikeDislike.firstElementChild.textContent = songs[index].firstElementChild.textContent.slice(2)
                 mobileSongTitle.textContent = songs[index].firstElementChild.textContent.slice(2)
-                
-                console.log(`song ${index+1} is playing`)
-
                 songFiles[index].addEventListener("ended", autoPlay)
             }
             else if(index < songFiles.length - 1) {
@@ -647,24 +631,13 @@
             }
         })
 
-        // const bodyImg = document.querySelector("body")
-
-        // window.addEventListener("resize", ()=>{
-        //     if(window.innerWidth <= 499) {
-        //         bodyImg.classList.remove("music-player-background-img")
-        //     }
-        //     else if(window.innerWidth > 499) {
-        //         bodyImg.classList.add("music-player-background-img")
-        //     }
-        // })
-
-        // if(window.innerWidth <= 499) {
-        //     bodyImg.classList.remove("music-player-background-img")
-        // }
-        // else if(window.innerWidth > 499) {
-        //     bodyImg.classList.add("music-player-background-img")
-        // }
-
+        const audios = [...songFiles]
+        audios.forEach((song)=>{
+            song.addEventListener("playing", ()=>{
+                const songIndex = audios.indexOf(song)
+                songs[songIndex].firstElementChild.style.color = "red"
+            })
+        })
         /* END MOBILE PLAYER */
         
     </script>
