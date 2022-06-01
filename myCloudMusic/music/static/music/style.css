@@ -2027,6 +2027,14 @@ PLAY ALBUM
     }
 }
 
+@media screen and (max-height: 700px){
+    .mobile-player-wrapper {
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+    }
+}
+
 
 /* end of mobile player */
 

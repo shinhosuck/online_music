@@ -13,17 +13,9 @@
     <title>Playing {{ album.title }}</title>
 </head>
 
-<style>
+<style type="text/css">
 
-    /* .music-player-background-img {
-        min-height: 100vh;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7), url());
-        background-position: center;
-        background-size: cover;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-    } */
+
 
 </style>
 
@@ -44,6 +36,8 @@
             bgImg.style.backgroundPosition = "center top"
         }
 
+        // const lockBody = screen.orientation.type.startsWith("portrait")
+        // screen.orientation.lock(lockBody)
     </script>
     <!-- large screen player -->
     <div class="music-player-container">
