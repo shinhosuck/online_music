@@ -1608,7 +1608,7 @@ PLAY ALBUM
     cursor: pointer;
 }
 
-.song-container > div > p > span {
+.song-container > div > p > #song {
     padding-left: 0.5rem;
     letter-spacing: 0.06rem !important;
 }
@@ -1622,6 +1622,14 @@ PLAY ALBUM
 @media (hover){
     .song-container > div > p:hover {
         background: rgb(71, 71, 71);
+    }
+
+    .song-container > div > p:hover .play-song-btn{
+        display: inline !important;
+    }
+
+    .song-container > div > p:hover .song-counter{
+        display: none;
     }
 }
 
