@@ -3,9 +3,15 @@ from django.contrib.auth.decorators import login_required
 from music.models import Album, Like, Dislike, RecentlyPlayed, Genre, Song
 from django.shortcuts import render, redirect
 from music.forms import CreateAlbumForm, CreateSongForm
-
+from mutagen.mp3 import MP3
+import math
 
 def landing_page(request):
+    return render(request, "music/landing_page.html", {})
+
+
+def home(request):
+
     # all_songs = Song.objects.all()
     # base_64 = []
     # for song in all_songs:
@@ -13,10 +19,7 @@ def landing_page(request):
     #     encode = base64.b64encode(file)
     #     base_64.append(encode)
     # print(base_64)
-    return render(request, "music/landing_page.html", {})
 
-
-def home(request):
     user = request.user
     albums = Album.objects.all()
     most_listened = albums
@@ -158,9 +161,26 @@ def all_albums(request, string):
         return render(request, "music/all_albums.html", context)
 
 def play_album(request, pk):
-    album = Album.objects.get(pk=pk)
     user = request.user
+    album = Album.objects.get(pk=pk)
 
+    song_length = []
+    songs = album.song_set.all()
+    for song in songs:
+        audio = MP3(song.song_file)
+        audio_length = audio.info.length
+        minute = str(math.trunc((audio_length % 3600) / 60))
+        second = str(math.trunc(audio_length % 60))
+        if len(second) == 1:
+            song_length.append(f"{minute}:0{second}")
+        elif len(second) < 1:
+            song_length.append(f"{minute}:00{second}")
+        elif len(minute) < 1:
+            song_length.append(f"0{minute}:{second}")
+        else:
+            song_length.append(f"{minute}:{second}")
+    
+    print(song_length)
     # delete old recenttly played and create new one
     if user.is_authenticated:
         albums = user.recentlyplayed_set.all()
@@ -178,7 +198,8 @@ def play_album(request, pk):
     context = {
         "album": album,
         "songs": songs,
-        "song_files": song_files
+        "song_files": song_files,
+        "song_length": song_length
     }
     return render(request, "music/play_album.html", context)
 
