@@ -225,7 +225,10 @@
     </div>
     <!-- end -->
 
+
+
     <script type="text/javascript">
+        // DESKTOP PLAYER
         const musicPlayerWrapper = document.querySelector(".music-player-wrapper")
         const ellipsis = document.querySelector(".fa-ellipsis")
         const musicplayer = document.querySelector(".music-player")
@@ -257,7 +260,16 @@
         const classPlay = document.querySelector(".play-button")
         // classPlay.style.color = "white"
 
-       
+        // MOBILE PLAYER
+        const mobilePlayerEllipsis = document.querySelector(".mobile-player-ellipsis")
+        const mobilePlayerSideMenu = document.querySelector(".mobile-player-side-menu")
+        const mobilePlayerTimes = document.querySelector(".mobile-player-times")
+        const mobilePlay = document.querySelector("#mobile-play")
+        const mobilePause = document.querySelector("#mobile-pause")
+        const mobileForward = document.querySelector("#mobile-forward")
+        const mobileBackward = document.querySelector("#mobile-backward")
+        const mobileRedo = document.querySelector("#mobile-redo")
+        const mobileRandom = document.querySelector("#mobile-random")
         // mobile song title 
         const mobileSongTitle = document.querySelector(".mobile-song-title")
 
@@ -349,6 +361,9 @@
             classPlay.style.display = 'none'
             classPause.style.display = 'flex'
 
+            mobilePlay.style.display = "none"
+            mobilePause.style.display = "flex"
+
             albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.textContent
             mobileSongTitle.textContent = songs[index].lastElementChild.textContent
             if(songFiles[index]) {
@@ -366,6 +381,9 @@
 
             classPlay.style.display = 'flex'
             classPause.style.display = 'none'
+
+            mobilePlay.style.display = "flex"
+            mobilePause.style.display = "none"
         })
 
         // forward to next song
@@ -576,17 +594,6 @@
         })
 
         /* MOBILE PLAYER */ 
-        const mobilePlayerEllipsis = document.querySelector(".mobile-player-ellipsis")
-        const mobilePlayerSideMenu = document.querySelector(".mobile-player-side-menu")
-        const mobilePlayerTimes = document.querySelector(".mobile-player-times")
-        const mobilePlay = document.querySelector("#mobile-play")
-        const mobilePause = document.querySelector("#mobile-pause")
-        const mobileForward = document.querySelector("#mobile-forward")
-        const mobileBackward = document.querySelector("#mobile-backward")
-        const mobileRedo = document.querySelector("#mobile-redo")
-        const mobileRandom = document.querySelector("#mobile-random")
-        
-        // console.log(mobileSongTitle)
         if(songFiles[index]) {
             songFiles[index].addEventListener("playing", ()=>{
                 mobilePlay.style.display = "none"
@@ -611,7 +618,7 @@
             mobilePlay.style.display = "none"
             mobilePause.style.display = "flex"
             albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.textContent
-            mobileSongTitle.textContent = songs[index].lastElementChildtextContent
+            mobileSongTitle.textContent = songs[index].lastElementChild.textContent
             songFiles[index].addEventListener("ended", autoPlay)
         })
 
@@ -619,6 +626,12 @@
             songFiles[index].pause()
             mobilePlay.style.display = "flex"
             mobilePause.style.display = "none"
+
+            classPlay.style.display = 'flex'
+            classPause.style.display = 'none'
+
+            playBtn.style.display = 'flex'
+            pauseBtn.style.display = 'none'
         })
 
         mobileForward.addEventListener("click", ()=>{
@@ -703,7 +716,13 @@
         })
 
         /* END MOBILE PLAYER */
-        
+        const endTimes = document.querySelectorAll(".end-time")
+        let songLength = []
+        '{% for length in song_length %}'
+            songLength.push("{{ length }}")
+            console.log("{{ length }}")
+        '{% endfor %}'
+        console.log(songLength)
     </script>
 </body>
 </html>

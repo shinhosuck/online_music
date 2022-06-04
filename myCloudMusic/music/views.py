@@ -166,6 +166,7 @@ def play_album(request, pk):
 
     song_length = []
     songs = album.song_set.all()
+
     for song in songs:
         audio = MP3(song.song_file)
         audio_length = audio.info.length
@@ -179,8 +180,7 @@ def play_album(request, pk):
             song_length.append(f"0{minute}:{second}")
         else:
             song_length.append(f"{minute}:{second}")
-    
-    print(song_length)
+
     # delete old recenttly played and create new one
     if user.is_authenticated:
         albums = user.recentlyplayed_set.all()
@@ -191,6 +191,7 @@ def play_album(request, pk):
                     old_album.delete()
         RecentlyPlayed.objects.create(user=user, album=album)
     # end of delete and create recently played
+
     song_files = []
     songs = album.song_set.all()
     for song in songs:
