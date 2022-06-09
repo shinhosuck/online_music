@@ -1599,18 +1599,42 @@ PLAY ALBUM
     overflow-y: scroll;
     height: 281.11px;
     background: rgb(51, 51, 51);
-    /* background: transparent; */
+}
+
+.song-header {
+    color: rgb(190, 190, 190);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    letter-spacing: 0.06rem;
+    border-bottom: 1px solid rgb(61, 61, 61) !important;
+}
+
+.song-container > div > .song {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.total-song-time {
+    margin-left: auto;
+    color: white !important;
 }
 
 .song-container > div > p {
-    padding: 0.5rem 1rem;
+    padding: 0.9rem 1rem;
     transition: background 0.1s linear;
     cursor: pointer;
 }
 
 .song-container > div > p > #song {
-    padding-left: 0.5rem;
     letter-spacing: 0.06rem !important;
+}
+
+.song-container > div > p > .song-counter {
+    margin-right: 0.5rem;
+    width: 20px;
 }
 
 .song-container > p {
@@ -1619,17 +1643,24 @@ PLAY ALBUM
     letter-spacing: 0.06rem !important;
 }
 
+.song-container > div > p > .play-song-btn{
+    display: none; 
+    width: 20px;
+    margin-right: 0.5rem;
+    color: rgb(255, 123, 0) !important;
+}
+
 @media (hover){
     .song-container > div > p:hover {
-        background: rgb(71, 71, 71);
+        background: rgb(61, 61, 61);
     }
 
     .song-container > div > p:hover .play-song-btn{
-        display: inline !important;
+        display: flex !important;
     }
 
     .song-container > div > p:hover .song-counter{
-        display: none;
+        display: none  !important;
     }
 }
 
