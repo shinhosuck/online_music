@@ -131,7 +131,7 @@
                 <div class="progres-bar-container" style="position: relative;">
                     <p class="initial-time">0:00</p>
                     <progress class="duration-bar" id="duration-bar" value="0"></progress>
-                    <p class="end-time">0:00</p>
+                    <p id="end-time" class="end-time">0:00</p>
                     <div class="album-background-overlay-control"
                         style="border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;"></div>
                 </div>
@@ -280,6 +280,22 @@
             location.reload()
         }
 
+
+        const endTimes = document.querySelectorAll(".end-time")
+        const mobileEndTime = document.querySelector(".mobile-end-time")
+        let songLength = []
+
+        '{% for length in song_length %}'
+            songLength.push("{{ length }}")
+        '{% endfor %}'
+        console.log(songLength)
+
+
+        endTimes.forEach((endTime)=>{
+            endTime.textContent = songLength[index]
+            mobileEndTime.textContent = songLength[index]
+        })
+
         // album on load, the first song title
         let current_song_title = songs[index].lastElementChild.textContent
         albumLikeDislike.firstElementChild.textContent = current_song_title
@@ -301,6 +317,11 @@
                 index = songs.indexOf(item)
                 songFiles[index].currentTime = 0
                 songFiles[index].play()
+
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
 
                 songs[index].firstElementChild.style.display = "inline"
                 songs[index].firstElementChild.nextElementSibling.style.display = "none"
@@ -351,6 +372,11 @@
             if(songFiles[index]) {
                 songFiles[index].play()
             }
+
+            endTimes.forEach((endTime)=>{
+                endTime.textContent = songLength[index]
+                mobileEndTime.textContent = songLength[index]
+            })
 
             songs[index].firstElementChild.style.display = "inline"
             songs[index].firstElementChild.nextElementSibling.style.display = "none"
@@ -404,6 +430,11 @@
                 classPlay.style.display = 'none'
                 classPause.style.display = 'flex'
 
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+
                 songs[index].firstElementChild.style.display = "inline"
                 songs[index].firstElementChild.nextElementSibling.style.display = "none"
 
@@ -422,6 +453,11 @@
                 index ++
                 songFiles[index].play()
                 
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+
                 songs[index].firstElementChild.style.display = "inline"
                 songs[index].firstElementChild.nextElementSibling.style.display = "none"
 
@@ -449,6 +485,12 @@
 
                 index = songs.length - 1
                 songFiles[index].play()
+
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
 
@@ -472,6 +514,12 @@
 
                 index --
                 songFiles[index].play()
+
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
 
@@ -491,6 +539,12 @@
         redo.addEventListener("click", ()=>{
             songFiles[index].currentTime = 0
             songFiles[index].play()
+
+            endTimes.forEach((endTime)=>{
+                endTime.textContent = songLength[index]
+                mobileEndTime.textContent = songLength[index]
+            })
+
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
 
@@ -513,6 +567,12 @@
 
             index = randomNum
             songFiles[index].play()
+
+            endTimes.forEach((endTime)=>{
+                endTime.textContent = songLength[index]
+                mobileEndTime.textContent = songLength[index]
+            })
+
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
 
@@ -567,6 +627,12 @@
                 albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.textContent
                 mobileSongTitle.textContent = songs[index].lastElementChild.textContent
                 songFiles[index].play()
+
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+
                 songFiles[index].addEventListener("ended", autoPlay)
             }
         }
@@ -615,6 +681,12 @@
 
         mobilePlay.addEventListener("click", ()=>{
             songFiles[index].play()
+
+            endTimes.forEach((endTime)=>{
+                endTime.textContent = songLength[index]
+                mobileEndTime.textContent = songLength[index]
+            })
+
             mobilePlay.style.display = "none"
             mobilePause.style.display = "flex"
             albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.textContent
@@ -639,8 +711,13 @@
                 songFiles[index].pause()
                 songFiles[index].currentTime = 0
                 index = 0
-                console.log(index)
                 songFiles[index].play()
+
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 mobilePlay.style.display = "none"
@@ -654,15 +731,18 @@
                 songFiles[index].currentTime = 0
                 index ++
                 songFiles[index].play()
-                console.log(index)
+
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 mobilePlay.style.display = "none"
                 mobilePause.style.display = "flex"
                 albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.textContent
                 mobileSongTitle.textContent = songs[index].lastElementChild.textContent
-                console.log(`song ${index+1} is playing`)
-                
                 songFiles[index].addEventListener("ended", autoPlay)
             }
         })
@@ -673,14 +753,18 @@
                 songFiles[index].currentTime = 0
                 index = songs.length - 1
                 songFiles[index].play()
+
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 mobilePlay.style.display = "none"
                 mobilePause.style.display = "flex"
                 albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.textContent
-                mobileSongTitle.textContent = songs[index].lastElementChild.textContent
-                console.log(`song ${index+1} is playing`)
-                
+                mobileSongTitle.textContent = songs[index].lastElementChild.textContent 
                 songFiles[index].addEventListener("ended", autoPlay)
             }
             else if(index == songFiles.length - 1 || index > 0) {
@@ -688,14 +772,18 @@
                 songFiles[index].currentTime = 0
                 index --
                 songFiles[index].play()
+
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
                 mobilePlay.style.display = "none"
                 mobilePause.style.display = "flex"
                 albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.textContent
-                mobileSongTitle.textContent = songs[index].lastElementChild.textContent
-                console.log(`song ${index+1} is playing`)
-                
+                mobileSongTitle.textContent = songs[index].lastElementChild.textContent 
                 songFiles[index].addEventListener("ended", autoPlay)
             }
         })
@@ -705,7 +793,6 @@
             song.addEventListener("playing", ()=>{
                 const songIndex = audios.indexOf(song)
                 songs[songIndex].lastElementChild.style.color = "red"
-                console.log("song playing")
                song.addEventListener("ended", ()=>{
                    songs.forEach((song)=>{
                        song.lastElementChild.style.color = "white"
@@ -716,13 +803,6 @@
         })
 
         /* END MOBILE PLAYER */
-        // const endTimes = document.querySelectorAll(".end-time")
-        // let songLength = []
-        // '{% for length in song_length %}'
-        //     songLength.push("{{ length }}")
-        //     console.log("{{ length }}")
-        // '{% endfor %}'
-        // console.log(songLength)
     </script>
 </body>
 </html>

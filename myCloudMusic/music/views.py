@@ -167,19 +167,19 @@ def play_album(request, pk):
     song_length = []
     songs = album.song_set.all()
 
-    # for song in songs:
-    #     audio = MP3(song.song_file)
-    #     audio_length = audio.info.length
-    #     minute = str(math.trunc((audio_length % 3600) / 60))
-    #     second = str(math.trunc(audio_length % 60))
-    #     if len(second) == 1:
-    #         song_length.append(f"{minute}:0{second}")
-    #     elif len(second) < 1:
-    #         song_length.append(f"{minute}:00{second}")
-    #     elif len(minute) < 1:
-    #         song_length.append(f"0{minute}:{second}")
-    #     else:
-    #         song_length.append(f"{minute}:{second}")
+    for song in songs:
+        audio = MP3(song.song_file)
+        audio_length = audio.info.length
+        minute = str(math.trunc((audio_length % 3600) / 60))
+        second = str(math.trunc(audio_length % 60))
+        if len(second) == 1:
+            song_length.append(f"{minute}:0{second}")
+        elif len(second) < 1:
+            song_length.append(f"{minute}:00{second}")
+        elif len(minute) < 1:
+            song_length.append(f"0{minute}:{second}")
+        else:
+            song_length.append(f"{minute}:{second}")
 
     # delete old recenttly played and create new one
     if user.is_authenticated:
