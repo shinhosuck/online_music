@@ -1129,16 +1129,25 @@ HOME PAGE
 }
 
 .album-text-wrapper > h2 {
-    color: rgb(235, 235, 235);
+    color: rgb(230, 230, 230);
     text-transform: capitalize;
     font-size: 1rem;
     letter-spacing: 0.06rem;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
 }
 
 .album-text-wrapper > h2 > i {
-    font-size: 0.7rem;
-    color: rgb(161, 161, 161);
-    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    color: rgb(219, 136, 41);
+    margin-left: auto;
+    margin-right: 0.3rem;
+}
+
+.album-text-wrapper > h2 > span {
+    font-size: 0.9rem !important;
+    color: rgb(192, 192, 192);
 }
 
 .flex-box {

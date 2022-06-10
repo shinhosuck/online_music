@@ -8,6 +8,7 @@
 
 {% block content %}
 
+    <!-- LATEST ALBUMS -->
     <div class="album-container">
         <h1>
             Latest albums
@@ -22,7 +23,10 @@
                     <div class="background-overlay"></div>
 
                     <div class="album-text-wrapper">
-                        <h2 title="{{ album.title }}">{{ album.title|truncatechars:20 }}<i class="fa-solid fa-music"> {{album.song_set.count}}</i></h2>
+                        <h2 class="album-name" title="{{ album.title }}">{{ album.title }}
+                            <i class="fa-solid fa-music"></i>
+                            <span>{{album.song_set.count}}</span>
+                        </h2>
                         <div class="flex-box">
                             <div class="album-author">
                                 <i class="fas fa-user-circle"></i>
@@ -62,7 +66,10 @@
                         <div class="background-overlay"></div>
 
                         <div class="album-text-wrapper">
-                            <h2>{{ album.album.title }}</h2>
+                            <h2>{{ album.album.title }}
+                                <i class="fa-solid fa-music"></i>
+                                <span>{{album.album.song_set.count}}</span>
+                            </h2>
 
                             <div class="flex-box">
 
@@ -107,7 +114,10 @@
                         <div class="background-overlay"></div>
 
                         <div class="album-text-wrapper">
-                            <h2>{{ album.title }}</h2>
+                            <h2>{{ album.title }}
+                                <i class="fa-solid fa-music"></i>
+                                <span>{{album.song_set.count}}</span>
+                            </h2>
                             <div class="flex-box">
                                 <div class="album-author">
                                     <i class="fas fa-user-circle"></i>
@@ -146,7 +156,10 @@
                     <div class="background-overlay"></div>
 
                     <div class="album-text-wrapper">
-                        <h2>{{ album.title }}</h2>
+                        <h2>{{ album.title }}
+                            <i class="fa-solid fa-music"></i>
+                            <span>{{album.song_set.count}}</span>
+                        </h2>
                         <div class="flex-box">
                             <div class="album-author">
                                 <i class="fas fa-user-circle"></i>
