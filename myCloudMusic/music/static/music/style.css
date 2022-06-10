@@ -1192,7 +1192,7 @@ HOME PAGE
 }
 
 .thumbs-up > i {
-    color: rgb(255, 102, 0);
+    color: rgb(255, 60, 0);
     font-size: 1.1rem;
 }
 
@@ -1207,7 +1207,7 @@ HOME PAGE
 }
 
 .thumbs-down > i {
-    color: rgb(121, 121, 121);
+    color: rgb(139, 139, 139);
     font-size: 1.1rem;
 }
 
@@ -1554,10 +1554,11 @@ PLAY ALBUM
     /* border: 1px solid white; */
 }
 
-.album-like-dislike > p {
+.album-like-dislike > 
+.album-song-title {
     letter-spacing: 0.06rem;
-    text-transform: capitalize;
-    font-size: 0.98rem
+    /* text-transform: capitalize; */
+    font-size: 1rem
 }
 
 .hide-album-cover {

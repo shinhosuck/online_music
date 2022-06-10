@@ -45,27 +45,27 @@
                     <img src="{{ album.album_cover.url }}" alt="">
                     <div class="album-background-overlay"></div>
                     <div class="album-like-dislike">
-                        <p class="album-song-title">unknown song title</p>
+                        <p class="album-song-title"></p>
                         {% if not album.song_set.all %}
                             <div class="thumbs-up-down">
                                 <a id="prevent-default" class="thumbs-up" href="{% url 'music:like' album.pk %}">
-                                    <i class="fas fa-thumbs-up"></i>
-                                    <p>{{ album.thumbs_up }}</p>
+                                    <i class="fas fa-thumbs-up" style="font-size: 1.2rem"></i>
+                                    <p style="font-size: 1rem">{{ album.thumbs_up }}</p>
                                 </a>
                                 <a id="prevent-default" class="thumbs-down" href="{% url 'music:dislike' album.pk %}">
-                                    <p>{{ album.thumbs_down }}</p>
-                                    <i class="fas fa-thumbs-down fa-flip-horizontal"></i>
+                                    <p style="font-size: 1rem">{{ album.thumbs_down }}</p>
+                                    <i class="fas fa-thumbs-down fa-flip-horizontal" style="font-size: 1.2rem"></i>
                                 </a>
                             </div>
                         {% else %}
                             <div class="thumbs-up-down">
                                 <a class="thumbs-up" href="{% url 'music:like' album.pk %}">
-                                    <i class="fas fa-thumbs-up"></i>
-                                    <p>{{ album.thumbs_up }}</p>
+                                    <i class="fas fa-thumbs-up" style="font-size: 1.2rem"></i>
+                                    <p style="font-size: 1rem">{{ album.thumbs_up }}</p>
                                 </a>
                                 <a class="thumbs-down" href="{% url 'music:dislike' album.pk %}">
-                                    <p>{{ album.thumbs_down }}</p>
-                                    <i class="fas fa-thumbs-down fa-flip-horizontal"></i>
+                                    <p style="font-size: 1rem">{{ album.thumbs_down }}</p>
+                                    <i class="fas fa-thumbs-down fa-flip-horizontal" style="font-size: 1.2rem"></i>
                                 </a>
                             </div>
                         {% endif %}
@@ -130,8 +130,8 @@
                 {% else %}
                     <div class="song-container">
                         <p class="song">
-                            <!-- <span></span> -->
                             <span style="margin-left: 0; text-transform: none;">Songs not available</span>
+                            <span class="total-song-time"></span>
                         </p>
                     </div>
                 {% endif %}
@@ -306,15 +306,23 @@
 
 
         endTimes.forEach((endTime)=>{
-            endTime.textContent = songLength[index]
-            mobileEndTime.textContent = songLength[index]
+            if(songLength[index]) {
+                endTime.textContent = songLength[index]
+                mobileEndTime.textContent = songLength[index]
+            }
+            else {
+                endTime.textContent = "0:00"
+                mobileEndTime.textContent = "0:00"
+            }
         })
 
         // album on load, the first song title
-        let current_song_title = songs[index].lastElementChild.previousElementSibling.textContent
-        albumLikeDislike.firstElementChild.textContent = current_song_title
-        mobileSongTitle.textContent = current_song_title
-
+        if(songs[index]){
+            let current_song_title = songs[index].lastElementChild.previousElementSibling.textContent
+            albumLikeDislike.firstElementChild.textContent = current_song_title
+            mobileSongTitle.textContent = current_song_title
+        }
+        
         songs.forEach(function(item){
             item.addEventListener("click", ()=>{
                 songFiles[index].pause()
