@@ -16,29 +16,22 @@
         .visualizer-container {
             height: 100%;
             width: 100%;
-            z-index: -1;
+            z-index: 0;
             position: absolute; 
 
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-wrap: nowrap;
         }
 
         .visualizer-bar {
             width: 15px;
-            margin: 0 0.3rem;
+            margin: 0 0.2rem;
             background: linear-gradient(to top, rgb(0, 81, 255), rgb(2, 255, 44));
             /* background: rgb(0, 255, 115); */
         }
 
-        /* #canvas1 {
-           
-            width: 60%;
-            height: 50%;
-
-            border: 1px solid white;
-
-        } */
 
     </style>
 </head>
@@ -50,13 +43,6 @@
 
     <div class="visualizer-container"></div>
 
-    <!-- <div class="visualizer-container">
-
-        <canvas id="canvas1"></canvas>
-
-    </div> -->
-    
-    
     <!-- end of visualizer container -->
 
     <!-- script tag for background CLASS music-player-background-img -->

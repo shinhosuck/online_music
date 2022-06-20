@@ -4,9 +4,7 @@ const audioWrapper = document.querySelector("#audio-wrapper");
 const audioWrapperChildren = audioWrapper.children;
 const audioMedia= [...audioWrapperChildren]
 
-
-
-let numberOfBars = 64
+let numberOfBars = 65
 
 for(let i = 0; i < numberOfBars; i++) {
     const bar = document.createElement("div");
@@ -23,8 +21,7 @@ audioMedia.forEach(function(audio){
         
         // 1. Get auto element 
         const audioElement = document.querySelector(`#audio${index + 1}`);
-        console.log(audioElement)
-
+    
         // 2. Create audio context
         const audioCtx = new AudioContext();
 
