@@ -4,7 +4,17 @@ const audioWrapper = document.querySelector("#audio-wrapper");
 const audioWrapperChildren = audioWrapper.children;
 const audioMedia= [...audioWrapperChildren]
 
-let numberOfBars = 65
+let numberOfBars = 265;
+
+// if(window.innerWidth <= 750){
+//     numberOfBars = 265
+// }
+
+// window.addEventListener("resize", function() {
+//     if(window.innerWidth <= 750){
+//         numberOfBars = 265
+//     }
+// })
 
 for(let i = 0; i < numberOfBars; i++) {
     const bar = document.createElement("div");

@@ -23,15 +23,23 @@
             align-items: center;
             justify-content: center;
             flex-wrap: nowrap;
+            overflow: hidden;
         }
 
         .visualizer-bar {
-            width: 15px;
-            margin: 0 0.2rem;
-            background: linear-gradient(to top, rgb(0, 81, 255), rgb(2, 255, 44));
+            width: 5px;
+            /*margin: 0 0.1rem;*/
+            background: linear-gradient(to top, orange, red);
+            /*border: 1px solid black;*/
             /* background: rgb(0, 255, 115); */
         }
 
+        /*@media screen and (max-width: 750px) {
+            .visualizer-bar {
+                width: 5px;
+                margin: 0;
+            }
+        }*/
 
     </style>
 </head>
@@ -49,13 +57,13 @@
     <script type="text/javascript">
         const bgImg = document.querySelector(".music-player-background-img")
 
-        bgImg.style.background = "url('/media/playmusic.png')"
+        bgImg.style.background = "url('/media/playmusic.jpg')"
         bgImg.style.minHeight = "100%"
         bgImg.style.backgroundPosition = "center"
         bgImg.style.backgroundSize = "cover"
         bgImg.style.backgroundAttachment = "fixed"
         bgImg.style.backgroundRepeat = "noRepeat"
-
+        bgImg.style.overflow = "hidden"
         if(window.innerWidth <= 499) {
             bgImg.style.backgroundPosition = "center top"
         }
