@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-yoic1x%fookhnzq25-mt!-c@h0m%@it@ci^-l*&r4)k)7chbcf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["172.20.10.9", "127.0.0.1", "192.168.12.203", "djangocloudmusic.herokuapp.com"]
+ALLOWED_HOSTS = ["172.20.10.9", "127.0.0.1", "192.168.12.203", "192.168.12.205", "djangocloudmusic.herokuapp.com"]
 
 
 # Application definition
