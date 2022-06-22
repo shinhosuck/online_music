@@ -27,25 +27,25 @@
         }
 
         .visualizer-bar {
-            width: 5px;
-            /*margin: 0 0.1rem;*/
-            background: linear-gradient(to top, orange, red);
+            width: 15px;
+            margin: 0 0.1rem;
+            background: linear-gradient(to top, rgba(255, 123, 0, 0.8), rgba(255, 0, 0, 0.8));
             /*border: 1px solid black;*/
             /* background: rgb(0, 255, 115); */
         }
 
-        /*@media screen and (max-width: 750px) {
+        @media screen and (max-width: 750px) {
             .visualizer-bar {
                 width: 5px;
                 margin: 0;
             }
-        }*/
+        }
 
     </style>
 </head>
 <body class="music-player-background-img">
-    <div class="album-background-overlay" style="background: rgba(0, 0, 0, 0.4); z-index: 0; min-height: 100vh; overflow: hidden;
-    border-bottom-left-radius: 0; border-bottom-right-radius: 0;"></div>
+    <div class="album-background-overlay" style="background: rgba(0, 0, 0, 0.9); z-index: 0; min-height: 100vh; overflow: hidden;
+    border-bottom-left-radius: 0; border-bottom-right-radius: 0; backdrop-filter: blur(5px);"></div>
     
     <!-- visualizer container -->
 
@@ -57,7 +57,8 @@
     <script type="text/javascript">
         const bgImg = document.querySelector(".music-player-background-img")
 
-        bgImg.style.background = "url('/media/playmusic.jpg')"
+        // bgImg.style.background = "url('/media/playmusic.jpg')"
+        bgImg.style.background = "url('{{ album.album_cover.url }}')"
         bgImg.style.minHeight = "100%"
         bgImg.style.backgroundPosition = "center"
         bgImg.style.backgroundSize = "cover"
@@ -270,7 +271,7 @@
     </div>
     <!-- end -->
 
-
+    <script type="text/javascript" src="{% static 'music/visualizer.js' %}"></script>
 
     <script type="text/javascript">
         // DESKTOP PLAYER
@@ -863,6 +864,6 @@
         /* END MOBILE PLAYER */
     </script>
 
-    <script type="text/javascript" src="{% static 'music/visualizer.js' %}"></script>
+    
 </body>
 </html>
