@@ -270,9 +270,6 @@
         </div>
     </div>
     <!-- end -->
-
-    <script type="text/javascript" src="{% static 'music/visualizer.js' %}"></script>
-
     <script type="text/javascript">
         // DESKTOP PLAYER
         const musicPlayerWrapper = document.querySelector(".music-player-wrapper")
@@ -331,37 +328,6 @@
         const mobileEndTime = document.querySelector(".mobile-end-time")
         const totalSongTime = document.querySelectorAll(".total-song-time")
         let songLength = []
-
-        // play song on load 
-
-        if(songFiles[index]) {
-                songFiles[index].play()
-            }
-
-            endTimes.forEach((endTime)=>{
-                endTime.textContent = songLength[index]
-                mobileEndTime.textContent = songLength[index]
-            })
-
-            songs[index].firstElementChild.style.display = "flex"
-            songs[index].firstElementChild.nextElementSibling.style.display = "none"
-
-            playBtn.style.display = 'none'
-            pauseBtn.style.display = 'flex'
-
-            classPlay.style.display = 'none'
-            classPause.style.display = 'flex'
-
-            mobilePlay.style.display = "none"
-            mobilePause.style.display = "flex"
-
-            albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.previousElementSibling.textContent
-            mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
-            if(songFiles[index]) {
-                songFiles[index].addEventListener("ended", autoPlay)
-            }
-
-
 
         '{% for length in song_length %}'
             songLength.push("{{ length }}")
@@ -893,6 +859,6 @@
         /* END MOBILE PLAYER */
     </script>
 
-    
+    <script type="text/javascript" src="{% static 'music/visualizer.js' %}"></script>
 </body>
 </html>
