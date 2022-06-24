@@ -1,25 +1,17 @@
-import base64
 from django.contrib.auth.decorators import login_required
 from music.models import Album, Like, Dislike, RecentlyPlayed, Genre, Song
 from django.shortcuts import render, redirect
 from music.forms import CreateAlbumForm, CreateSongForm
 from mutagen.mp3 import MP3
 import math
+import platform
+
 
 def landing_page(request):
     return render(request, "music/landing_page.html", {})
 
 
 def home(request):
-
-    # all_songs = Song.objects.all()
-    # base_64 = []
-    # for song in all_songs:
-    #     file = open(f"./media/{song.song_file}", "br").read()
-    #     encode = base64.b64encode(file)
-    #     base_64.append(encode)
-    # print(base_64)
-
     user = request.user
     albums = Album.objects.all()
     most_listened = albums
@@ -161,6 +153,9 @@ def all_albums(request, string):
         return render(request, "music/all_albums.html", context)
 
 def play_album(request, pk):
+    # operating_system = platform.system()
+    # print(type(operating_system), operating_system == "Linux")
+
     user = request.user
     album = Album.objects.get(pk=pk)
 
@@ -200,7 +195,8 @@ def play_album(request, pk):
         "album": album,
         "songs": songs,
         "song_files": song_files,
-        "song_length": song_length
+        "song_length": song_length,
+        # "operating_system": operating_system
     }
     return render(request, "music/play_album.html", context)
 

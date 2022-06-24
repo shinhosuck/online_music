@@ -48,12 +48,10 @@
     border-bottom-left-radius: 0; border-bottom-right-radius: 0; backdrop-filter: blur(5px);"></div>
     
     <!-- visualizer container -->
-
-    <div class="visualizer-container"></div>
-
+    <div id="{{ operating_system }}" class="visualizer-container"></div>
     <!-- end of visualizer container -->
 
-    <!-- script tag for background CLASS music-player-background-img -->
+    <!-- script tag for background CLASS-music-player-background-img -->
     <script type="text/javascript">
         const bgImg = document.querySelector(".music-player-background-img")
 
@@ -71,7 +69,6 @@
     </script>
     <!-- end of background img script -->
 
-   
     <!-- large screen player -->
     <div class="music-player-container">
         <div class="music-player-wrapper">
@@ -857,8 +854,9 @@
         })
 
         /* END MOBILE PLAYER */
-    </script>
 
+    </script>
     <script type="text/javascript" src="{% static 'music/visualizer.js' %}"></script>
+
 </body>
 </html>
