@@ -30,8 +30,6 @@
             width: 15px;
             margin: 0 0.1rem;
             background: linear-gradient(to top, rgba(255, 123, 0, 0.8), rgba(255, 0, 0, 0.8));
-            /*border: 1px solid black;*/
-            /* background: rgb(0, 255, 115); */
         }
 
         @media screen and (max-width: 750px) {
@@ -49,6 +47,9 @@
     
     <!-- visualizer container -->
     <div id="{{ operating_system }}" class="visualizer-container"></div>
+
+    <!-- <canvas id="canvas1" class="visualizer-container"></canvas> -->
+
     <!-- end of visualizer container -->
 
     <!-- script tag for background CLASS-music-player-background-img -->
@@ -856,7 +857,6 @@
         /* END MOBILE PLAYER */
 
     </script>
-    <script type="text/javascript" src="{% static 'music/visualizer.js' %}"></script>
-
+    <!-- <script type="text/javascript" src="{% static 'music/visualizer.js' %}"></script> -->
 </body>
 </html>

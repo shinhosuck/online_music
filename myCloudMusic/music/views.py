@@ -153,8 +153,8 @@ def all_albums(request, string):
         return render(request, "music/all_albums.html", context)
 
 def play_album(request, pk):
-    # operating_system = platform.system()
-    # print(type(operating_system), operating_system == "Linux")
+    operating_system = platform.platform()
+    new = operating_system.split("-")
 
     user = request.user
     album = Album.objects.get(pk=pk)
@@ -196,7 +196,7 @@ def play_album(request, pk):
         "songs": songs,
         "song_files": song_files,
         "song_length": song_length,
-        # "operating_system": operating_system
+        "new": new
     }
     return render(request, "music/play_album.html", context)
 

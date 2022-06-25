@@ -1461,12 +1461,6 @@ PLAY ALBUM
     transition: transform 0.5s linear;
 }
 
-/* @media screen and (min-width:1366px) {
-    .music-player-wrapper {
-        max-width: 600px;
-    }
-} */
-
 .music-player-wrapper:hover {
     transform: scale(1.1);
 }
@@ -1755,7 +1749,7 @@ PLAY ALBUM
 .duration-bar {
     flex: 1;
     margin: 0 0.5rem;
-    height: 9px;
+    height: 8px;
 }
 
 .initial-time,
@@ -2094,7 +2088,6 @@ PLAY ALBUM
         border-radius: 0;
     }
 }
-
 
 /* end of mobile player */
 
