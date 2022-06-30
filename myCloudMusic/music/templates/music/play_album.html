@@ -40,9 +40,26 @@
         }
 
 
-        @media screen and (max-width:900px) {
+        @media screen and (max-width: 899px) {
             .my-brand-container {
-                background: transparent;
+                background: rgba(0, 0, 0, 0.58);
+            }
+
+            .play-album-mobile-nav {
+                height: 0;
+                overflow: hidden;
+                position: absolute; 
+                top: 86px; 
+                left: 0;
+                width: 100%;
+                z-index: 3; 
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(7px);
+                transition: height 0.2s linear;
+            }
+
+            .show-play-album-mobile-nav {
+                height: calc(100% - 86px); 
             }
         }
 
@@ -50,6 +67,13 @@
             background: rgba(255, 255, 255, 0.1);
             top: 41px;
         }
+
+        @media screen and (min-width: 900px) {
+            .play-album-mobile-nav {
+                display: none;
+            }
+        }
+
     </style>
 </head>
 <body class="music-player-background-img">
@@ -62,8 +86,8 @@
                 <div class="my-brand-wrapper">
                     <a href="{% url 'music:home' %}">CloudMusic</a>
                     <div class="toggle-btns">
-                        <i class="fa fa-bars show-fa-bars"></i>
-                        <i class="fa fa-times hide-fa-times"></i>
+                        <i id="bars" class="fa fa-bars show-fa-bars"></i>
+                        <i id="times" class="fa fa-times hide-fa-times"></i>
                     </div>
                 </div>
             </div>
@@ -123,9 +147,8 @@
     border-bottom-left-radius: 0; border-bottom-right-radius: 0; backdrop-filter: blur(5px);"></div>
     
     <!-- visualizer container -->
-    <div id="{{ operating_system }}" class="visualizer-container"></div>
 
-    <!-- <canvas id="canvas1" class="visualizer-container"></canvas> -->
+    <div id="{{ operating_system }}" class="visualizer-container"></div>
 
     <!-- end of visualizer container -->
 
@@ -135,7 +158,7 @@
 
         // bgImg.style.background = "url('/media/playmusic.jpg')"
         bgImg.style.background = "url('{{ album.album_cover.url }}')"
-        bgImg.style.minHeight = "100%"
+        bgImg.style.height = "100vh"
         bgImg.style.backgroundPosition = "center"
         bgImg.style.backgroundSize = "cover"
         bgImg.style.backgroundAttachment = "fixed"
@@ -344,6 +367,61 @@
             </div>
         </div>
     </div>
+
+    <!-- PLAY ALBUM NAVIGATION  -->
+    <div class="play-album-mobile-nav">
+    
+        <div class="nav-wrapper">
+            <ul class="nav-items" style="height: 100%; overflow: visible;">
+                {% with request.resolver_match.url_name as url_name %}
+                    <li id="home"><a class="{% if url_name == 'home' %}active{% endif %}" href="{% url 'music:home' %}">Home</a></li>
+                    <li><a class="{% if url_name == 'genre' %}active{% endif %}" href="{% url 'music:genre' %}">Genres</a></li> 
+    
+                    {% if user.is_authenticated %}
+                        <li><a href="#about-us">About</a></li>
+                        <li><a href="#contact-us">Contact</a></li>
+                        <li id="user-container" class="user-container">
+                            <div class="user-chevron-icons">
+                                <i class="fas fa-user-circle"></i>
+                                <p>{{ user.username }}</p>
+                                <i class="fa fa-chevron-down user-chevron-down"></i>
+                                <i class="fa fa-chevron-up user-chevron-up"></i>
+                            </div>
+                            <div class="user-wrapper" style="height: 100%; overflow: visible; background: none;">
+                                <a class="{% if url_name == 'profile' %}active{% endif %}" href="#">Profile</a>
+                                <a id="create-album" href="{% url 'music:my-albums' %}?string=My albums">My albums</a>
+                                <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
+                                <a href="{% url 'music:new-song' %}">New song</a>
+                                <a id="about" href="{% url 'users:logout' %}">Logout</a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li id="user-container"  class="user-container">
+                            <div class="user-chevron-icons">
+                                <i class="fas fa-user-circle"></i>
+                                <p>Anonymous</p>
+                                <i class="fa fa-chevron-down user-chevron-down"></i>
+                                <i class="fa fa-chevron-up user-chevron-up"></i>
+                            </div>
+                            <div class="user-wrapper" style="height: 100%; overflow: visible; background: none;">
+                                <a href="{% url 'users:login' %}">Login</a>
+                                <a href="{% url 'users:register' %}">Join Us</a>
+                                <a href="#">Profile</a>
+                                <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
+                                <a id="about" href="{% url 'music:new-song' %}">New song</a>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endwith %}
+            </ul>
+        </div>
+    
+    
+    </div>
+    <!-- END PLAY ALBUM NAVIGATION -->
+
     <!-- end -->
     <script type="text/javascript">
         // DESKTOP PLAYER
@@ -957,6 +1035,24 @@
             }
 
         });
+
+        const playAlbumMobileNav = document.querySelector(".play-album-mobile-nav")
+        const idBars = document.querySelector("#bars")
+        const idTimes = document.querySelector("#times")
+        idTimes.style.display = "none"
+
+        idBars.addEventListener("click", function(event){
+            event.currentTarget.style.display = "none"
+            playAlbumMobileNav.classList.toggle("show-play-album-mobile-nav")
+            idTimes.style.display = "block"
+        })
+
+        idTimes.addEventListener("click", function(event){
+            event.currentTarget.style.display = "none"
+            playAlbumMobileNav.classList.toggle("show-play-album-mobile-nav")
+            idBars.style.display = "block"
+        })
+
         /*===============
         END OF NAVIGATION 
         =================*/
