@@ -53,13 +53,14 @@
                 left: 0;
                 width: 100%;
                 z-index: 3; 
-                background: rgba(0, 0, 0, 0.5);
+                background: rgba(0, 0, 0, 0.8);
                 backdrop-filter: blur(7px);
+                -webkit-backdrop-filter: blur(7px) contrast(60%);
                 transition: height 0.2s linear;
             }
 
             .show-play-album-mobile-nav {
-                height: calc(100% - 86px); 
+                height: 100vh;
             }
         }
 
@@ -368,7 +369,7 @@
         </div>
     </div>
 
-    <!-- PLAY ALBUM NAVIGATION  -->
+    <!-- PLAY ALBUM MOBILE NAVIGATION  -->
     <div class="play-album-mobile-nav">
     
         <div class="nav-wrapper">
@@ -1009,6 +1010,16 @@
             })
         })
 
+        window.addEventListener("resize", function(){
+            const mobilePlayerWrapper = document.querySelector(".mobile-player-wrapper")
+            if(window.innerHeight < 500){
+                mobilePlayerWrapper.style.display = "none"
+            }
+            if(window.innerHeight > 500) {
+                mobilePlayerWrapper.style.display = "flex"
+            }
+        })
+
         /* END MOBILE PLAYER */
 
         /*=========
@@ -1051,6 +1062,12 @@
             event.currentTarget.style.display = "none"
             playAlbumMobileNav.classList.toggle("show-play-album-mobile-nav")
             idBars.style.display = "block"
+        })
+
+        window.addEventListener("resize", function(){
+            idBars.style.display = "block";
+            idTimes.style.display = "none";
+            playAlbumMobileNav.classList.remove("show-play-album-mobile-nav")
         })
 
         /*===============
