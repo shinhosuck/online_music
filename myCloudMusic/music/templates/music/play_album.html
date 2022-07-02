@@ -12,7 +12,7 @@
     <title>Playing {{ album.title }}</title>
 
     <style>
-
+        
         .visualizer-container {
             height: 100%;
             width: 100%;
@@ -60,7 +60,7 @@
             }
 
             .show-play-album-mobile-nav {
-                height: 100vh;
+                height: calc(100vh - 86px);
             }
         }
 
@@ -74,6 +74,12 @@
                 display: none;
             }
         }
+
+        /* @media screen and (max-width: 499px) {
+            .nav-container {
+                display: none;
+            }
+        } */
 
     </style>
 </head>
