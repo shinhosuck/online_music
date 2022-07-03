@@ -64,10 +64,12 @@
             }
         }
 
+        /* ON LARGE SCREEN */
         .user-wrapper {
             background: rgba(255, 255, 255, 0.1);
             top: 41px;
         }
+        /* END */
 
         @media screen and (min-width: 900px) {
             .play-album-mobile-nav {
@@ -83,6 +85,17 @@
         .mobile-thumbs-up-icon,
         .mobile-thumbs-down-icon {
             font-size: 1.2rem;
+        }
+
+        .mobile-user-wrapper {
+            height: 0; 
+            overflow: hidden; 
+            background: none;
+            transition: height 0.1s linear;
+        }
+
+        .show-mobile-user-wrapper {
+            height: 195px;
         }
 
     </style>
@@ -391,14 +404,14 @@
                     {% if user.is_authenticated %}
                         <li><a href="#about-us">About</a></li>
                         <li><a href="#contact-us">Contact</a></li>
-                        <li class="user-container">
+                        <li id="mobile-id-user-container" class="user-container">
                             <div class="user-chevron-icons">
                                 <i class="fas fa-user-circle"></i>
                                 <p>{{ user.username }}</p>
-                                <i class="fa fa-chevron-down user-chevron-down"></i>
-                                <i class="fa fa-chevron-up user-chevron-up"></i>
+                                <i id="mobile-chevron-down" class="fa fa-chevron-down user-chevron-down"></i>
+                                <i id="mobile-chevron-up" class="fa fa-chevron-up user-chevron-up"></i>
                             </div>
-                            <div class="user-wrapper" style="height: 0; overflow: hidden; background: none;">
+                            <div class="user-wrapper mobile-user-wrapper">
                                 <a class="{% if url_name == 'profile' %}active{% endif %}" href="#">Profile</a>
                                 <a id="create-album" href="{% url 'music:my-albums' %}?string=My albums">My albums</a>
                                 <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
@@ -409,14 +422,14 @@
                     {% else %}
                         <li><a href="">About</a></li>
                         <li><a href="">Contact</a></li>
-                        <li class="user-container">
+                        <li id="mobile-id-user-container" class="user-container">
                             <div class="user-chevron-icons">
                                 <i class="fas fa-user-circle"></i>
                                 <p>Anonymous</p>
-                                <i class="fa fa-chevron-down user-chevron-down"></i>
-                                <i class="fa fa-chevron-up user-chevron-up"></i>
+                                <i id="mobile-chevron-down" class="fa fa-chevron-down user-chevron-down"></i>
+                                <i id="mobile-chevron-up" class="fa fa-chevron-up user-chevron-up"></i>
                             </div>
-                            <div class="user-wrapper" style="height: 0; overflow: hidden; background: none;">
+                            <div class="user-wrapper mobile-user-wrapper">
                                 <a href="{% url 'users:login' %}">Login</a>
                                 <a href="{% url 'users:register' %}">Join Us</a>
                                 <a href="#">Profile</a>
@@ -1058,11 +1071,14 @@
         });
 
         // MOBILE NAV
+        const mobileIdUserContainer = document.querySelector("#mobile-id-user-container")
+        const mobileUserWrapper = document.querySelector(".mobile-user-wrapper")
         const playAlbumMobileNav = document.querySelector(".play-album-mobile-nav")
         const idBars = document.querySelector("#bars")
         const idTimes = document.querySelector("#times")
+        const mobileChevronUp = document.querySelector("#mobile-chevron-up")
+        const mobileChevronDown = document.querySelector("#mobile-chevron-down")
         idTimes.style.display = "none"
-
 
         idBars.addEventListener("click", function(event){
             event.currentTarget.style.display = "none"
@@ -1074,12 +1090,28 @@
             event.currentTarget.style.display = "none"
             playAlbumMobileNav.classList.toggle("show-play-album-mobile-nav")
             idBars.style.display = "block"
+            mobileUserWrapper.classList.remove("show-mobile-user-wrapper")
+            mobileChevronDown.style.display = "flex"
+            mobileChevronUp.style.display = "none"
         })
 
         window.addEventListener("resize", function(){
             idBars.style.display = "block";
             idTimes.style.display = "none";
             playAlbumMobileNav.classList.remove("show-play-album-mobile-nav")
+        })
+
+        mobileIdUserContainer.addEventListener("click", function(){
+
+            mobileUserWrapper.classList.toggle("show-mobile-user-wrapper")
+            if(mobileUserWrapper.classList.contains("show-mobile-user-wrapper")){
+                mobileChevronDown.style.display = "none"
+                mobileChevronUp.style.display = "flex"
+            }
+            else{
+                mobileChevronDown.style.display = "flex"
+                mobileChevronUp.style.display = "none"
+            }
         })
 
         /*===============
