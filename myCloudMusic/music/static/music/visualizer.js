@@ -14,20 +14,8 @@ if(navigator.appVersion.indexOf("Linux") != -1) {
     runVisualizer()
 }
 
-console.log(deTectedOS)
-
-
-// const visualizerContainer = document.querySelector(".visualizer-container");
-// const albumControlBtn = document.querySelectorAll(".album-control-btn")
-// const audioWrapper = document.querySelector("#audio-wrapper");
-// const audioWrapperChildren = audioWrapper.children;
-// const audioMedia= [...audioWrapperChildren]
-
-// let numberOfBars = 130;
-
 function runVisualizer(){
 
-    
     const visualizerContainer = document.querySelector(".visualizer-container");
     const albumControlBtn = document.querySelectorAll(".album-control-btn")
     const audioWrapper = document.querySelector("#audio-wrapper");
@@ -51,7 +39,7 @@ function runVisualizer(){
             
             // 1. Get auto element 
             const audioElement = document.querySelector(`#audio${index + 1}`);
-        
+            
             // 2. Create audio context
             const audioCtx = new AudioContext();
 

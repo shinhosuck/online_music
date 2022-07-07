@@ -871,10 +871,11 @@
         }
 
         // fastforward song
-        progressBar.addEventListener("click", function(){
-            songFiles[index].currentTime += 10
-        })
-
+        // progressBar.addEventListener("click", function(){
+        //     let time = songFiles[index].currentTime
+        //     let newtime = Math.floor(time / 60)
+        //     console.log(newtime)
+        // })
         // progress bar
         songFiles.forEach((file)=>{
             file.addEventListener("timeupdate", ()=>{

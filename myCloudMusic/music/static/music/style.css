@@ -12,6 +12,7 @@ html, body {
     overflow-x: hidden!important;
     height: auto !important;
     scroll-behavior: smooth;
+    
     /* overscroll-behavior-y: none !important; */
 } 
 

@@ -160,13 +160,27 @@ def play_album(request, pk):
     album = Album.objects.get(pk=pk)
 
     song_length = []
+    int_min_sec = {}
     songs = album.song_set.all()
 
     for song in songs:
         audio = MP3(song.song_file)
         audio_length = audio.info.length
         minute = str(math.trunc((audio_length % 3600) / 60))
+
+        # Integer minute
+        int_min = math.trunc((audio_length % 3600) / 60)
+        # end
+
         second = str(math.trunc(audio_length % 60))
+
+        # Integer second
+        int_sec = math.trunc(audio_length % 60)
+        # end
+
+        print(f"{int_min}:{int_sec}")
+        
+       
         if len(second) == 1:
             song_length.append(f"{minute}:0{second}")
         elif len(second) < 1:
@@ -175,7 +189,7 @@ def play_album(request, pk):
             song_length.append(f"0{minute}:{second}")
         else:
             song_length.append(f"{minute}:{second}")
-
+    
     # delete old recenttly played and create new one
     if user.is_authenticated:
         albums = user.recentlyplayed_set.all()
