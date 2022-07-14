@@ -478,7 +478,8 @@
 
         const classPause = document.querySelector(".pause-button")
         const classPlay = document.querySelector(".play-button")
-        const initialTime = document.querySelector(".initial-time")
+        // const initialTime = document.querySelector(".initial-time")
+        const initialTime = document.querySelectorAll(".initial-time")
         // classPlay.style.color = "white"
 
         // MOBILE PLAYER
@@ -493,7 +494,7 @@
         const mobileRandom = document.querySelector("#mobile-random")
         // mobile song title 
         const mobileSongTitle = document.querySelector(".mobile-song-title")
-
+        const mobileInitialTime = document.querySelector(".mobile-initial-time")
 
         let index = 0
 
@@ -590,10 +591,12 @@
                     // if(minute < 10) {
                     //     minute = '0' + minute
                     // }
+                    initialTime.forEach(function(t){
+                        t.textContent = minute + ':' + seconds
+                    })
+                     
+                    mobileInitialTime.textContent = minute + ':' + seconds
 
-                    initialTime.textContent = minute + ':' + seconds
-
-                    console.log(minute + ':' + seconds)
                 }
                 setInterval(remainingTime, 1000)
 
@@ -676,10 +679,13 @@
                 //     minute = '0' + minute
                 // }
 
-                initialTime.textContent = minute + ':' + seconds
+                initialTime.forEach(function(t){
+                    t.textContent = minute + ':' + seconds
+                })
+                    
+                mobileInitialTime.textContent = minute + ':' + seconds
 
-                console.log(minute + ':' + seconds)
-                }
+            }
             setInterval(remainingTime, 1000)
 
             // END
@@ -793,10 +799,13 @@
                 //     minute = '0' + minute
                 // }
 
-                initialTime.textContent = minute + ':' + seconds
+                initialTime.forEach(function(t){
+                    t.textContent = minute + ':' + seconds
+                })
+                    
+                mobileInitialTime.textContent = minute + ':' + seconds
 
-                console.log(minute + ':' + seconds)
-                }
+            }
             setInterval(remainingTime, 1000)
 
             // END
@@ -882,10 +891,13 @@
                 //     minute = '0' + minute
                 // }
 
-                initialTime.textContent = minute + ':' + seconds
+                initialTime.forEach(function(t){
+                    t.textContent = minute + ':' + seconds
+                })
+                    
+                mobileInitialTime.textContent = minute + ':' + seconds
 
-                console.log(minute + ':' + seconds)
-                }
+            }
             setInterval(remainingTime, 1000)
 
             // END
@@ -920,10 +932,13 @@
                 //     minute = '0' + minute
                 // }
 
-                initialTime.textContent = minute + ':' + seconds
+                initialTime.forEach(function(t){
+                    t.textContent = minute + ':' + seconds
+                })
+                    
+                mobileInitialTime.textContent = minute + ':' + seconds
 
-                console.log(minute + ':' + seconds)
-                }
+            }
             setInterval(remainingTime, 1000)
 
             // END
@@ -975,10 +990,13 @@
                 //     minute = '0' + minute
                 // }
 
-                initialTime.textContent = minute + ':' + seconds
+                initialTime.forEach(function(t){
+                    t.textContent = minute + ':' + seconds
+                })
+                    
+                mobileInitialTime.textContent = minute + ':' + seconds
 
-                console.log(minute + ':' + seconds)
-                }
+            }
             setInterval(remainingTime, 1000)
 
             // END
@@ -1096,6 +1114,36 @@
                 mobileEndTime.textContent = songLength[index]
             })
 
+             // SONG MINUTES AND SECONDS
+
+             function remainingTime(){
+
+                let minute = Math.floor(songFiles[index].currentTime / 60)
+                let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                if(seconds >= 60) {
+                    seconds = seconds - (60 * minute)
+                }
+
+                if(seconds < 10) {
+                    seconds = '0' + seconds
+                }
+
+                // if(minute < 10) {
+                //     minute = '0' + minute
+                // }
+
+                initialTime.forEach(function(t){
+                    t.textContent = minute + ':' + seconds
+                })
+                    
+                mobileInitialTime.textContent = minute + ':' + seconds
+
+            }
+            setInterval(remainingTime, 1000)
+
+            // END
+
             mobilePlay.style.display = "none"
             mobilePause.style.display = "flex"
             albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.previousElementSibling.textContent
@@ -1154,6 +1202,35 @@
                 mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
                 songFiles[index].addEventListener("ended", autoPlay)
             }
+             // SONG MINUTES AND SECONDS
+
+             function remainingTime(){
+
+                let minute = Math.floor(songFiles[index].currentTime / 60)
+                let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                if(seconds >= 60) {
+                    seconds = seconds - (60 * minute)
+                }
+
+                if(seconds < 10) {
+                    seconds = '0' + seconds
+                }
+
+                // if(minute < 10) {
+                //     minute = '0' + minute
+                // }
+
+                initialTime.forEach(function(t){
+                    t.textContent = minute + ':' + seconds
+                })
+                    
+                mobileInitialTime.textContent = minute + ':' + seconds
+
+            }
+            setInterval(remainingTime, 1000)
+
+            // END
         })
 
         mobileBackward.addEventListener("click", ()=>{
@@ -1195,6 +1272,35 @@
                 mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent 
                 songFiles[index].addEventListener("ended", autoPlay)
             }
+             // SONG MINUTES AND SECONDS
+
+             function remainingTime(){
+
+                let minute = Math.floor(songFiles[index].currentTime / 60)
+                let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                if(seconds >= 60) {
+                    seconds = seconds - (60 * minute)
+                }
+
+                if(seconds < 10) {
+                    seconds = '0' + seconds
+                }
+
+                // if(minute < 10) {
+                //     minute = '0' + minute
+                // }
+
+                initialTime.forEach(function(t){
+                    t.textContent = minute + ':' + seconds
+                })
+                    
+                mobileInitialTime.textContent = minute + ':' + seconds
+
+            }
+            setInterval(remainingTime, 1000)
+
+            // END
         })
 
         
@@ -1295,6 +1401,35 @@
         /*===============
         END OF NAVIGATION 
         =================*/
+
+        // SONG MINUTES AND SECONDS
+
+        // function remainingTime(){
+
+        //     let minute = Math.floor(songFiles[index].currentTime / 60)
+        //     let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+        //     if(seconds >= 60) {
+        //         seconds = seconds - (60 * minute)
+        //     }
+
+        //     if(seconds < 10) {
+        //         seconds = '0' + seconds
+        //     }
+
+        //     // if(minute < 10) {
+        //     //     minute = '0' + minute
+        //     // }
+
+        //     initialTime.textContent = minute + ':' + seconds
+
+        //     console.log(minute + ':' + seconds)
+        //     }
+        // setInterval(remainingTime, 1000)
+
+        // END
+
+
     </script>
      <script type="text/javascript" src="{% static 'music/visualizer.js' %}"></script>
 </body>
