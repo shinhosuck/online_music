@@ -478,6 +478,7 @@
 
         const classPause = document.querySelector(".pause-button")
         const classPlay = document.querySelector(".play-button")
+        const initialTime = document.querySelector(".initial-time")
         // classPlay.style.color = "white"
 
         // MOBILE PLAYER
@@ -505,16 +506,31 @@
         const mobileEndTime = document.querySelector(".mobile-end-time")
         const totalSongTime = document.querySelectorAll(".total-song-time")
         let songLength = []
+        let int_minutes = []
+        let int_seconds = []
+        
 
         '{% for length in song_length %}'
             songLength.push("{{ length }}")
         '{% endfor %}'
-        // console.log(songLength)
+        
+        '{% for min in int_minutes %}'
+            int_minutes.push(parseInt('{{ min }}'))
+        '{% endfor %}'
+        
+        '{% for sec in int_seconds %}'
+        int_seconds.push(parseInt('{{ sec }}'))
+        '{% endfor %}'
 
+        int_minutes.forEach(function(min, index){
+            let minutes = min
+            let seconds = int_seconds[index]
+        })
+
+        
         for(let i = 0; i < songLength.length; i++){
             totalSongTime[i].textContent = songLength[i]
         }
-
 
         endTimes.forEach((endTime)=>{
             if(songLength[index]) {
@@ -555,6 +571,33 @@
                     endTime.textContent = songLength[index]
                     mobileEndTime.textContent = songLength[index]
                 })
+
+                // SONG MINUTES AND SECONDS
+
+                function remainingTime(){
+
+                    let minute = Math.floor(songFiles[index].currentTime / 60)
+                    let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                    if(seconds >= 60) {
+                        seconds = seconds - (60 * minute)
+                    }
+
+                    if(seconds < 10) {
+                        seconds = '0' + seconds
+                    }
+
+                    // if(minute < 10) {
+                    //     minute = '0' + minute
+                    // }
+
+                    initialTime.textContent = minute + ':' + seconds
+
+                    console.log(minute + ':' + seconds)
+                }
+                setInterval(remainingTime, 1000)
+
+                // END
 
                 songs[index].firstElementChild.style.display = "flex"
                 songs[index].firstElementChild.nextElementSibling.style.display = "none"
@@ -613,6 +656,33 @@
 
             songs[index].firstElementChild.style.display = "flex"
             songs[index].firstElementChild.nextElementSibling.style.display = "none"
+
+             // SONG MINUTES AND SECONDS
+
+             function remainingTime(){
+
+                let minute = Math.floor(songFiles[index].currentTime / 60)
+                let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                if(seconds >= 60) {
+                    seconds = seconds - (60 * minute)
+                }
+
+                if(seconds < 10) {
+                    seconds = '0' + seconds
+                }
+
+                // if(minute < 10) {
+                //     minute = '0' + minute
+                // }
+
+                initialTime.textContent = minute + ':' + seconds
+
+                console.log(minute + ':' + seconds)
+                }
+            setInterval(remainingTime, 1000)
+
+            // END
 
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
@@ -704,6 +774,32 @@
                 mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
                 songFiles[index].addEventListener("ended", autoPlay)
             }
+             // SONG MINUTES AND SECONDS
+
+             function remainingTime(){
+
+                let minute = Math.floor(songFiles[index].currentTime / 60)
+                let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                if(seconds >= 60) {
+                    seconds = seconds - (60 * minute)
+                }
+
+                if(seconds < 10) {
+                    seconds = '0' + seconds
+                }
+
+                // if(minute < 10) {
+                //     minute = '0' + minute
+                // }
+
+                initialTime.textContent = minute + ':' + seconds
+
+                console.log(minute + ':' + seconds)
+                }
+            setInterval(remainingTime, 1000)
+
+            // END
         })
 
         // go back to previous song
@@ -766,6 +862,33 @@
                 mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
                 songFiles[index].addEventListener("ended", autoPlay)
             }
+
+            // SONG MINUTES AND SECONDS
+
+            function remainingTime(){
+
+                let minute = Math.floor(songFiles[index].currentTime / 60)
+                let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                if(seconds >= 60) {
+                    seconds = seconds - (60 * minute)
+                }
+
+                if(seconds < 10) {
+                    seconds = '0' + seconds
+                }
+
+                // if(minute < 10) {
+                //     minute = '0' + minute
+                // }
+
+                initialTime.textContent = minute + ':' + seconds
+
+                console.log(minute + ':' + seconds)
+                }
+            setInterval(remainingTime, 1000)
+
+            // END
         })
 
         // redo song
@@ -777,6 +900,33 @@
                 endTime.textContent = songLength[index]
                 mobileEndTime.textContent = songLength[index]
             })
+
+            // SONG MINUTES AND SECONDS
+
+            function remainingTime(){
+
+                let minute = Math.floor(songFiles[index].currentTime / 60)
+                let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                if(seconds >= 60) {
+                    seconds = seconds - (60 * minute)
+                }
+
+                if(seconds < 10) {
+                    seconds = '0' + seconds
+                }
+
+                // if(minute < 10) {
+                //     minute = '0' + minute
+                // }
+
+                initialTime.textContent = minute + ':' + seconds
+
+                console.log(minute + ':' + seconds)
+                }
+            setInterval(remainingTime, 1000)
+
+            // END
 
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
@@ -805,6 +955,33 @@
                 endTime.textContent = songLength[index]
                 mobileEndTime.textContent = songLength[index]
             })
+
+            // SONG MINUTES AND SECONDS
+
+            function remainingTime(){
+
+                let minute = Math.floor(songFiles[index].currentTime / 60)
+                let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                if(seconds >= 60) {
+                    seconds = seconds - (60 * minute)
+                }
+
+                if(seconds < 10) {
+                    seconds = '0' + seconds
+                }
+
+                // if(minute < 10) {
+                //     minute = '0' + minute
+                // }
+
+                initialTime.textContent = minute + ':' + seconds
+
+                console.log(minute + ':' + seconds)
+                }
+            setInterval(remainingTime, 1000)
+
+            // END
 
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'

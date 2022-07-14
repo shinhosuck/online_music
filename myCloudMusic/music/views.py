@@ -160,7 +160,8 @@ def play_album(request, pk):
     album = Album.objects.get(pk=pk)
 
     song_length = []
-    int_min_sec = {}
+    int_minutes = []
+    int_seconds = []
     songs = album.song_set.all()
 
     for song in songs:
@@ -178,8 +179,9 @@ def play_album(request, pk):
         int_sec = math.trunc(audio_length % 60)
         # end
 
-        print(f"{int_min}:{int_sec}")
         
+        int_minutes.append(int_min)
+        int_seconds.append(int_sec)
        
         if len(second) == 1:
             song_length.append(f"{minute}:0{second}")
@@ -210,7 +212,9 @@ def play_album(request, pk):
         "songs": songs,
         "song_files": song_files,
         "song_length": song_length,
-        "new": new
+        "new": new,
+        "int_minutes": int_minutes,
+        "int_seconds": int_seconds
     }
     return render(request, "music/play_album.html", context)
 
