@@ -1881,7 +1881,8 @@ PLAY ALBUM
 }
 
 .mobile-player-wrapper {
-    background: rgba(255, 255, 255, 0.1);
+    /* background: rgba(255, 255, 255, 0.03); */
+    background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(4px);
     height: calc(100% - 86px);
     padding: 0 1.2rem;
