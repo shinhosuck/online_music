@@ -98,6 +98,29 @@
             height: 195px;
         }
 
+        .mobile-song-container >
+        .mobile-song-title {
+            padding: 1rem;
+            letter-spacing: 0.06rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+
+        .mobile-song-container >
+        .mobile-song-title:hover {
+            background: rgb(61, 61, 61);
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 320px) {
+            .mobile-song-container >
+            .mobile-song-title {
+                font-size: 0.9rem;
+            }
+        }
+
     </style>
 </head>
 <body class="music-player-background-img">
@@ -325,7 +348,7 @@
         <div class="mobile-player-wrapper">
             <div class="mobile-player-album-title-container">
                 <p class="mobile-player-album-title">{{ album.title }}</p>
-                <i class="fa-solid fa-ellipsis mobile-player-ellipsis" style="color: rgb(0, 225, 255);"></i>
+                <i class="fa-solid fa-ellipsis mobile-player-ellipsis"></i>
             </div>
             <div class="mobile-player-album-cover-container">
                 <img src="{{ album.album_cover.url }}" alt="">
@@ -381,7 +404,7 @@
             </div>
             <div class="mobile-side-menu-nav">
 
-                {% comment %}
+                    {% comment %}
                     <!-- <a href="{% url 'music:home' %}">Home</a>
                     <p class="song-list-toggle">See Song List</p>
                     <p class="close-song-list-toggle">Close Song List</p>
@@ -390,25 +413,16 @@
                         <a href="{% url 'music:add-song' album.pk %}">Add new song</a>
                         <a href="{% url 'music:all-albums' 'recently played'%}">Recently Played</a>
                     {% endif %} -->
-                {% endcomment %}
+                    {% endcomment %}
 
                 
                 <div class="song-header">
                     <p>Title</p>
                     <p>Time</p>
                 </div>
-                {% for song in songs %}
-                <p class="song" style="display: flex; align-items: center; justify-content: flex-start;">
-                    <span class="play-song-btn" style="display: none; width: 20px; margin-right: 0.5rem; color: rgb(255, 123, 0) !important;">
-                        <i class="fas fa-play" ></i>
-                    </span>
-                    <span class="song-counter" style="margin-right: 0.5rem;">{{ forloop.counter }}.</span>
-                    <span id="song" style="letter-spacing: 0.05rem;">{{ song.title }}</span>
-                    <span class="mobile-total-song-time" style="margin-left: auto;"></span>
-                </p>
-                {% endfor %}
-            
-
+                <div class="mobile-song-container" style="color: white">
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -530,11 +544,6 @@
         const mobileEndTime = document.querySelector(".mobile-end-time")
         const totalSongTime = document.querySelectorAll(".total-song-time")
 
-        // mobile total song time
-        const mobileTotalSongTime = document.querySelectorAll(".mobile-total-song-time")
-        console.log(mobileTotalSongTime)
-        // end
-
         let songLength = []
         let int_minutes = []
         let int_seconds = []
@@ -549,8 +558,29 @@
         '{% endfor %}'
         
         '{% for sec in int_seconds %}'
-        int_seconds.push(parseInt('{{ sec }}'))
+            int_seconds.push(parseInt('{{ sec }}'))
         '{% endfor %}'
+
+         // MOBILE SONG CONTAINER
+         const mobileSongTitles = []
+
+        const idSongs = document.querySelectorAll("#song")
+        for(let i = 0; i < idSongs.length; i++){
+            const mobileSongContiner = document.querySelector(".mobile-player-side-menu .mobile-side-menu-nav .mobile-song-container")
+            let text = idSongs[i].textContent
+
+            let newP = document.createElement("p")
+            newP.textContent = `${i + 1}. ${text}`
+            newP.classList.add("mobile-song-title")
+            mobileSongContiner.appendChild(newP)
+            mobileSongTitles.push(newP)
+
+            let newSpan = document.createElement("span")
+            newSpan.classList.add("mobile-song-length")
+            newSpan.textContent = songLength[i]
+            newP.appendChild(newSpan)
+        }
+        // END
 
         int_minutes.forEach(function(min, index){
             let minutes = min
@@ -560,7 +590,6 @@
         
         for(let i = 0; i < songLength.length; i++){
             totalSongTime[i].textContent = songLength[i]
-            mobileTotalSongTime[i].textContent = songLength[i]
         }
 
         endTimes.forEach((endTime)=>{
@@ -584,24 +613,30 @@
         songs.forEach(function(item){
             item.addEventListener("click", ()=>{
                 songFiles[index].pause()
+                songFiles[index].currentTime = 0
                 musicplayer.classList.toggle("show-music-player")
                 albumCover.classList.toggle("hide-album-cover")
                 songListToggle.style.display = "block"
                 closeSongListToggle.style.display = "none"
 
-                // click song to play
-                songs[index].lastElementChild.style.color = "white"
+                // CLICK SONG TO PLAY
+
+                // songs[index].lastElementChild.style.color = "white"
                 songs[index].firstElementChild.style.display = "none"
                 songs[index].firstElementChild.nextElementSibling.style.display = "flex"
 
+                mobileSongTitles[index].style.background = "transparent"
+
                 index = songs.indexOf(item)
-                songFiles[index].currentTime = 0
+                // songFiles[index].currentTime = 0
                 songFiles[index].play()
 
                 endTimes.forEach((endTime)=>{
                     endTime.textContent = songLength[index]
                     mobileEndTime.textContent = songLength[index]
                 })
+
+                mobileSongTitles[index].style.background = "orangered"
 
                 // SONG MINUTES AND SECONDS
 
@@ -690,6 +725,8 @@
             songs[index].firstElementChild.style.display = "flex"
             songs[index].firstElementChild.nextElementSibling.style.display = "none"
 
+            mobileSongTitles[index].style.background = "orangered"
+
              // SONG MINUTES AND SECONDS
 
              function remainingTime(){
@@ -761,6 +798,7 @@
                 songs[index].firstElementChild.style.display = "none"
                 songs[index].firstElementChild.nextElementSibling.style.display = "flex"
 
+                mobileSongTitles[index].style.background = "transparent"
 
                 index = 0
                 songFiles[index].play()
@@ -768,6 +806,11 @@
                 pauseBtn.style.display = 'flex'
                 classPlay.style.display = 'none'
                 classPause.style.display = 'flex'
+
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
+
+                mobileSongTitles[index].style.background = "orangered"
 
                 endTimes.forEach((endTime)=>{
                     endTime.textContent = songLength[index]
@@ -789,6 +832,8 @@
                 songs[index].firstElementChild.style.display = "none"
                 songs[index].firstElementChild.nextElementSibling.style.display = "flex"
 
+                mobileSongTitles[index].style.background = "transparent"
+
                 index ++
                 songFiles[index].play()
                 
@@ -796,6 +841,8 @@
                     endTime.textContent = songLength[index]
                     mobileEndTime.textContent = songLength[index]
                 })
+
+                mobileSongTitles[index].style.background = "orangered"
 
                 songs[index].firstElementChild.style.display = "flex"
                 songs[index].firstElementChild.nextElementSibling.style.display = "none"
@@ -805,6 +852,9 @@
 
                 classPlay.style.display = 'none'
                 classPause.style.display = 'flex'
+
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
 
                 albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.previousElementSibling.textContent
                 mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
@@ -851,6 +901,8 @@
                 songs[index].firstElementChild.style.display = "none"
                 songs[index].firstElementChild.nextElementSibling.style.display = "flex"
 
+                mobileSongTitles[index].style.background = "transparent"
+
                 index = songs.length - 1
                 songFiles[index].play()
 
@@ -858,6 +910,8 @@
                     endTime.textContent = songLength[index]
                     mobileEndTime.textContent = songLength[index]
                 })
+
+                mobileSongTitles[index].style.background = "orangered"
 
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
@@ -867,6 +921,9 @@
 
                 classPlay.style.display = 'none'
                 classPause.style.display = 'flex'
+
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
 
                 albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.previousElementSibling.textContent
                 mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
@@ -896,6 +953,9 @@
 
                 classPlay.style.display = 'none'
                 classPause.style.display = 'flex'
+
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
 
                 albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.previousElementSibling.textContent
                 mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
@@ -943,6 +1003,7 @@
                 mobileEndTime.textContent = songLength[index]
             })
 
+            mobileSongTitles[index].style.background = "orangered"
             // SONG MINUTES AND SECONDS
 
             function remainingTime(){
@@ -979,6 +1040,9 @@
             classPlay.style.display = 'none'
             classPause.style.display = 'flex'
 
+            mobilePlay.style.display = "none"
+            mobilePause.style.display = "flex"
+
             albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.previousElementSibling.textContent
             mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
         })
@@ -993,6 +1057,8 @@
             songs[index].firstElementChild.style.display = "none"
             songs[index].firstElementChild.nextElementSibling.style.display = "flex"
 
+            mobileSongTitles[index].style.background = "transparent"
+
             index = randomNum
             songFiles[index].play()
 
@@ -1000,6 +1066,8 @@
                 endTime.textContent = songLength[index]
                 mobileEndTime.textContent = songLength[index]
             })
+
+            mobileSongTitles[index].style.background = "orangered"
 
             // SONG MINUTES AND SECONDS
 
@@ -1033,6 +1101,9 @@
 
             playBtn.style.display = 'none'
             pauseBtn.style.display = 'flex'
+
+            mobilePlay.style.display = "none"
+            mobilePause.style.display = "flex"
 
             songs[index].firstElementChild.style.display = "inline"
             songs[index].firstElementChild.nextElementSibling.style.display = "none"
@@ -1052,6 +1123,8 @@
                 songs[index].firstElementChild.style.display = "none"
                 songs[index].firstElementChild.nextElementSibling.style.display = "flex"
 
+                mobileSongTitles[index].style.background = "transparent"
+
                 index = 0
                 songFiles[index].currentTime = 0
                 playBtn.style.display = 'flex'
@@ -1059,6 +1132,11 @@
 
                 classPlay.style.display = 'none'
                 classPause.style.display = 'flex'
+
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
+
+                mobileSongTitles[index].style.background = "orangered"
 
                 albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.previousElementSibling.textContent
                 mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
@@ -1072,12 +1150,19 @@
                 songs[index].firstElementChild.style.display = "none"
                 songs[index].firstElementChild.nextElementSibling.style.display = "flex"
 
+                mobileSongTitles[index].style.background = "transparent"
+
                 index ++
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
 
                 classPlay.style.display = 'none'
                 classPause.style.display = 'flex'
+
+                mobilePlay.style.display = "none"
+                mobilePause.style.display = "flex"
+
+                mobileSongTitles[index].style.background = "orangered"
 
                 songs[index].firstElementChild.style.display = "flex"
                 songs[index].firstElementChild.nextElementSibling.style.display = "none"
@@ -1117,6 +1202,9 @@
         })
 
         /* MOBILE PLAYER */ 
+
+        // const faMobilePlay = document.querySelectorAll(".fa-mobile-play")
+
         if(songFiles[index]) {
             songFiles[index].addEventListener("playing", ()=>{
                 mobilePlay.style.display = "none"
@@ -1143,6 +1231,11 @@
                 endTime.textContent = songLength[index]
                 mobileEndTime.textContent = songLength[index]
             })
+
+            mobileSongTitles[index].style.background = "orangered"
+
+            songs[index].firstElementChild.style.display = "flex"
+            songs[index].firstElementChild.nextElementSibling.style.display = "none"
 
              // SONG MINUTES AND SECONDS
 
@@ -1197,6 +1290,12 @@
             if(index == songFiles.length - 1) {
                 songFiles[index].pause()
                 songFiles[index].currentTime = 0
+
+                mobileSongTitles[index].style.background = "transparent"
+
+                songs[index].firstElementChild.style.display = "none"
+                songs[index].firstElementChild.nextElementSibling.style.display = "flex"
+
                 index = 0
                 songFiles[index].play()
 
@@ -1204,6 +1303,11 @@
                     endTime.textContent = songLength[index]
                     mobileEndTime.textContent = songLength[index]
                 })
+
+                mobileSongTitles[index].style.background = "orangered"
+
+                songs[index].firstElementChild.style.display = "flex"
+                songs[index].firstElementChild.nextElementSibling.style.display = "none"
 
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
@@ -1216,6 +1320,12 @@
             else if(index < songFiles.length - 1) {
                 songFiles[index].pause()
                 songFiles[index].currentTime = 0
+
+                mobileSongTitles[index].style.background = "transparent"
+
+                songs[index].firstElementChild.style.display = "none"
+                songs[index].firstElementChild.nextElementSibling.style.display = "flex"
+
                 index ++
                 songFiles[index].play()
 
@@ -1223,6 +1333,11 @@
                     endTime.textContent = songLength[index]
                     mobileEndTime.textContent = songLength[index]
                 })
+
+                mobileSongTitles[index].style.background = "orangered"
+
+                songs[index].firstElementChild.style.display = "flex"
+                songs[index].firstElementChild.nextElementSibling.style.display = "none"
 
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
@@ -1267,6 +1382,12 @@
             if(index == 0) {
                 songFiles[index].pause()
                 songFiles[index].currentTime = 0
+
+                mobileSongTitles[index].style.background = "transparent"
+
+                songs[index].firstElementChild.style.display = "none"
+                songs[index].firstElementChild.nextElementSibling.style.display = "flex"
+
                 index = songs.length - 1
                 songFiles[index].play()
 
@@ -1274,6 +1395,11 @@
                     endTime.textContent = songLength[index]
                     mobileEndTime.textContent = songLength[index]
                 })
+
+                mobileSongTitles[index].style.background = "orangered"
+
+                songs[index].firstElementChild.style.display = "flex"
+                songs[index].firstElementChild.nextElementSibling.style.display = "none"
 
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
@@ -1286,6 +1412,12 @@
             else if(index == songFiles.length - 1 || index > 0) {
                 songFiles[index].pause()
                 songFiles[index].currentTime = 0
+
+                mobileSongTitles[index].style.background = "transparent"
+
+                songs[index].firstElementChild.style.display = "none"
+                songs[index].firstElementChild.nextElementSibling.style.display = "flex"
+
                 index --
                 songFiles[index].play()
 
@@ -1293,6 +1425,11 @@
                     endTime.textContent = songLength[index]
                     mobileEndTime.textContent = songLength[index]
                 })
+
+                mobileSongTitles[index].style.background = "orangered"
+
+                songs[index].firstElementChild.style.display = "flex"
+                songs[index].firstElementChild.nextElementSibling.style.display = "none"
 
                 playBtn.style.display = 'none'
                 pauseBtn.style.display = 'flex'
@@ -1355,6 +1492,62 @@
             if(window.innerHeight > 500) {
                 mobilePlayerWrapper.style.display = "flex"
             }
+        })
+
+        mobileSongTitles.forEach(function(title){
+            title.addEventListener("click", function(){
+                songs[index].firstElementChild.style.display = "none"
+                songs[index].firstElementChild.nextElementSibling.style.display = "flex"
+                mobileSongTitles[index].style.backgroundColor = "transparent"
+                songFiles[index].pause()
+                songFiles[index].currentTime = "0"
+                let titleIndex = mobileSongTitles.indexOf(title)
+                index = titleIndex
+                songFiles[index].play()
+
+                title.style.background = "orangered"
+
+                endTimes.forEach((endTime)=>{
+                    endTime.textContent = songLength[index]
+                    mobileEndTime.textContent = songLength[index]
+                })
+                
+                songs[index].firstElementChild.style.display = "flex"
+                songs[index].firstElementChild.nextElementSibling.style.display = "none"
+
+                // SONG MINUTES AND SECONDS
+
+                function remainingTime(){
+
+                    let minute = Math.floor(songFiles[index].currentTime / 60)
+                    let seconds = Math.floor(songFiles[index].currentTime %  1000)
+
+                    if(seconds >= 60) {
+                        seconds = seconds - (60 * minute)
+                    }
+
+                    if(seconds < 10) {
+                        seconds = '0' + seconds
+                    }
+
+                    // if(minute < 10) {
+                    //     minute = '0' + minute
+                    // }
+
+                    initialTime.forEach(function(t){
+                        t.textContent = minute + ':' + seconds
+                    })
+                        
+                    mobileInitialTime.textContent = minute + ':' + seconds
+
+                }
+                setInterval(remainingTime, 1000)
+
+                albumLikeDislike.firstElementChild.textContent = songs[index].lastElementChild.previousElementSibling.textContent
+                mobileSongTitle.textContent = songs[index].lastElementChild.previousElementSibling.textContent
+
+                // END
+            })
         })
 
         /* END MOBILE PLAYER */
@@ -1431,34 +1624,6 @@
         /*===============
         END OF NAVIGATION 
         =================*/
-
-        // SONG MINUTES AND SECONDS
-
-        // function remainingTime(){
-
-        //     let minute = Math.floor(songFiles[index].currentTime / 60)
-        //     let seconds = Math.floor(songFiles[index].currentTime %  1000)
-
-        //     if(seconds >= 60) {
-        //         seconds = seconds - (60 * minute)
-        //     }
-
-        //     if(seconds < 10) {
-        //         seconds = '0' + seconds
-        //     }
-
-        //     // if(minute < 10) {
-        //     //     minute = '0' + minute
-        //     // }
-
-        //     initialTime.textContent = minute + ':' + seconds
-
-        //     console.log(minute + ':' + seconds)
-        //     }
-        // setInterval(remainingTime, 1000)
-
-        // END
-
 
     </script>
      <script type="text/javascript" src="{% static 'music/visualizer.js' %}"></script>

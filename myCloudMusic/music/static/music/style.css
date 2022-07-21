@@ -1908,8 +1908,9 @@ PLAY ALBUM
 }
 
 .mobile-player-ellipsis {
-    color: white;
+    color: rgb(0, 225, 255);
     font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .mobile-player-album-cover-container {
