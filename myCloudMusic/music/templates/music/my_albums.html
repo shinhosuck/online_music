@@ -11,7 +11,7 @@
 {% if not data %}
     <div class="album-container" style="padding-bottom: 3rem;">
         <h1 style="justify-content: flex-start;">
-            My albums 
+            New song
             {% if albums %}
             <span style="font-size: 0.9rem; padding-left: 1rem; color: rgb(201, 201, 201); 
                         text-transform: initial; letter-spacing: 0.07rem; padding-bottom: 0.2rem;">
@@ -30,7 +30,12 @@
                     <div class="background-overlay"></div>
 
                     <div class="album-text-wrapper">
-                        <h2>{{ album.title }}</h2>
+                        <h2>{{ album.title }}
+                            <i class="fa-solid fa-music"></i>
+                            <span>{{album.song_set.count}}</span>
+                        </h2>
+                        <p style="flex: 0 0 100%; color: rgb(180, 180, 180); margin-top: 0.3rem; text-transform: capitalize;
+                            font-size: 14px;">{{ album.choose_genre }}</p>
                         <div class="flex-box">
                             <div class="album-author">
                                 <i class="fas fa-user-circle"></i>
