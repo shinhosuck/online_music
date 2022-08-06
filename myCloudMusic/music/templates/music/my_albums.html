@@ -8,6 +8,14 @@
 
 
 {% block content %}
+<style>
+    #click-to-addsong:hover {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 9px;
+    }
+</style>
+<!-- rendering albums from "new_song() function in the views" 
+    from user drop menu from the nav, when "new song" is clicked, comes to this section -->
 {% if not data %}
     <div class="album-container" style="padding-bottom: 3rem;">
         <h1 style="justify-content: flex-start;">
@@ -26,9 +34,6 @@
             {% for album in albums %}
                 <div class="album-wrapper add-new-song" style="position: relative;">
                     <img src="{{ album.album_cover.url }}" alt="">
-
-                    <div class="background-overlay"></div>
-
                     <div class="album-text-wrapper">
                         <h2>{{ album.title }}</h2>
                         <div class="flex-box">
@@ -51,26 +56,21 @@
                     <a id="prevent-default" class="play-btn" href="#">
                         <i class="fa-solid fa-play" style="color: gray"></i>
                     </a>
-                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 4;">
-                        <a href="{% url 'music:add-song' album.pk %}" style="display: block; width: 100%; height: 100%;"></a>
+
+                    <div class="background-overlay" style="background: rgba(0, 0, 0, 0.6);"></div>
+
+                    <div id="click-to-addsong" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 4;">
+                        <a href="{% url 'music:add-song' album.pk %}" style="width: 100%; height: 100%; padding-top: 1.5rem; letter-spacing: 0.06rem;
+                            display: flex; align-items: center; justify-content: center; color: rgb(255, 136, 0); font-size: 1rem; font-weight: 600;">click to add song</a>
                     </div>
                 </div>
             {% endfor %}
         </div>
         {% endif %}
     </div>
+<!-- end -->
 
-<!-- <script>
-
-    const addNewSongs = document.querySelectorAll(".add-new-song")
-
-    addNewSongs.forEach((song)=>{
-        song.addEventListener("click", ()=>{
-            alert("hello world")
-        })
-    })
-
-</script> -->
+<!-- this section just renders items from "my_albums()" function -->
 {% else %}
     <div class="album-container" style="padding-bottom: 3rem;">
         <h1 style="justify-content: flex-start;">{{ data }}</h1>
@@ -112,5 +112,5 @@
         {% endif %}
     </div>
 {% endif %}
-
+<!-- end -->
 {% endblock content %}

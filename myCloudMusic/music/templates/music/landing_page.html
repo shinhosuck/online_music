@@ -33,8 +33,8 @@
                 <div class="nav-wrapper">
                     <ul class="nav-items landing-page-nav-items">
                         <li><a href="{% url 'music:home' %}">Browse</a></li>
-                        <li><a href="">Contact</a></li>
-                        <li class="about"><a href="">About</a></li>
+                        <li><a href="{% url 'music:contact-us' %}">Contact</a></li>
+                        <li class="about"><a href="{% url 'music:about-us' %}">About</a></li>
                         <li><a href="{% url 'users:login' %}">Login</a></li>
                         <li class="about"><a href="{% url 'users:register' %}">Join Us</a></li>
                     </ul>
