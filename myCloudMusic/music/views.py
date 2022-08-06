@@ -130,6 +130,10 @@ def all_albums(request, string):
     
     if string == "latest albums":
         latest_albums = Album.objects.all()[0:16]
+
+        # for album in latest_albums:
+        #     print(album.choose_genre)
+
         context = {
             "latest_albums": latest_albums,
             "string": string
@@ -277,10 +281,3 @@ def genre_albums(request):
             "genre_albums": genre_albums
         }
     return render(request, "music/all_genre_albums.html", context)
-
-
-def about_us(request):
-    return render(request, "music/about.html", {})
-
-def contact_us(request):
-    return render(request, "music/contact.html", {})

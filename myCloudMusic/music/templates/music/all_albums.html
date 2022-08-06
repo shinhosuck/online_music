@@ -25,7 +25,10 @@
                     <div class="background-overlay"></div>
 
                     <div class="album-text-wrapper">
-                        <h2>{{ album.title }}</h2>
+                        <h2>{{ album.title }}
+                            <i class="fa-solid fa-music"></i>
+                            <span>{{album.song_set.count}}</span>
+                        </h2>
 
                         <div class="flex-box">
 
@@ -72,7 +75,12 @@
                     <div class="background-overlay"></div>
 
                     <div class="album-text-wrapper">
-                        <h2>{{ album.album.title }}</h2>
+                        <h2>{{ album.album.title }}
+                            <i class="fa-solid fa-music"></i>
+                            <span>{{album.album.song_set.count}}</span>
+                        </h2>
+                        <p style="flex: 0 0 100%; color: rgb(180, 180, 180); margin-top: 0.3rem; text-transform: capitalize;
+                            font-size: 14px;">{{ album.album.choose_genre }}</p>
 
                         <div class="flex-box">
 
@@ -118,8 +126,12 @@
                     <div class="background-overlay"></div>
 
                     <div class="album-text-wrapper">
-                        <h2>{{ album.title }}</h2>
-
+                        <h2>{{ album.title }}
+                            <i class="fa-solid fa-music"></i>
+                            <span>{{album.song_set.count}}</span>
+                        </h2>
+                        <p style="flex: 0 0 100%; color: rgb(180, 180, 180); margin-top: 0.3rem; text-transform: capitalize;
+                            font-size: 14px;">{{ album.choose_genre }}</p>
                         <div class="flex-box">
 
                             <div class="album-author">
@@ -164,8 +176,12 @@
                     <div class="background-overlay"></div>
 
                     <div class="album-text-wrapper">
-                        <h2>{{ album.title }}</h2>
-
+                        <h2>{{ album.title }}
+                            <i class="fa-solid fa-music"></i>
+                            <span>{{album.song_set.count}}</span>
+                        </h2>
+                        <p style="flex: 0 0 100%; color: rgb(180, 180, 180); margin-top: 0.3rem; text-transform: capitalize;
+                            font-size: 14px;">{{ album.choose_genre }}</p>
                         <div class="flex-box">
 
                             <div class="album-author">

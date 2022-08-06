@@ -13,9 +13,7 @@ from music.views import (
     play_album,
     genre,
     genre_albums,
-    my_albums,
-    about_us,
-    contact_us
+    my_albums
 )
 
 app_name = "music"
@@ -32,7 +30,5 @@ urlpatterns = [
     path("play/album/<int:pk>", play_album, name="play-album"),
     path("playlist/genres", genre, name="genre"),
     path("playlist", genre_albums, name="genre-albums"),
-    path("my/albums", my_albums, name="my-albums"),
-    path("about/us", about_us, name="about-us"),
-    path("contact/us", contact_us, name="contact-us")
+    path("my/albums", my_albums, name="my-albums")
 ]
