@@ -281,3 +281,11 @@ def genre_albums(request):
             "genre_albums": genre_albums
         }
     return render(request, "music/all_genre_albums.html", context)
+
+
+def about_us(request):
+    return render(request, "music/about_us.html", {})
+
+
+def contact_us(request):
+    return render(request, "music/contact_us.html", {})
