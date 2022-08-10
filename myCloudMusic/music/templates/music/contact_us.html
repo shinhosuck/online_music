@@ -28,33 +28,149 @@
         border-bottom: 1px solid rgb(46, 46, 46);
     }
 
+    .contact-us-container > h1 > p {
+        flex: 0 0 100%;
+        font-size: 16px;
+        padding-top: 1rem;
+        letter-spacing: 0.09rem;
+        color: rgb(221, 221, 221);
+        font-weight: 400;
+    }
+
+    .contact-us-wrapper {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .contact-us-wrapper >
+    .contact-us-1,
+    .contact-us-2,
+    .contact-us-3 {
+        flex: 1;
+    }
+
+/* ADDRESS, PHONE AND EMAIL */
+    .contact-us-wrapper >
+    .contact-us-1 > .contact-us-address > h3,
+    .contact-us-1 > .contact-us-phone > h3,
+    .contact-us-1 > .contact-us-email > h3 {
+        color: white;
+        padding: 1rem 0;
+        letter-spacing: 0.07rem;
+    }
+
+    .contact-us-wrapper >
+    .contact-us-1 >
+    .contact-us-address >
+    address {
+        color: lightgray;
+        letter-spacing: 0.1rem;
+        line-height: 1.3;
+    }
+
+    .contact-us-wrapper >
+    .contact-us-1 >
+    .contact-us-phone >
+    div {
+        padding-bottom: 0.5rem;
+    }
+
+    .contact-us-wrapper >
+    .contact-us-1 >
+    .contact-us-phone >
+    div:last-child {
+        padding-bottom: 0;
+    }
+
+    .contact-us-wrapper >
+    .contact-us-1 >
+    .contact-us-phone >
+    div > a {
+        color: lightgray;
+        letter-spacing: 0.06rem;
+    }
+
+    .contact-us-wrapper >
+    .contact-us-1 >
+    .contact-us-email >
+     div {
+        padding-bottom: 0.5rem;
+    }
+
+    .contact-us-wrapper >
+    .contact-us-1 >
+    .contact-us-email >
+    div:last-child {
+        padding-bottom: 0;
+    }
+
+    .contact-us-wrapper >
+    .contact-us-1 >
+    .contact-us-email >
+    div > a {
+        color: lightgray;
+        letter-spacing: 0.06rem;
+    }
+
+    /* END */
+
+
+
 </style>
 
 <div class="contact-us-container">
     <h1 class="contact-us-header">
         Contact us
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
     </h1>
     <div class="contact-us-wrapper">
 
         <div class="contact-us-1">
             <div class="contact-us-address">
                 <h3>Address</h3>
+                <address>
+                    Cloud Music <br>
+                    12345 Street name <br>
+                    City name, State <br>
+                    USA, 67890
+                </address>
             </div>
             <div class="contact-us-phone">
                 <h3>Phone</h3>
+                <div class="cell-phone">
+                    <a href="tel:+1-916-000-000">+1(916)-000-000</a>
+                </div>
+                <div class="office-phone">
+                    <a href="tel:+1-916-000-000">+1(916)-111-000</a>
+                </div>
             </div>
             <div class="contact-us-email">
                 <h3>Email</h3>
+                <div class="cloud-music-gmail">
+                    <a href="mailto:cloud_music@gmail.com">cloudmusic@gmail.com</a>
+                </div>
+                <div class="cloud-music-hotmail">
+                    <a href="mailto:cloud_music@hotmail.com">cloudmusic@hotmail.com</a>
+                </div>
             </div>
         </div>
 
         <div class="contact-us-2">
-
+            <div class="footer-quick-links">
+                <h3 style="padding: 1rem 0; color: white; text-align: start; letter-spacing: 0.07rem;">Message</h3>
+                <form style="margin: 0; padding-left: 2rem; padding-right: 2rem;" class="form-content" action="{% url 'users:message' %}" method="POST">
+                    {% csrf_token %}
+                    {{ user_message_form.as_p }}
+                    <button class="message-submit" type="submit">Send message</button>
+                </form>
+            </div>
         </div>
 
-        <div class="contact-us-3">
+        <!-- <div class="contact-us-3">
 
-        </div>
+        </div> -->
         
     </div>
 </div>

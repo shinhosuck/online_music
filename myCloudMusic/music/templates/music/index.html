@@ -41,8 +41,8 @@
                         <li><a class="{% if url_name == 'genre' %}active{% endif %}" href="{% url 'music:genre' %}">Genres</a></li> 
 
                         {% if user.is_authenticated %}
-                            <li><a href="{% url 'music:about-us' %}">About</a></li>
-                            <li><a href="{% url 'music:contact-us' %}">Contact</a></li>
+                            <li><a class="{% if url_name == 'about-us' %}active{% endif %}" href="{% url 'music:about-us' %}">About</a></li>
+                            <li><a class="{% if url_name == 'contact-us' %}active{% endif %}" href="{% url 'music:contact-us' %}">Contact</a></li>
                             <li class="user-container">
                                 <div class="user-chevron-icons">
                                     <i class="fas fa-user-circle"></i>
@@ -59,8 +59,8 @@
                                 </div>
                             </li>
                         {% else %}
-                            <li><a href="{% url 'music:about-us' %}">About</a></li>
-                            <li><a href="{% url 'music:contact-us' %}">Contact</a></li>
+                            <li><a class="{% if url_name == 'about-us' %}active{% endif %}" href="{% url 'music:about-us' %}">About</a></li>
+                            <li><a class="{% if url_name == 'contact-us' %}active{% endif %}" href="{% url 'music:contact-us' %}">Contact</a></li>
                             <li class="user-container">
                                 <div class="user-chevron-icons">
                                     <i class="fas fa-user-circle"></i>
