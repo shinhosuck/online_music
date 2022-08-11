@@ -1,179 +1,128 @@
-{% extends "music/index.html" %}
 {% load static %}
-
-
-<title>
-    {% block title %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
+    <title>
         Contact us
-    {% endblock title %}
-</title>
+    </title>
 
-{% block content %}
+    <style type="text/css">
+        /* FORM */
+        .form-content {
+            text-align: start;
+            margin-top: 1rem;
+            /* padding: 1.5rem; */
+            /* background: rgb(61, 61, 61); */
+            border-radius: 15px;
+        }
+        p > label {
+            color: rgb(202, 202, 202);
+            font-size: 1rem;
+        }
+        p > input, textarea {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            outline: none;
+            border: none;
+            margin-top: 0.5rem;
+            border-radius: 10px;
+            margin-bottom: 0.8rem;
+            background: rgb(218, 218, 218);
+            color: rgb(0, 0, 0);
+            resize: none;
+            font-size: 1rem;
+        }
 
-<style type="text/css">
+        p > textarea {
+            height: 170px;
+            display: block;
+            width: 100%;
+        }
 
-    .contact-us-container {
-        width: 90vw;
-        margin: 0 auto;
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-    }
+        .message-submit {
+            color: white;
+            padding: 1rem;
+            background: orangered;
+            border-radius: 10px;
+            outline: none;
+            box-shadow: none;
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 0.06rem;
+            text-align: center;
+            width: 100%;
+            display: block;
+            cursor: pointer;
+        }
+        /* ENDFORM */
 
-    .contact-us-container > h1 {
-        letter-spacing: 0.09rem;
-        font-size: 1.6rem;
-        color: rgb(255, 81, 0);
-        padding-bottom: 1rem;
-        padding-top: 1rem;
-        border-bottom: 1px solid rgb(46, 46, 46);
-    }
+        .contact-us-body {
+            position: relative !important;
+        }
 
-    .contact-us-container > h1 > p {
-        flex: 0 0 100%;
-        font-size: 16px;
-        padding-top: 1rem;
-        letter-spacing: 0.09rem;
-        color: rgb(221, 221, 221);
-        font-weight: 400;
-    }
+        .contact-us-container {
+            position: absolute;
+            width: 90vw;
+            max-width: 500px;
+            /* top: 50%; */
+            left: 50%;
+            z-index: 5;
+            transform: translate(-50%, -50%);
+            background: rgba(11, 31, 86, 0.8);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: max-height 0.5s linear;
 
-    .contact-us-wrapper {
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-    }
+            animation-name: contact-us-drop-form;
+            animation-timing-function: linear;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-duration: 0.7s;
+        }
 
-    .contact-us-wrapper >
-    .contact-us-1,
-    .contact-us-2,
-    .contact-us-3 {
-        flex: 1;
-    }
+        @keyframes contact-us-drop-form {
+            from {
+            top: -100%
+            }
+            to {
+                top: 50%; 
+                /* transform: translateY(-50%); */
+            }
+        }
+        .contact-us-message-submit {
+            border: 3px solid transparent
+        }
+        .contact-us-message-submit:hover {
+            border: 3px solid rgb(255, 165, 133);
+        }
+    </style>
 
-/* ADDRESS, PHONE AND EMAIL */
-    .contact-us-wrapper >
-    .contact-us-1 > .contact-us-address > h3,
-    .contact-us-1 > .contact-us-phone > h3,
-    .contact-us-1 > .contact-us-email > h3 {
-        color: white;
-        padding: 1rem 0;
-        letter-spacing: 0.07rem;
-    }
-
-    .contact-us-wrapper >
-    .contact-us-1 >
-    .contact-us-address >
-    address {
-        color: lightgray;
-        letter-spacing: 0.1rem;
-        line-height: 1.3;
-    }
-
-    .contact-us-wrapper >
-    .contact-us-1 >
-    .contact-us-phone >
-    div {
-        padding-bottom: 0.5rem;
-    }
-
-    .contact-us-wrapper >
-    .contact-us-1 >
-    .contact-us-phone >
-    div:last-child {
-        padding-bottom: 0;
-    }
-
-    .contact-us-wrapper >
-    .contact-us-1 >
-    .contact-us-phone >
-    div > a {
-        color: lightgray;
-        letter-spacing: 0.06rem;
-    }
-
-    .contact-us-wrapper >
-    .contact-us-1 >
-    .contact-us-email >
-     div {
-        padding-bottom: 0.5rem;
-    }
-
-    .contact-us-wrapper >
-    .contact-us-1 >
-    .contact-us-email >
-    div:last-child {
-        padding-bottom: 0;
-    }
-
-    .contact-us-wrapper >
-    .contact-us-1 >
-    .contact-us-email >
-    div > a {
-        color: lightgray;
-        letter-spacing: 0.06rem;
-    }
-
-    /* END */
-
-
-
-</style>
-
-<div class="contact-us-container">
-    <h1 class="contact-us-header">
-        Contact us
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
-    </h1>
-    <div class="contact-us-wrapper">
-
-        <div class="contact-us-1">
-            <div class="contact-us-address">
-                <h3>Address</h3>
-                <address>
-                    Cloud Music <br>
-                    12345 Street name <br>
-                    City name, State <br>
-                    USA, 67890
-                </address>
-            </div>
-            <div class="contact-us-phone">
-                <h3>Phone</h3>
-                <div class="cell-phone">
-                    <a href="tel:+1-916-000-000">+1(916)-000-000</a>
-                </div>
-                <div class="office-phone">
-                    <a href="tel:+1-916-000-000">+1(916)-111-000</a>
-                </div>
-            </div>
-            <div class="contact-us-email">
-                <h3>Email</h3>
-                <div class="cloud-music-gmail">
-                    <a href="mailto:cloud_music@gmail.com">cloudmusic@gmail.com</a>
-                </div>
-                <div class="cloud-music-hotmail">
-                    <a href="mailto:cloud_music@hotmail.com">cloudmusic@hotmail.com</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="contact-us-2">
-            <div class="footer-quick-links">
-                <h3 style="padding: 1rem 0; color: white; text-align: start; letter-spacing: 0.07rem;">Message</h3>
-                <form style="margin: 0; padding-left: 2rem; padding-right: 2rem;" class="form-content" action="{% url 'users:message' %}" method="POST">
+</head>
+    <body class="create-album-body contact-us-body">
+        <div class="contact-us-container">
+            <div class="footer-quick-links" styl="margin: 0;">
+                <h2 style="padding-bottom: 1rem; color: white; text-align: start; letter-spacing: 0.07rem; padding-top: 0; font-size: 2rem; font-weight: 500;">Contact us</h2>
+                <form style="margin: 0;" class="form-content" action="{% url 'users:message' %}" method="POST">
                     {% csrf_token %}
                     {{ user_message_form.as_p }}
-                    <button class="message-submit" type="submit">Send message</button>
+                    <button class="message-submit contact-us-message-submit" type="submit">Send message</button>
+                    <a href="{% url 'music:home' %}" class="create-album-cancel" style="padding: 1rem; letter-spacing: 0.06rem; border-radius: 10px;">Cancel</a>
                 </form>
             </div>
         </div>
-
-        <!-- <div class="contact-us-3">
-
-        </div> -->
-        
-    </div>
-</div>
+    </body>
+</html>
 
 
-{% endblock content %}
+
+
+
+
+
+
+

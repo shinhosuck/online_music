@@ -18,7 +18,9 @@ def message(request):
     if request.method == "POST":
         form = MessageForm(request.POST or None)
         if form.is_valid():
-            form.save()
+            new_message = form.save()
+            print(form.instance.email)
+            print(new_message.email, new_message.message)
             # messages.success(request, f"Thank you very much for the message. I will get back to you as soon as possible.")
             return redirect("music:home")
         else:

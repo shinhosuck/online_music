@@ -17,7 +17,7 @@ class UserRegisterForm(UserCreationForm):
         ]
 
 class MessageForm(forms.ModelForm):
-    email = forms.EmailField()
+    # email = forms.EmailField()
 
     class Meta:
         model = Message

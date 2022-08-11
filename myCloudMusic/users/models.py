@@ -5,6 +5,7 @@ from django.utils import timezone
 class Message(models.Model):
     first_name = models.CharField(max_length=20, blank=True)
     last_name = models.CharField(max_length=20, blank=True)
+    email = models.EmailField()
     message = models.TextField()
     date = models.DateTimeField(default=timezone.now)
 
