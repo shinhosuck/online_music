@@ -28,12 +28,91 @@
         border-bottom: 1px solid rgb(46, 46, 46);
     }
 
+    .about-content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        flex-wrap: wrap;
+        padding-top: 2rem;
+    }
+
+    .about-content-wrapper >
+    .about-img-container,
+    .about-text-container {
+        flex: 1;
+        padding: 1rem;
+        padding-bottom: 0;
+    }
+
+    .about-content-wrapper >
+    .about-img-container {
+        padding: 0;
+    }
+
+    .about-content-wrapper >
+    .about-img-container {
+        padding-left: 0;
+        padding-right: 0;
+        position: relative;
+    }
+
+    .about-content-wrapper >
+    .about-img-container >
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .about-content-wrapper >
+    .about-img-container >
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    .about-content-wrapper >
+    .about-img-container >
+    div > img {
+        width: 100%;
+        height: auto;
+        display: block;
+        filter: opacity(30%);
+    }
+
+    .about-content-wrapper >
+    .about-text-container >
+    p {
+        color: white;
+        letter-spacing: 0.09rem;
+        line-height: 1.5;
+        text-align: center;
+    }
+
 </style>
 
 <div class="about-us-container">
     <h1>
         About us
     </h1>
+    <div class="about-content-wrapper">
+        <div class="about-img-container">
+            <img src="{% static 'music/images/about-img.jpg' %}" alt="">
+            <div>
+                <img class="about-img2" src="{% static 'music/images/about-img3.png' %}" alt="">
+            </div>
+        </div>
+        <div class="about-text-container">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Quod ipsa eligendi harum modi labore assumenda aspernatur
+                architecto similique! Dolores officia necessitatibus a
+                aliquam commodi fugit cupiditate vel, quae debitis voluptate.
+            </p>
+        </div>
+    </div>
 </div>
 
 
