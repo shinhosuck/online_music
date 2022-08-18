@@ -41,6 +41,7 @@
     .about-text-container {
         flex: 1;
         padding: 1rem;
+        padding-left: 2rem;
         padding-bottom: 0;
     }
 
@@ -82,13 +83,27 @@
         filter: opacity(30%);
     }
 
+    .about-text-container {
+        text-align: center;
+    }
+
     .about-content-wrapper >
     .about-text-container >
     p {
         color: white;
-        letter-spacing: 0.09rem;
-        line-height: 1.5;
-        text-align: center;
+        letter-spacing: 0.1rem;
+        line-height: 1.7;
+        /* text-align: center; */
+    }
+
+    .about-content-wrapper >
+    .about-text-container >
+    a {
+        padding: 1rem 2rem;
+        background: orangered;
+        border-radius: 23px;
+        margin-top: 2rem;
+        letter-spacing: 0.07rem;
     }
 
 </style>
@@ -111,6 +126,7 @@
                 architecto similique! Dolores officia necessitatibus a
                 aliquam commodi fugit cupiditate vel, quae debitis voluptate.
             </p>
+            <a href="{% url 'music:contact-us' %}" class="about-us-btn">Contact us</a>
         </div>
     </div>
 </div>
