@@ -301,6 +301,25 @@ def genre(request):
             #         if genre == album.album.choose_genre:
             #             print(album.album.title)
 
+        if genre_string == "most listened":
+            most_listened = Album.objects.filter(thumbs_up=1)
+            albums = most_listened
+            for album in albums:
+                if album.choose_genre not in new_genres:
+                    new_genres.append(album.choose_genre)
+
+        # for genre in new_genres:
+        #     print(f"{genre}:")
+        #     for album in albums:
+        #         if album.choose_genre == genre:
+        #             print(album.title)
+        
+        if genre_string == "you might also like":
+            you_might_also_like = Album.objects.all()
+            albums = you_might_also_like
+            for album in albums:
+                if album.choose_genre not in new_genres:
+                    new_genres.append(album.choose_genre)
 
         context = {
             "genre_string" : genre_string,
