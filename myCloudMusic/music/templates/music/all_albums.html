@@ -15,6 +15,7 @@
         <!-- <h1>{{ string }}</h1> -->
         <h1>
             Latest albums
+            <a href="{% url 'music:genre' %}?string={{ string }}">See by genres</a>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
         </h1>
         <div class="albums">
@@ -66,6 +67,7 @@
         <!-- <h1>{{ string }}</h1> -->
         <h1>
             Recently played
+            <a href="{% url 'music:genre' %}?string={{ string }}">See by genres</a>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
         </h1>
         <div class="albums">
@@ -117,6 +119,7 @@
     <div class="album-container">
         <!-- <h1>{{ string }}</h1> -->
         <h1>Most listened
+            <a href="{% url 'music:genre' %}?string={{ string }}">See by genres</a>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
         </h1>
         <div class="albums">
@@ -167,6 +170,7 @@
     <div class="album-container">
         <!-- <h1>{{ string }}</h1> -->
         <h1>You might also like
+            <a href="{% url 'music:genre' %}?string={{ string }}">See by genres</a>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
         </h1>
         <div class="albums">
