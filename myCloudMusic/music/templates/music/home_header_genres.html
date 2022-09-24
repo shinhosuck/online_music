@@ -1,0 +1,134 @@
+{% extends "music/index.html" %}
+
+
+<title>
+    {% block title %}
+        {{ genre_string|capfirst }} view by genres
+    {% endblock title %}
+</title>
+
+
+{% block content %}
+
+<style>
+    .see-all-by-genre {
+        padding-top: 3rem !important;
+    }
+
+    .see-all-by-genre:nth-child(1) {
+        padding-top: 1rem !important;
+    }
+</style>
+
+
+{% if genre_string == "recently played" %}
+    {% comment %}
+    <!-- <h1 style="color: orangered">{{ genre_string }}</h1>
+    <br>
+    {% for genre in new_genres %}
+        <h2 style="color: orangered; text-transform: capitalize;">{{ genre }}</h2>
+            {% for album in albums %}
+                {% if album.album.choose_genre == genre %}
+                    <p style="color: white;">{{ album.album.title }}</p>
+                {% endif %}
+            {% endfor %}
+    {% endfor %} -->
+    {% endcomment %}
+
+    <div class="album-container">
+        {% for genre in new_genres %}
+            <h1 class="see-all-by-genre">
+                {{ genre|capfirst }}
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
+            </h1>
+
+            <div class="albums">
+                {% for album in albums %}
+                    {% if album.album.choose_genre == genre %}
+                        <div class="album-wrapper">
+                            <img src="{{ album.album.album_cover.url }}" alt="">
+                        
+                            <div class="background-overlay"></div>
+                        
+                            <div class="album-text-wrapper">
+                                <h2>{{ album.album.title }}
+                                    <i class="fa-solid fa-music"></i>
+                                    <span>{{album.album.song_set.count}}</span>
+                                </h2>
+                                <p style="flex: 0 0 100%; color: rgb(180, 180, 180); margin-top: 0.3rem; text-transform: capitalize;
+                                    font-size: 14px;">{{ album.album.choose_genre }}</p>
+                                <div class="flex-box">
+                                    <div class="album-author">
+                                        <i class="fas fa-user-circle"></i>
+                                        <p>{{ album.album.user.username }}</p>
+                                    </div>
+                                    <div class="thumbs-up-down">
+                                        <a id="prevent-default" class="thumbs-up" href="#">
+                                            <i class="fas fa-thumbs-up"></i>
+                                            <p>{{ album.album.thumbs_up }}</p>
+                                        </a>
+                                        <a id="prevent-default" class="thumbs-down" href="#">
+                                            <p>{{ album.album.thumbs_down }}</p>
+                                            <i class="fas fa-thumbs-down fa-flip-horizontal"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="play-btn" href="{% url 'music:play-album' album.album.pk %}"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% else %}
+    <div class="album-container">
+        {% for genre in new_genres %}
+            <h1 class="see-all-by-genre">
+                {{ genre|capfirst }}
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, earum!</p>
+            </h1>
+
+            <div class="albums">
+                {% for album in albums %}
+                    {% if album.choose_genre == genre %}
+                        <div class="album-wrapper">
+                            <img src="{{ album.album_cover.url }}" alt="">
+                        
+                            <div class="background-overlay"></div>
+                        
+                            <div class="album-text-wrapper">
+                                <h2>{{ album.title }}
+                                    <i class="fa-solid fa-music"></i>
+                                    <span>{{album.song_set.count}}</span>
+                                </h2>
+                                <p style="flex: 0 0 100%; color: rgb(180, 180, 180); margin-top: 0.3rem; text-transform: capitalize;
+                                    font-size: 14px;">{{ album.choose_genre }}</p>
+                                <div class="flex-box">
+                                    <div class="album-author">
+                                        <i class="fas fa-user-circle"></i>
+                                        <p>{{ album.user.username }}</p>
+                                    </div>
+                                    <div class="thumbs-up-down">
+                                        <a id="prevent-default" class="thumbs-up" href="#">
+                                            <i class="fas fa-thumbs-up"></i>
+                                            <p>{{ album.thumbs_up }}</p>
+                                        </a>
+                                        <a id="prevent-default" class="thumbs-down" href="#">
+                                            <p>{{ album.thumbs_down }}</p>
+                                            <i class="fas fa-thumbs-down fa-flip-horizontal"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="play-btn" href="{% url 'music:play-album' album.pk %}"><i class="fa-solid fa-play"></i></a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock content %}

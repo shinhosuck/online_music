@@ -265,75 +265,10 @@ def my_albums(request):
 
 def genre(request):
     genres = Genre.objects.all()
-    user = request.user
-
-    # STRING FORM ALL_ALBUMS.HTML
-    if request.GET.get("string"):
-
-        new_genres = []
-        albums = ""
-        genre_string = request.GET.get("string")
-
-        if genre_string == "latest albums":
-            latest_albums = Album.objects.all()
-            albums = latest_albums
-            for album in albums:
-               if album.choose_genre not in new_genres:
-                new_genres.append(album.choose_genre)
-            
-            # for genre in new_genres:
-            #     print(f"{genre}:")
-            #     for album in albums:
-            #         if album.choose_genre == genre:
-            #             print(album.title)
-
-        if genre_string == "recently played" and user.is_authenticated:
-            # user = request.user
-            recently_player_albums = user.recentlyplayed_set.all()
-            albums = recently_player_albums
-            for album in albums:
-               if album.album.choose_genre not in new_genres:
-                new_genres.append(album.album.choose_genre)
-
-            # for genre in new_genres:
-            #     print(f"{genre}:")
-            #     for album in albums:
-            #         if genre == album.album.choose_genre:
-            #             print(album.album.title)
-
-        if genre_string == "most listened":
-            most_listened = Album.objects.filter(thumbs_up=1)
-            albums = most_listened
-            for album in albums:
-                if album.choose_genre not in new_genres:
-                    new_genres.append(album.choose_genre)
-
-        # for genre in new_genres:
-        #     print(f"{genre}:")
-        #     for album in albums:
-        #         if album.choose_genre == genre:
-        #             print(album.title)
-        
-        if genre_string == "you might also like":
-            you_might_also_like = Album.objects.all()
-            albums = you_might_also_like
-            for album in albums:
-                if album.choose_genre not in new_genres:
-                    new_genres.append(album.choose_genre)
-
-        context = {
-            "genre_string" : genre_string,
-            "albums": albums,
-            "new_genres": new_genres
-        }
-        return render(request, "music/genres.html", context)
-    # END
-
-    else:
-        context = {
-            "genres": genres
-        }
-        return render(request, "music/genres.html", context)
+    context = {
+        "genres": genres
+    }
+    return render(request, "music/genres.html", context)
 
 
 def genre_albums(request):
@@ -354,3 +289,51 @@ def about_us(request):
 
 def contact_us(request):
     return render(request, "music/contact_us.html", {})
+
+
+def home_header_genres(request):
+    user = request.user
+
+    # STRING FORM ALL_ALBUMS.HTML
+    if request.GET.get("string"):
+
+        new_genres = []
+        albums = ""
+        genre_string = request.GET.get("string")
+
+        if genre_string == "latest albums":
+            latest_albums = Album.objects.all()
+            albums = latest_albums
+            for album in albums:
+               if album.choose_genre not in new_genres:
+                new_genres.append(album.choose_genre)
+            
+            
+        if genre_string == "recently played" and user.is_authenticated:
+            recently_player_albums = user.recentlyplayed_set.all()
+            albums = recently_player_albums
+            for album in albums:
+               if album.album.choose_genre not in new_genres:
+                new_genres.append(album.album.choose_genre)
+
+        if genre_string == "most listened":
+            most_listened = Album.objects.filter(thumbs_up=1)
+            albums = most_listened
+            for album in albums:
+                if album.choose_genre not in new_genres:
+                    new_genres.append(album.choose_genre)
+
+        if genre_string == "you might also like":
+            you_might_also_like = Album.objects.all()
+            albums = you_might_also_like
+            for album in albums:
+                if album.choose_genre not in new_genres:
+                    new_genres.append(album.choose_genre)
+
+        context = {
+            "genre_string" : genre_string,
+            "albums": albums,
+            "new_genres": new_genres
+        }
+        return render(request, "music/home_header_genres.html", context)
+    # END
