@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from users.forms import UserRegisterForm, MessageForm
-
+from users.models import UserProfile
 
 
 def register(request):
@@ -26,3 +26,6 @@ def message(request):
         else:
             # messages.warning(request, f"Message did not sent. Please try again!")
             return redirect("music:home")
+
+def user_profile(request):
+    return render(request, "users/profile.html", {})
