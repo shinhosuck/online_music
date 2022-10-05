@@ -6,8 +6,11 @@ from users.models import UserProfile
 def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
+        # user = form.instance.username
+        # print(user)
         if form.is_valid():
-            form.save()
+            user_form = form.save()
+            print(user_form.username)
             return redirect("users:login")
     else:
          form = UserRegisterForm()
