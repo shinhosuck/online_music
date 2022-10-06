@@ -174,6 +174,13 @@
     <!-- END OF BANNER -->
 
     <main class="main-background">
+
+        {% for message in messages %}
+            <div>
+                <p style="color: green">{{ message }}</p>
+            </div>
+        {% endfor %}
+
         {% block content %}
         {% endblock content %}
     </main>

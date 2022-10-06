@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from users.forms import UserRegisterForm, MessageForm
-from users.models import UserProfile
+from users.models import Profile
+from django.contrib import messages
 
 
 def register(request):
@@ -9,8 +10,9 @@ def register(request):
         # user = form.instance.username
         # print(user)
         if form.is_valid():
-            user_form = form.save()
-            print(user_form.username)
+            register_form = form.save()
+            # print(user_form.username)
+            messages.success(request, f"Successfully registered {register_form.username} !")
             return redirect("users:login")
     else:
          form = UserRegisterForm()
@@ -18,17 +20,21 @@ def register(request):
 
 
 def message(request):
+    user = request.user
     if request.method == "POST":
         form = MessageForm(request.POST or None)
+        # print(form.instance.email)
         if form.is_valid():
             new_message = form.save()
-            print(form.instance.email)
-            print(new_message.email, new_message.message)
-            # messages.success(request, f"Thank you very much for the message. I will get back to you as soon as possible.")
+            # print(new_message.email, new_message.message)
+            if user.is_authenticated:
+                messages.success(request, f"Message sent {user.username}!")
+            else:
+                messages.success(request, f"Message sent {new_message.email}!")
             return redirect("music:home")
         else:
-            # messages.warning(request, f"Message did not sent. Please try again!")
             return redirect("music:home")
 
 def user_profile(request):
-    return render(request, "users/profile.html", {})
+    user = request.user
+    return render(request, "users/profile.html", {"user": user})

@@ -8,5 +8,8 @@
 </title>
 
 {% block content %}
-    <h1 style="color: white;">My profile</h1>
+    <div style="display: flex; align-items: flex-end;">
+        <img src="{{ user.profile.image.url }}" width="100px" height="100px" style="border-radius: 50%; display:block;" alt="">
+        <p style="color: white;">{{ user.username }}</p>
+    </div>
 {% endblock content %}

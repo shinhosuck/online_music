@@ -19,6 +19,11 @@
                     <a class="sign-in-go-home" href="{% url 'music:home' %}">Go home</a>
                 </div>
             {% else %}
+                {% for message in messages%}
+                    <div>
+                        <p style="color: green">{{ message }}</p>
+                    </div>
+                {% endfor %}
                 <h2>Sign in</h2>
                 <form class="create-album-form" action="" method="POST">
                     {% csrf_token %}
@@ -29,6 +34,5 @@
             {% endif %}
         </div>
     </div>
-
 </body>
 </html>
