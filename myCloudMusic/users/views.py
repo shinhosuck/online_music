@@ -35,6 +35,11 @@ def message(request):
         else:
             return redirect("music:home")
 
-def user_profile(request):
+def user_profile(request, pk):
     user = request.user
-    return render(request, "users/profile.html", {"user": user})
+    if request.GET.get("string"):
+        data = int(request.GET.get("string"))
+        print(data)
+        return redirect("users:user-profile", pk=pk)
+    else:
+        return render(request, "users/profile.html", {"user": user})

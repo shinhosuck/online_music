@@ -12,7 +12,7 @@ urlpatterns = [
     path("message/", message, name="message"),
     path("login/", LoginView.as_view(template_name="users/login.html"), name="login"),
     path("logout/", LogoutView.as_view(template_name="music/landing-page.html"), name="logout"),
-    path("profile/", user_profile, name="user-profile")
+    path("profile/<int:pk>", user_profile, name="user-profile")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

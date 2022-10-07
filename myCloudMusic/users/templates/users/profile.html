@@ -9,19 +9,29 @@
     <title>{{ user.username }} profile</title>
 
     <style>
+        .profile-body-background {
+            background:rgb(31, 31, 31)
+        }
+
         .profile-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 90vw;
-            margin: 0 auto;
-            padding: 3rem 0;
-            border: 1px solid rgb(59, 59, 59);
         }
-    
+        
+        .profile-wrapper {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            background: rgb(65, 65, 65);
+            border-radius: 15px;
+            /* justify-content: center; */
+        }
+
         .profile-img > img {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             display: block;
             border-radius: 50%;
         }
@@ -29,35 +39,48 @@
         .profile-bio {
             padding-left: 1rem;
         }
+
         .profile-bio > p {
             color: rgb(223, 223, 223);
             letter-spacing: 0.06rem;
             line-height: 1.5;
         }
 
+        .profile-btns {
+            flex: 0 0 100%;
+            border: 1px solid pink
+        }
+
         .profile-cancel {
-            border: 1px solid orangered;
+            border: 1px solid rgb(255, 69, 0);
             padding: 1rem;
         }
     </style>
 
 </head>
-<body style="background:rgb(31, 31, 31)">
-    <head></head>
+<body class="profile-body-background">
+    <head>
+
+    </head>
     <main>
         <div class="profile-container">
-            <div class="profile-img">
-                <img src="{{ user.profile.image.url }}" alt="profile image">
-            </div>
-            <div class="profile-bio">
-                <p class="profile-username">username: {{ user.username }}</p>
-                <p class="profile-email">email: {{ user.email }}</p>
-            </div>
-            <div class="profile-btns">
-                <a href="{% url 'music:home' %}" class="profile-cancel">Cancel</a>
+            <div class="profile-wrapper">
+                <div class="profile-img">
+                    <img src="{{ user.profile.image.url }}" alt="profile image">
+                </div>
+                <div class="profile-bio">
+                    <p class="profile-username">username: {{ user.username }}</p>
+                    <p class="profile-email">email: {{ user.email }}</p>
+                </div>
+                <div class="profile-btns">
+                    <a href="{% url 'users:user-profile' user.pk %}?string={{ user.pk }}" class="profile-update">Update</a>
+                    <a href="{% url 'music:home' %}" class="profile-cancel">Cancel</a>
+                </div>
             </div>
         </div>
     </main>
-    <footer></footer>
+    <footer>
+
+    </footer>
 </body>
 </html>
