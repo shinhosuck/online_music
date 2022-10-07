@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from users.forms import UserRegisterForm, MessageForm
 from users.models import Profile
 from django.contrib import messages
@@ -34,7 +35,7 @@ def message(request):
             return redirect("music:home")
         else:
             return redirect("music:home")
-
+@login_required
 def user_profile(request, pk):
     user = request.user
     if request.GET.get("string"):
