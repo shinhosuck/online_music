@@ -1,15 +1,63 @@
-{% extends "music/index.html" %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'music/style.css' %}">
+    <title>{{ user.username }} profile</title>
 
-<title>
-    {% block title %}
-        Profile
-    {% endblock title%}
-</title>
+    <style>
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90vw;
+            margin: 0 auto;
+            padding: 3rem 0;
+            border: 1px solid rgb(59, 59, 59);
+        }
+    
+        .profile-img > img {
+            width: 100px;
+            height: 100px;
+            display: block;
+            border-radius: 50%;
+        }
+    
+        .profile-bio {
+            padding-left: 1rem;
+        }
+        .profile-bio > p {
+            color: rgb(223, 223, 223);
+            letter-spacing: 0.06rem;
+            line-height: 1.5;
+        }
 
-{% block content %}
-    <div style="display: flex; align-items: flex-end;">
-        <img src="{{ user.profile.image.url }}" width="100px" height="100px" style="border-radius: 50%; display:block;" alt="">
-        <p style="color: white;">{{ user.username }}</p>
-    </div>
-{% endblock content %}
+        .profile-cancel {
+            border: 1px solid orangered;
+            padding: 1rem;
+        }
+    </style>
+
+</head>
+<body style="background:rgb(31, 31, 31)">
+    <head></head>
+    <main>
+        <div class="profile-container">
+            <div class="profile-img">
+                <img src="{{ user.profile.image.url }}" alt="profile image">
+            </div>
+            <div class="profile-bio">
+                <p class="profile-username">username: {{ user.username }}</p>
+                <p class="profile-email">email: {{ user.email }}</p>
+            </div>
+            <div class="profile-btns">
+                <a href="{% url 'music:home' %}" class="profile-cancel">Cancel</a>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
