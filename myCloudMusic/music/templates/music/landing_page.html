@@ -35,8 +35,13 @@
                         <li><a href="{% url 'music:home' %}">Browse</a></li>
                         <li><a href="{% url 'music:contact-us' %}">Contact</a></li>
                         <li class="about"><a href="{% url 'music:about-us' %}">About</a></li>
-                        <li><a href="{% url 'users:login' %}">Login</a></li>
-                        <li class="about"><a href="{% url 'users:register' %}">Join Us</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="">User: {{ user.username }}</a></li>
+                        <li class="about"><a href="{% url 'users:logout' %}">Log out</a></li>
+                        {% else %}
+                            <li><a href="{% url 'users:login' %}">Login</a></li>
+                            <li class="about"><a href="{% url 'users:register' %}">Join Us</a></li>
+                        {% endif %}
                     </ul>
                     <div class="user-wrapper user-chevron-down user-chevron-up"></div>
                 </div>
@@ -56,14 +61,23 @@
                     </div>
                 </div>
                 <div class="landing-page-join-btn">
-                    <a href="{% url 'users:register' %}">
-                        Join us 
-                        <i class="fa fa-chevron-right"></i>
-                    </a>
-                    <p>
-                        Have an account?
-                        <a class="landing-page-signin" href="{% url 'users:login' %}">Login</a>
-                    </p>
+                    {% if user.is_authenticated %}
+                        <p style="letter-spacing: 0.06rem; margin-top: 0; color: rgb(224, 224, 224);">
+                            User 
+                            <span style="color: rgb(255, 89, 0); text-transform: uppercase; font-weight: bold;">{{ user.username }}</span> 
+                            you are logged in!
+                            <a class="landing-page-signin" href="{% url 'users:logout' %}">Log out</a>
+                        </p>
+                    {% else %}
+                        <a href="{% url 'users:register' %}">
+                            Join us 
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                        <p>
+                            Have an account?
+                            <a class="landing-page-signin" href="{% url 'users:login' %}">Login</a>
+                        </p>
+                    {% endif %}
                 </div>
             </div>
         </div>
