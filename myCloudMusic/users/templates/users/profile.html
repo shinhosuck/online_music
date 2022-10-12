@@ -15,14 +15,14 @@
         }
 
         .profile-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            /* ANIMATION */
             position: absolute;
             left: 0;
             width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+             /* ANIMATION */
             animation-name: drop-profile;
             animation-timing-function: linear;
             animation-iteration-count: 1;
@@ -41,15 +41,18 @@
         }
 
         .profile-wrapper {
-            max-width: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
+            margin: 0 auto;
+            max-width: 500px;
             background: rgb(65, 65, 65);
             border-radius: 15px;
-            /* text-align: center; */
             padding: 1rem;
+        }
+
+        .profile-data {
+            display: flex;
+            align-items: center;
+            /* border: 1px solid white; */
+            margin-bottom: 1rem;
         }
 
         .profile-img > img {
@@ -61,26 +64,39 @@
         }
     
         .profile-bio {
-            flex: 1 1 100%;
+            /* border: 1px solid red; */
+            padding-left: 1rem;
         }
 
         .profile-bio > p {
             color: rgb(223, 223, 223);
             letter-spacing: 0.06rem;
-            padding: 0.5rem 0;
-            /*border: 1px solid white;*/
+            padding: 0.25rem 0;
+            display: inline-block;
         }
 
         .profile-bio > p:first-child {
-            padding-top: 1rem;
+            padding-top: 0.5rem;
+            font-size: 1.5rem;
+            text-transform: capitalize;
+            font-weight: bold;
+            color: orangered
+        }
+
+        #profile-update-form {
+            padding: 1rem;
+            border: 1px solid rgb(86, 86, 86);
+            border-radius: 15px;
         }
 
         .profile-bio > p:last-child {
-            padding-bottom: 1rem;
+            padding-bottom: 0.5rem;
         }
 
         .profile-btns {
             flex: 0 0 100%;
+            text-align: center;
+            margin-top: 1rem;
         }
 
         .btn:nth-child(1) {
@@ -123,22 +139,34 @@
     <main class="profile-container" enctype="multipart/form-data">
         
         <div class="profile-wrapper">
-            <form action="" method="POST" >
-                {% csrf_token %}
+            <div class="profile-data">
                 <div class="profile-img">
-                    {{ profile_update_form|crispy }}
+                    <img src="{{ user.profile.image.url }}" alt="profile picture">
                 </div>
                 <div class="profile-bio">
-                   {{ user_update_form|crispy }}
+                    <p>{{ user.username }}</p>
+                    <br>
+                    <p>{{ user.email }}</p>
                 </div>
-                
-                <div class="profile-btns">
-                    <a href="{% url 'users:user-profile' user.pk %}?string={{ user.pk }}" class="profile-update btn">Update</a>
-                    <a href="{% url 'music:home' %}" class="profile-cancel btn">Cancel</a>
-                </div>
-            </form>
+            </div>
+            <div id="profile-update-form">
+                <h3 style="color: white; margin-bottom: 1rem; letter-spacing: 0.06rem; font-weight: normal">Update user information</h3>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="profile-update-form">
+                        {{ profile_update_form|crispy }}
+                    </div>
+                    <div class="user-update-form">
+                        {{ user_update_form|crispy }}
+                    </div>
+                    <div class="profile-btns">
+                        <a href="{% url 'users:user-profile' user.pk %}?string={{ user.pk }}" class="profile-update btn">Update</a>
+                        <a href="{% url 'music:home' %}" class="profile-cancel btn">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            
         </div>
-        
     </main>
     <footer>
 

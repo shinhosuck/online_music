@@ -52,6 +52,7 @@ def user_profile(request, pk):
         profile_update_form = ProfileUpdateForm(instance=user.profile)
         context = {
             "profile_update_form": profile_update_form,
-            "user_update_form": user_update_form
+            "user_update_form": user_update_form,
+            "user": user
         }
         return render(request, "users/profile.html", context)

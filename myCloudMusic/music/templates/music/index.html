@@ -71,7 +71,7 @@
                                 <div class="user-wrapper">
                                     <a href="{% url 'users:login' %}">Login</a>
                                     <a href="{% url 'users:register' %}">Join Us</a>
-                                    <a href="#">Profile</a>
+                                    <a href="{% url 'users:user-profile' pk=0 %}">Profile</a>
                                     <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
                                     <a id="about" href="{% url 'music:new-song' %}">New song</a>
                                 </div>

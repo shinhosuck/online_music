@@ -21,7 +21,6 @@ class UserRegisterForm(UserCreationForm):
 # can you ModelForm to create form
 class MessageForm(forms.ModelForm):
     # email = forms.EmailField()
-
     class Meta:
         model = Message
         fields = [
@@ -38,9 +37,6 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=20)
-    first_name = forms.CharField(max_length=30)
-
     class Meta:
         model = Profile
-        fields = ["image", "first_name", "last_name"]
+        fields = ["image"]
