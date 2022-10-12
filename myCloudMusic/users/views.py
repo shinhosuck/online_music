@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from users.forms import UserRegisterForm, MessageForm
+from users.forms import UserRegisterForm, MessageForm, UserUpdateForm, ProfileUpdateForm
 from users.models import Profile
 from django.contrib import messages
 
@@ -38,9 +38,20 @@ def message(request):
 @login_required
 def user_profile(request, pk):
     user = request.user
-    if request.GET.get("string"):
-        data = int(request.GET.get("string"))
-        print(data)
-        return redirect("users:user-profile", pk=pk)
+    # if request.GET.get("string"):
+    #     data = int(request.GET.get("string"))
+    #     print(data)
+    #     return redirect("users:user-profile", pk=pk)
+    # else:
+    if request.method == "POST":
+        user_update_form = UserUpdateForm(request.POST)
+        profile_update_form = ProfileUpdateForm(request.POST)
+
     else:
-        return render(request, "users/profile.html", {"user": user})
+        user_update_form = UserUpdateForm(instance=user)
+        profile_update_form = ProfileUpdateForm(instance=user.profile)
+        context = {
+            "profile_update_form": profile_update_form,
+            "user_update_form": user_update_form
+        }
+        return render(request, "users/profile.html", context)
