@@ -11,21 +11,15 @@
 {% block content %}
 
     <style>
-        .profile-body-background {
-            background:rgb(31, 31, 31)
-        }
-
         .user-info-container {
             /*position: absolute;
             left: 0;
             width: 100vw;*/
             /*border: 1px solid white;*/
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 3rem 0;
+            
+            padding: 2rem 0;
+            background: rgb(52, 52, 52);
 
             /* ANIMATION */
             /*animation-name: user-info;
@@ -46,29 +40,66 @@
         }*/
 
         .user-info-wrapper {
-            background: rgb(45 45 45);
-            padding: 1rem;
+            /* background: rgb(45 45 45);
+            padding: 1rem; */
+            width: 90vw;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgb(52, 52, 52);
         }
 
         .user-img-wrapper > img {
-            margin: 0 auto;
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             display: block;
             border-radius: 50%;
+            box-shadow: 2px 2px 18px 0px rgb(0, 0, 0);
         }
 
         .user-personal-data {
             color: white;
             /*text-align: center;*/
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-left: 1rem;
+            /* border: 1px solid white; */
+
         }
 
         .user-personal-data > p {
             margin: 0;
             padding: 0;
-            padding: 0.5rem;
+            /* padding: 0.5rem; */
+            font-weight: bold;
+            font-size: 4rem;
+            letter-spacing: 0.07rem;
+            text-transform: capitalize;
+            color: rgb(224, 224, 224);
+            padding: 0.5rem 1rem;
+            /* border: 1px solid white; */
         }
 
+        .user-update-btns {
+            flex: 0 0 100%;
+            padding: 0 1rem;
+            /* border: 1px solid white; */
+        }
+        
+        .user-update-btns >
+        .user-update-btn {
+            /* padding: 0.6rem 1rem; */
+            letter-spacing: 0.06rem;
+            color: rgb(255, 2, 2);
+            /* border-radius: 10px;
+            background: orangered; */
+            /* border-bottom: 1px solid rgb(192, 51, 0); */
+        }
     </style>
 
 
@@ -78,18 +109,14 @@
                 <img src="{{ user.profile.image.url }}" alt="profile picture">
             </div>
             <div class="user-personal-data">
-                {% if user.profile.name %}
-                    <p><i class="fas fa-user"></i> {{ user.profile.name }}</p>
-                {% else %}
-                    <p><i class="fas fa-user"></i> n/a</p>
-                {% endif %}
-                {% if user.profile.location %}
-                    <p><i class="fa-solid fa-map"></i>{{ user.profile.location }}</p>
-                {% else %}
-                    <p><i class="fa-solid fa-map"></i> n/a</p>
-                {% endif %}
-                <p>Username: {{ user.username }}</p>
-                <p>Email: {{ user.email }}</p>
+                <!-- <p><i class="fas fa-user"></i> {{ user.profile.name }}</p>
+                <p><i class="fa-solid fa-map"></i>{{ user.profile.location }}</p> -->
+                <p>{{ user.username }}</p>
+                <!-- <p>Email: {{ user.email }}</p> -->
+                <div class="user-update-btns">
+                    <a href="" class="user-update-btn btn">Update</a>
+                    <!-- <a href="{% url 'music:home' %}" class="profile-cancel btn">Cancel</a> -->
+                </div>
             </div>
         </div>
             {% comment %}
@@ -111,4 +138,7 @@
             </div> -->
             {% endcomment %}
     </div>
+    <h1>Profile page</h1>
+    <br>
+    <h1>Profile page</h1>
 {% endblock content%}
