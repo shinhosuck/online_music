@@ -17,6 +17,8 @@ class Message(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="profile_pics", default="profile_pics/default.jpg")
+    name = models.CharField(max_length=50, default="")
+    location = models.CharField(max_length=50, default="")
 
     def __str__(self):
         return f"{self.user.username} profile"
