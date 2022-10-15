@@ -42,14 +42,16 @@
         .profile-wrapper {
             /* margin: 0 auto;
             max-width: 40vw; */
-            padding: 1rem;
+            padding: 1.5rem;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             flex-wrap: wrap;
             background: rgba(9, 26, 72, 0.8);
-            /* backdrop-filter: blur(10px); */
+            backdrop-filter: blur(10px);
             border-radius: 20px;
+            border: 2px solid rgb(0, 26, 93);
+            margin: 0 1rem;
         }
 
         .profile-wrapper >
@@ -58,7 +60,7 @@
             height: 150px;
             display: block;
             border-radius: 50%;
-            box-shadow: 2px 2px 15px 5px rgb(0, 0, 0);
+            box-shadow: 2px 2px 15px 5px rgb(4, 0, 29);
         }
 
         .profile-info {
@@ -97,9 +99,17 @@
             padding-bottom: 0 !important;
         }
 
+        .profile-info > p:nth-child(3) {
+            text-transform: none;
+        }
+
+        .profile-info > p > i {
+            color: rgb(255, 69, 0)
+        }
+
         .user-profile-btns {
             flex: 0 0 100%;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
             /* border: 1px solid white; */
         }
 
@@ -114,12 +124,12 @@
         }
 
         .user-profile-btns > a:first-child {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
             background: rgb(0, 89, 255);
         }
 
         .user-profile-btns > a:last-child {
-            margin-top: 0.25rem;
+            margin-top: 0.5rem;
             background: rgb(100, 100, 100);
         }
 
@@ -139,10 +149,29 @@
             <div class="profile-wrapper">
                 <img src="{{ user.profile.image.url }}" alt="" class="profile-img">
                 <div class="profile-info">
-                    <p class="user-profile-name">{{ user.profile.name }}</p>
-                    <p id="user-profile-username"><i class="fa fa-user"></i> {{ user.username }}</p>
-                    <p class="user-profile-email"><i class="fa fa-envelope"></i> {{ user.email }}</p>
-                    <p class="user-profile-location"><i class="fa fa-map"></i> {{ user.profile.location }}</p>
+                    {% if user.profile.name %}
+                        <p class="user-profile-name">{{ user.profile.name }}</p>
+                    {% else %}
+                        <p class="user-profile-name">Not available</p>
+                    {% endif %}
+
+                    {% if user.username %}
+                        <p id="user-profile-username"><i class="fa fa-user"></i> {{ user.username }}</p>
+                    {% else %}
+                        <p id="user-profile-username"><i class="fa fa-user"></i> Not available</p>
+                    {% endif %}
+
+                    {% if user.email %}
+                        <p class="user-profile-email"><i class="fa fa-envelope"></i> {{ user.email }}</p>
+                    {% else %}
+                        <p class="user-profile-email"><i class="fa fa-envelope"></i> Not available</p>
+                    {% endif %}
+
+                    {% if user.profile.location %}
+                        <p class="user-profile-location"><i class="fa fa-map"></i> {{ user.profile.location }}</p>
+                    {% else %}
+                        <p class="user-profile-location"><i class="fa fa-map"></i> Not available</p>
+                    {% endif %}
                 </div>
                 <div class="user-profile-btns">
                     <a href="" class="update-profile">Update</a>
