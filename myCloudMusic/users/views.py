@@ -45,7 +45,7 @@ def user_profile(request, pk):
     # else:
     if request.method == "POST":
         user_update_form = UserUpdateForm(request.POST)
-        profile_update_form = ProfileUpdateForm(request.POST)
+        profile_update_form = ProfileUpdateForm(request.POST, request.FILES)
 
     else:
         user_update_form = UserUpdateForm(instance=user)

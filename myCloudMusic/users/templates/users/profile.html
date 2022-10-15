@@ -22,21 +22,11 @@
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
             animation-duration: 0.7s;
-        }
 
-        .profile-wrapper {
-            
-
-            margin: 0 auto;
-            max-width: 40vw;
-            padding: 1rem;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             flex-wrap: wrap;
-            background: rgba(11, 31, 86, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
         }
 
         @keyframes drop-profile {
@@ -49,13 +39,26 @@
             }
         }
 
+        .profile-wrapper {
+            /* margin: 0 auto;
+            max-width: 40vw; */
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            background: rgba(9, 26, 72, 0.8);
+            /* backdrop-filter: blur(10px); */
+            border-radius: 20px;
+        }
+
         .profile-wrapper >
         .profile-img {
             width: 150px;
             height: 150px;
             display: block;
             border-radius: 50%;
-            box-shadow: 2px 2px 15px 5px rgb(0, 5, 109);
+            box-shadow: 2px 2px 15px 5px rgb(0, 0, 0);
         }
 
         .profile-info {
@@ -103,21 +106,30 @@
         .user-profile-btns > a {
             display: block;
             text-align: center;
-            padding: 0.7rem;
-            border: 1px solid white;
+            padding: 0.8rem;
+            border: 2.5px solid transparent;
             border-radius: 8px;
+            transition: border 0.17s linear;
+            letter-spacing: 0.06rem;
         }
 
         .user-profile-btns > a:first-child {
             margin-bottom: 0.25rem;
-            background: rgb(255, 69, 0);
+            background: rgb(0, 89, 255);
         }
 
         .user-profile-btns > a:last-child {
             margin-top: 0.25rem;
-            background: rgb(78, 78, 78);
+            background: rgb(100, 100, 100);
         }
 
+        .user-profile-btns > a:first-child:hover {
+            border: 2.5px solid rgb(0, 204, 255);
+        }
+
+        .user-profile-btns > a:last-child:hover {
+            border: 2.5px solid rgb(204, 204, 204);
+        }
     </style>
 </head>
 <body>
@@ -134,7 +146,7 @@
                 </div>
                 <div class="user-profile-btns">
                     <a href="" class="update-profile">Update</a>
-                    <a href="" class="cancel-update">Cancel</a>
+                    <a href="{% url 'music:home' %}" class="cancel-update">Cancel</a>
                 </div>
             </div>
         </div>
