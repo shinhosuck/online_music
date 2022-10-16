@@ -1,8 +1,10 @@
+from shutil import unregister_archive_format
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from users.forms import UserRegisterForm, MessageForm, UserUpdateForm, ProfileUpdateForm
 from users.models import Profile
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 def register(request):
@@ -24,10 +26,8 @@ def message(request):
     user = request.user
     if request.method == "POST":
         form = MessageForm(request.POST or None)
-        # print(form.instance.email)
         if form.is_valid():
             new_message = form.save()
-            # print(new_message.email, new_message.message)
             if user.is_authenticated:
                 messages.success(request, f"Message sent {user.username}!")
             else:
@@ -35,24 +35,27 @@ def message(request):
             return redirect("music:home")
         else:
             return redirect("music:home")
+
 @login_required
-def user_profile(request, pk):
+def user_profile(request):
     user = request.user
-    # if request.GET.get("string"):
-    #     data = int(request.GET.get("string"))
-    #     print(data)
-    #     return redirect("users:user-profile", pk=pk)
-    # else:
+    return render(request, "users/profile.html", {"user": user})
+
+@login_required
+def update_profile(request, pk):
+    user = User.objects.get(pk=pk)
+   
     if request.method == "POST":
-        user_update_form = UserUpdateForm(request.POST)
-        profile_update_form = ProfileUpdateForm(request.POST, request.FILES)
+        user_form = UserUpdateForm(request.POST)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES)
+        return redirect("users:user-profile")
 
     else:
-        user_update_form = UserUpdateForm(instance=user)
-        profile_update_form = ProfileUpdateForm(instance=user.profile)
+        user_form = UserUpdateForm(instance=user)
+        profile_form = ProfileUpdateForm(instance=user.profile)
         context = {
-            "profile_update_form": profile_update_form,
-            "user_update_form": user_update_form,
+            "profile_form": profile_form,
+            "user_form": user_form,
             "user": user
         }
-        return render(request, "users/profile.html", context)
+        return render(request, "users/update_profile.html", context)

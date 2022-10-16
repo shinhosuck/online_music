@@ -1,5 +1,5 @@
 from django.contrib.auth.views import LoginView, LogoutView
-from users.views import register, message, user_profile
+from users.views import register, message, user_profile, update_profile
 from django.urls import path
 
 from django.conf import settings
@@ -12,7 +12,8 @@ urlpatterns = [
     path("message/", message, name="message"),
     path("login/", LoginView.as_view(template_name="users/login.html"), name="login"),
     path("logout/", LogoutView.as_view(template_name="music/landing-page.html"), name="logout"),
-    path("profile/<int:pk>", user_profile, name="user-profile")
+    path("profile/", user_profile, name="user-profile"),
+    path("update/profile/<int:pk>/", update_profile, name="update-profile")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

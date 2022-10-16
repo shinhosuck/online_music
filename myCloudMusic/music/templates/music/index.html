@@ -48,7 +48,7 @@
                                     <i class="fa fa-chevron-up user-chevron-up"></i>
                                 </div>
                                 <div class="user-wrapper">
-                                    <a class="{% if url_name == 'profile' %}active{% endif %}" href="{% url 'users:user-profile' user.pk %}">Profile</a>
+                                    <a class="{% if url_name == 'profile' %}active{% endif %}" href="{% url 'users:user-profile' %}">Profile</a>
                                     <a id="create-album" href="{% url 'music:my-albums' %}?string=My albums">My albums</a>
                                     <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
                                     <a href="{% url 'music:new-song' %}">New song</a>
@@ -68,7 +68,7 @@
                                 <div class="user-wrapper">
                                     <a href="{% url 'users:login' %}">Login</a>
                                     <a href="{% url 'users:register' %}">Join Us</a>
-                                    <a href="{% url 'users:user-profile' pk=0 %}">Profile</a>
+                                    <a href="{% url 'users:user-profile' %}">Profile</a>
                                     <a id="create-album" href="{% url 'music:create-album' %}">New Album</a>
                                     <a id="about" href="{% url 'music:new-song' %}">New song</a>
                                 </div>

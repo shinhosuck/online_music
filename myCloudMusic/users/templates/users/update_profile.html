@@ -1,0 +1,50 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'music/style.css' %}">
+    <title>Update {{ user.username }} profile</title>
+
+    <style>
+    .profile-update-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .profile-update-wrapper {
+        border: 1px solid orangered;
+        padding: 1rem;
+        border-radius: 15px;
+    }
+
+    </style>
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="profile-update-container">
+            <div class="profile-update-wrapper">
+                <h2>update profile</h2>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ profile_form|crispy }}
+                    {{ user_form|crispy }}
+                    <div class="update-profile-btns">
+                        <button type="submit">Submit</button>
+                        <a style="color:black" href="{% url 'music:home' %}" class="cancel-update">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
