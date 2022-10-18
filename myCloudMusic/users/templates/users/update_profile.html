@@ -11,35 +11,92 @@
     <title>Update {{ user.username }} profile</title>
 
     <style>
-    .profile-update-container {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
 
-    .profile-update-wrapper {
-        border: 1px solid orangered;
-        padding: 1rem;
-        border-radius: 15px;
-    }
+        .profile-update-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
+        @media screen and (max-width:400px) {
+            .profile-update-container {
+                min-height: initial;
+                align-items: flex-start;
+                overflow-y: scroll;
+            }
+        }
+
+        .profile-update-wrapper {
+            padding: 1rem;
+            background: rgba(9, 26, 72, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 2px solid rgb(0, 26, 93);
+            margin: 1rem;
+
+        }
+
+        .profile-update-submit-btn {
+            width: 100%;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            color: white;
+            background: rgb(0, 89, 255);
+            border-radius: 0.5rem;
+            outline: none !important;
+            cursor: pointer;
+            border: 2.5px solid transparent !important;
+            transition: border 0.15s linear;
+        }
+
+        .profile-update-cancel-btn {
+            display: block;
+            text-align: center;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            background: rgb(100, 100, 100);
+            text-decoration: none;
+            border: 2.5px solid transparent !important;
+            transition: border 0.15s linear;
+        }
+
+        @media (hover) {
+            .profile-update-submit-btn:hover {
+                border: 2.5px solid rgb(0, 204, 255) !important
+            }
+
+            .profile-update-cancel-btn:hover {
+                text-decoration: none;
+                color: white;
+                border: 2.5px solid rgb(204, 204, 204) !important
+            }
+        }
+
+        #div_id_image > div {
+            color: lightgray !important;
+        }
+        #div_id_image > div > a {
+            color: rgb(255, 111, 0) !important
+        }
     </style>
 </head>
 <body>
     <header></header>
-    <main>
+    <main class="create-album-body">
         <div class="profile-update-container">
             <div class="profile-update-wrapper">
-                <h2>update profile</h2>
+                <h3 style="color: rgb(242, 242, 242); letter-spacing: 0.06rem; text-transform: capitalize;">update profile</h3>
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ profile_form|crispy }}
                     {{ user_form|crispy }}
                     <div class="update-profile-btns">
-                        <button type="submit">Submit</button>
-                        <a style="color:black" href="{% url 'music:home' %}" class="cancel-update">Cancel</a>
+                        <button class="profile-update-submit-btn" type="submit">Submit</button>
+                        <a class="profile-update-cancel-btn" href="{% url 'music:home' %}" class="cancel-update">Cancel</a>
                     </div>
                 </form>
             </div>
