@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'music/style.css' %}">
     <title>Update {{ user.username }} profile</title>
 
@@ -15,17 +16,9 @@
         .profile-update-container {
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-content: center;
             justify-content: center;
             flex-wrap: wrap;
-        }
-
-        @media screen and (max-width:400px) {
-            .profile-update-container {
-                min-height: initial;
-                align-items: flex-start;
-                overflow-y: scroll;
-            }
         }
 
         .profile-update-wrapper {
@@ -34,8 +27,18 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             border: 2px solid rgb(0, 26, 93);
-            margin: 1rem;
+        }
 
+        @media screen and (max-width:400px) {
+            /* .profile-update-container {
+                min-height: initial;
+                align-items: flex-start;
+            } */
+
+            .profile-update-wrapper {
+                margin: 1rem;
+                margin-bottom: 0;
+            }
         }
 
         .profile-update-submit-btn {
@@ -55,7 +58,7 @@
             display: block;
             text-align: center;
             padding: 0.5rem 1rem;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             border-radius: 0.5rem;
             color: white;
             background: rgb(100, 100, 100);
@@ -76,11 +79,58 @@
             }
         }
 
+        #div_id_image,
+        #div_id_name,
+        #div_id_location,
+        #div_id_username,
+        #div_id_email {
+            margin-bottom: 0.5rem !important;
+        }
+
+        #div_id_image > label,
+        #div_id_name > label,
+        #div_id_location > label,
+        #div_id_username > label,
+        #div_id_email > label {
+            margin-bottom: 0 !important;
+        }
+
+        #div_id_image > div > input,
+        #div_id_name > div > input,
+        #div_id_location > div > input,
+        #div_id_username > div > input,
+        #div_id_email > div > input {
+            color: rgb(39, 39, 39);
+            letter-spacing: 0.05rem;
+        }
+
+        #div_id_image > div > input {
+            color: rgb(131, 131, 131);
+        }
+
         #div_id_image > div {
-            color: lightgray !important;
+            color: rgb(131, 131, 131) !important;
+            
         }
         #div_id_image > div > a {
             color: rgb(255, 111, 0) !important
+        }
+
+        .scroll-down-btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+        .scroll-down-btn > a {
+            border: 1px solid white;
+            color: rgb(255, 94, 0) !important;
+            margin: 0; 
+            padding: 0;
+            padding: 0.5rem;
+            letter-spacing: 0.06rem;
         }
     </style>
 </head>
@@ -100,8 +150,11 @@
                     </div>
                 </form>
             </div>
+            <!-- <div class="scroll-down-btn">
+                <a href="#scroll-down"><i class="fa-solid fa-arrow-down"></i></a>
+            </div> -->
         </div>
-    </main>
     <footer></footer>
+    <script type="text/javascript"></script>
 </body>
 </html>

@@ -20,7 +20,7 @@ class UserRegisterForm(UserCreationForm):
 
 # can you ModelForm to create form
 class MessageForm(forms.ModelForm):
-    # email = forms.EmailField()
+    email = forms.EmailField()
     class Meta:
         model = Message
         fields = [
@@ -31,6 +31,7 @@ class MessageForm(forms.ModelForm):
         ]
 
 class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
     class Meta:
         model = User
         fields = ["username", "email"]
