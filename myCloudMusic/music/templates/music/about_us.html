@@ -37,24 +37,28 @@
     }
 
     .about-content-wrapper >
-    .about-img-container,
+    .about-img-container {
+        flex: 1;
+        position: relative;
+        /* border: 1px solid white; */
+    }
+
+    .about-content-wrapper >
     .about-text-container {
         flex: 1;
         padding: 1rem;
-        padding-left: 2rem;
         padding-bottom: 0;
+        margin-left: 1rem;
+        text-align: center;
     }
 
-    .about-content-wrapper >
-    .about-img-container {
-        padding: 0;
-    }
-
-    .about-content-wrapper >
-    .about-img-container {
-        padding-left: 0;
-        padding-right: 0;
-        position: relative;
+    @media screen and (max-width: 700px) {
+        .about-content-wrapper >
+        .about-img-container,
+        .about-text-container {
+            flex: 0 0 100%;
+            margin-left: 0 !important;
+        }
     }
 
     .about-content-wrapper >
@@ -69,7 +73,8 @@
     .about-img-container >
     div {
         position: absolute;
-        top: 0;
+        /* top: 0; */
+        bottom: 0;
         left: 0;
         z-index: 2;
     }
@@ -81,29 +86,36 @@
         height: auto;
         display: block;
         filter: opacity(30%);
-    }
-
-    .about-text-container {
-        text-align: center;
+        /* border: 1px solid white; */
     }
 
     .about-content-wrapper >
     .about-text-container >
     p {
-        color: white;
+        color: rgb(214, 214, 214);
         letter-spacing: 0.1rem;
-        line-height: 1.7;
-        /* text-align: center; */
+        line-height: 1.6;
+        font-size: 1.1rem;
     }
 
     .about-content-wrapper >
     .about-text-container >
     a {
         padding: 1rem 2rem;
+        text-align: center;
         background: orangered;
         border-radius: 23px;
         margin-top: 2rem;
         letter-spacing: 0.07rem;
+        color: rgb(255, 255, 255);
+        transition: background 0.25s linear;
+    }
+
+    .about-content-wrapper >
+    .about-text-container >
+    a:hover {
+        color: rgb(255, 255, 255);
+        background: rgb(255, 128, 0);
     }
 
 </style>
@@ -116,10 +128,11 @@
         <div class="about-img-container">
             <img src="{% static 'music/images/about-img.jpg' %}" alt="">
             <div>
-                <img class="about-img2" src="{% static 'music/images/about-img3.png' %}" alt="">
+                <img class="about-img2" src="{% static 'music/images/about-img2.png' %}" alt="">
             </div>
         </div>
         <div class="about-text-container">
+            <h2 style="color: white; letter-spacing: 0.07rem; text-transform: capitalize; padding: 1rem 0;">Lorem ipsum dolor</h2>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Quod ipsa eligendi harum modi labore assumenda aspernatur
