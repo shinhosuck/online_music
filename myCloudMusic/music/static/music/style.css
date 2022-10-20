@@ -405,11 +405,20 @@ NAVIGATION MENU
     padding-left: 0.3rem;
 }
 
-.user-chevron-icons > i {
+/* .user-chevron-icons > i {
     font-size: 1.5rem;
     color: rgb(179, 179, 179);
-}
+} */
 
+/* user image on index.html */
+.user-chevron-icons >
+.profile-img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    border-radius: 50%;
+}
+/* end */
 .user-chevron-down {
     color: rgb(0, 119, 255) !important;
     font-size: 1.1rem !important;

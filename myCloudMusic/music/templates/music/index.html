@@ -42,7 +42,8 @@
                             <li><a class="{% if url_name == 'contact-us' %}active{% endif %}" href="{% url 'music:contact-us' %}">Contact</a></li>
                             <li class="user-container">
                                 <div class="user-chevron-icons">
-                                    <i class="fas fa-user-circle"></i>
+                                    <!-- <i class="fas fa-user-circle"></i> -->
+                                    <img src="{{ user.profile.image.url }}" alt="" class="profile-img">
                                     <p>{{ user.username }}</p>
                                     <i class="fa fa-chevron-down user-chevron-down"></i>
                                     <i class="fa fa-chevron-up user-chevron-up"></i>
