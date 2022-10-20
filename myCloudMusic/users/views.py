@@ -1,3 +1,4 @@
+import profile
 from shutil import unregister_archive_format
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -46,8 +47,11 @@ def update_profile(request, pk):
     user = User.objects.get(pk=pk)
    
     if request.method == "POST":
-        user_form = UserUpdateForm(request.POST)
-        profile_form = ProfileUpdateForm(request.POST, request.FILES)
+        user_form = UserUpdateForm(request.POST, instance=user)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            u_form = user_form.save()
+            p_form = profile_form.save()
         return redirect("users:user-profile")
 
     else:
