@@ -6,6 +6,7 @@ from django import forms
 
 
 class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField()
     class Meta:
         model = User
         fields = [

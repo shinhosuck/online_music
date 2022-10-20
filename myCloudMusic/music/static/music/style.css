@@ -413,8 +413,8 @@ NAVIGATION MENU
 /* user image on index.html */
 .user-chevron-icons >
 .profile-img {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     display: block;
     border-radius: 50%;
 }
@@ -553,7 +553,7 @@ NAVIGATION MENU
 
     .user-wrapper {
         position: absolute;
-        top: 61px;
+        top: 64px;
         left: 19px;
         z-index: 3;
         width: 100%;
